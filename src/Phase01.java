@@ -1,15 +1,12 @@
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 
 public class Phase01 {
-    private static HashMap<String, List<String>> invertedIndex;
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String path = sc.next();
-        buildMap(path);
+        Researcher.buildInvertedIndex(path);
         System.out.println("please enter a query");
 
         Set<String> plusContain = new HashSet<>();
@@ -17,7 +14,47 @@ public class Phase01 {
         Set<String> none = new HashSet<>();
 
         sc.nextLine();
-        String[] query = sc.nextLine().split(" ");
+        splitInput(sc.nextLine().split(" "), plusContain,
+                minusContain,none);
+
+
+        Set<String> answers = new HashSet<>();
+
+        for (String plus : plusContain) {
+            String pureWord = plus.substring(1);
+            if (Researcher.invertedIndex.containsKey(pureWord))
+                answers.addAll(Researcher.invertedIndex.get(pureWord));
+        }
+
+
+        for (String n : none) {
+            if (Researcher.invertedIndex.containsKey(n)) {
+                if (answers.size() == 0)
+                    answers.addAll(Researcher.invertedIndex.get(n));
+                else{
+                    answers.retainAll(Researcher.invertedIndex.get(n)); // question
+                }
+            }else
+            {
+                answers.clear();
+                break;
+            }
+        }
+
+        for (String minus : minusContain) {
+            String pureWord = minus.substring(1);
+            if (Researcher.invertedIndex.containsKey(pureWord))
+                answers.removeAll(Researcher.invertedIndex.get(pureWord));
+        }
+
+
+        System.out.println(answers.toString());
+
+    }
+
+
+    public static void splitInput(String[] query, Set<String> plusContain,
+                                  Set <String> minusContain, Set<String> none){
         for (String q : query) {
             if (q.contains("+")) {
                 plusContain.add(q);
@@ -28,69 +65,6 @@ public class Phase01 {
             }
 
         }
-
-        Set<String> answers = new HashSet<>();
-
-        for (String plus : plusContain) {
-            String pureWord = plus.substring(1);
-            if (invertedIndex.containsKey(pureWord))
-                answers.addAll(invertedIndex.get(pureWord));
-        }
-
-
-        for (String n : none) {
-            if (invertedIndex.containsKey(n)) {
-                if (answers.size() == 0)
-                    answers.addAll(invertedIndex.get(n));
-                else
-                    answers.retainAll(invertedIndex.get(n)); // question
-            }
-        }
-
-
-        for (String minus : minusContain) {
-            String pureWord = minus.substring(1);
-            if (invertedIndex.containsKey(pureWord))
-                answers.removeAll(invertedIndex.get(pureWord));
-        }
-
-
-        for (String ans : answers)
-            System.out.println(ans);
-
     }
 
-    public static Map documentReader(String path) {
-        Map<String, String> document = new HashMap<>();
-        try {
-            File sourceFolder = new File(path);
-            for (File sourceFile : sourceFolder.listFiles()) {
-                String fileName = sourceFile.getName();
-                document.put(fileName, Files.readString(Path.of(path + "\\" + fileName)));//open file
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return document;
-    }
-
-    private static void buildMap(String path) {
-        invertedIndex = new HashMap<>();
-
-        Map<String, String> document = documentReader(path);
-        for (Map.Entry<String, String> doc : document.entrySet()) {
-            String[] words = doc.getValue().split(" ");
-            for (int j = 0; j < words.length; j++) {
-                String lowercase = words[j].toLowerCase();
-                if (invertedIndex.containsKey(lowercase))
-                    invertedIndex.get(lowercase).add(doc.getKey());
-                else {
-                    ArrayList<String> documentIDs = new ArrayList<>();
-                    documentIDs.add(doc.getKey());
-                    invertedIndex.put(lowercase, documentIDs);
-                }
-            }
-        }
-    }
 }
