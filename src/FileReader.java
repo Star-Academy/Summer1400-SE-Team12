@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FileReader {
-    public static Map<String, String> readDocument(String path) {
+    public Map<String, String> readDocument(String path) {
         Map<String, String> document = new HashMap<>();
         try {
             File sourceFolder = new File(path);
@@ -14,7 +14,6 @@ public class FileReader {
                 document.put(fileName, Files.readString(Path.of(path + "\\" + fileName)).
                         toLowerCase());//open file
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
