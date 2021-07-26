@@ -20,4 +20,13 @@ public class AllFilters {
                 inputs.getMinusContain(), withoutSignFiltered);
         return minusFiltered;
     }
+
+    public void printFilteredAnswers(Set<String> answers){
+        if (answers.size() == 0) {
+            System.out.println("We didn't find");
+        } else {
+            System.out.println(answers.toString());
+        }
+    }
+
 }

@@ -7,7 +7,7 @@ public class InputReader {
     private Set<String> minusContain = new HashSet<>();
     private Set<String> withOutSign = new HashSet<>();
 
-    public void categorizeInput(String[] query) {
+    private void categorizeInput(String[] query) {
         for (String queryIterator : query) {
             if (queryIterator.contains("+")) {
                 plusContain.add(queryIterator);

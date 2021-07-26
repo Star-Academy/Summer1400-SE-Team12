@@ -14,15 +14,10 @@ public class Main {
         Set<String> answers;
 
         String pathOfTheFile = inputs.readInput();
-        Map<String, String[]> splittedDocumentInfo = invertedIndexMaker.wordSpliter(pathOfTheFile);
-        invertedIndexMaker.buildInvertedIndex(splittedDocumentInfo);
+        Map<String, String[]> splitDocumentInfo = invertedIndexMaker.wordSpliter(pathOfTheFile);
+        invertedIndexMaker.buildInvertedIndex(splitDocumentInfo);
         answers = allFilters.filter(inputs);
-
-        if (answers.size() == 0) {
-            System.out.println("We didn't find");
-        } else {
-            System.out.println(answers.toString());
-        }
+        allFilters.printFilteredAnswers(answers);
     }
 
 }
