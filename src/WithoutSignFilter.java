@@ -8,21 +8,20 @@ public class WithoutSignFilter extends Filter {
         super(invertedIndexMaker);
     }
 
-    public Set<String> filter(Set<String> withOutSignCategorized, Set<String> plusFiltered) {
-        Set<String> withoutSignFiltered = new HashSet<>(plusFiltered);
+    public Set<String> filter(Set<String> withOutSignCategorized, Set<String> documentsName) {
         for (String withoutSignCat : withOutSignCategorized) {
             if (invertedIndex.containsInvertedIndexKey(withoutSignCat)) {
-                if (withoutSignFiltered.isEmpty())
-                    withoutSignFiltered.addAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
+                if (documentsName.isEmpty())
+                    documentsName.addAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
                 else {
-                    withoutSignFiltered.retainAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
+                    documentsName.retainAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
                 }
             } else {
-                withoutSignFiltered.clear();
+                documentsName.clear();
                 break;
             }
         }
 
-        return withoutSignFiltered;
+        return documentsName;
     }
 }

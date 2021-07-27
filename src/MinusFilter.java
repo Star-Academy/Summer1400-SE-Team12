@@ -8,14 +8,13 @@ public class MinusFilter extends Filter{
         super(invertedIndexMaker);
     }
 
-    public Set<String> filter(Set<String> minusCategorized, Set<String> withOutSignFiltered) {
-        Set<String> minusFiltered = new HashSet<>(withOutSignFiltered);
+    public Set<String> filter(Set<String> minusCategorized, Set<String> documentsName) {
         for (String minusCat : minusCategorized) {
             String pureWord = minusCat.substring(1);
             if (invertedIndex.containsInvertedIndexKey(pureWord))
-                minusFiltered.removeAll(invertedIndex.getInvertedIndexValue(pureWord));
+                documentsName.removeAll(invertedIndex.getInvertedIndexValue(pureWord));
         }
 
-        return minusFiltered;
+        return documentsName;
     }
 }

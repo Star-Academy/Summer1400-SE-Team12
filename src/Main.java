@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Main {
-    final static String PATH_OF_THE_FILE = "EnglishData";
+    final static String PATH_OF_THE_FILE = "src\\EnglishData";
 
     public static void main(String[] args) {
         QueryCategorizer queryCategorizer = new QueryCategorizer();
@@ -10,12 +10,12 @@ public class Main {
         PlusFilter plusFilter = new PlusFilter(invertedIndexMaker);
         MinusFilter minusFilter = new MinusFilter(invertedIndexMaker);
         WithoutSignFilter withOutSignFilter = new WithoutSignFilter(invertedIndexMaker);
-        Filterizer filterizer = new Filterizer(plusFilter, minusFilter, withOutSignFilter);
 
         queryCategorizer.categorizeQuery();
         Map<String, String[]> splitDocumentInfo = invertedIndexMaker.splitDocumentsWords(PATH_OF_THE_FILE);
+        Filterizer filterizer = new Filterizer(plusFilter, minusFilter, withOutSignFilter, splitDocumentInfo.keySet());
         invertedIndexMaker.buildInvertedIndex(splitDocumentInfo);
-        Set<String> answers = filterizer.filter(queryCategorizer.getQueryKeeper(), new HashSet<>());
+        Set<String> answers = filterizer.filter(queryCategorizer.getQueryKeeper());
         printFilteredAnswers(answers);
     }
 
