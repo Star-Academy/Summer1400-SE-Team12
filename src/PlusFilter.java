@@ -9,14 +9,13 @@ public class PlusFilter extends Filter{
     }
 
     @Override
-    public Set<String> filter(Set<String> plusCategorized, Set<String> previousFiltered) {
-        Set<String> plusFiltered = new HashSet<>(previousFiltered);
+    public Set<String> filter(Set<String> plusCategorized, Set<String> preFiltered) {
         for (String plus : plusCategorized) {
             String pureWord = plus.substring(1);
             if (invertedIndex.containsKey(pureWord))
-                plusFiltered.addAll(invertedIndex.getValue(pureWord));
+                preFiltered.addAll(invertedIndex.getValue(pureWord));
         }
-        return plusFiltered;
+        return preFiltered;
     }
 
 

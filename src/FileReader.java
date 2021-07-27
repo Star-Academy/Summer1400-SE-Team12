@@ -6,17 +6,19 @@ import java.util.Map;
 
 public class FileReader {
     public Map<String, String> readDocument(String path) {
-        Map<String, String> document = new HashMap<>();
+        final String Back_SLASH = "\\";
+        final String PATH = path + Back_SLASH;
+        Map<String, String> documents = new HashMap<>();
         try {
             File sourceFolder = new File(path);
             for (File sourceFile : sourceFolder.listFiles()) {
                 String fileName = sourceFile.getName();
-                document.put(fileName, Files.readString(Path.of(path + "\\" + fileName)).
+                documents.put(fileName, Files.readString(Path.of(PATH , fileName)).
                         toLowerCase());//open file
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return document;
+        return documents;
     }
 }

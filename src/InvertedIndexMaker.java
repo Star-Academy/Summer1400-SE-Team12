@@ -26,7 +26,7 @@ class InvertedIndexMaker {
         }
     }
 
-    public Map<String, String[]> wordSpliter(String pathOfTheDocument) {
+    public Map<String, String[]> wordSplitter(String pathOfTheDocument) {
         Map<String, String[]> splittedDocumentInfo = new HashMap<>();
         Map<String, String> document = fileReader.readDocument(pathOfTheDocument);
         for (Map.Entry<String, String> doc : document.entrySet())

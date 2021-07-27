@@ -8,13 +8,13 @@ public class Main {
         InvertedIndexMaker invertedIndexMaker = new InvertedIndexMaker(fileReader);
         PlusFilter plusFilter = new PlusFilter(invertedIndexMaker);
         WithOutSignFilter withOutSignFilter = new WithOutSignFilter(invertedIndexMaker);
-        MinusFilter minesFilter = new MinusFilter(invertedIndexMaker);
-        Filterizer filterizer = new Filterizer(plusFilter, minesFilter,
+        MinusFilter minusFilter = new MinusFilter(invertedIndexMaker);
+        Filterizer filterizer = new Filterizer(plusFilter, minusFilter,
                 withOutSignFilter);
         Set<String> answers = new HashSet<>();
 
         String pathOfTheFile = inputs.readInput();
-        Map<String, String[]> splitDocumentInfo = invertedIndexMaker.wordSpliter(pathOfTheFile);
+        Map<String, String[]> splitDocumentInfo = invertedIndexMaker.wordSplitter(pathOfTheFile);
         invertedIndexMaker.buildInvertedIndex(splitDocumentInfo);
         answers = filterizer.filter(inputs, answers);
         filterizer.printFilteredAnswers(answers);

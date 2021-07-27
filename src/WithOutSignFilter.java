@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Set;
 
 public class WithOutSignFilter extends Filter {
@@ -8,19 +9,20 @@ public class WithOutSignFilter extends Filter {
     }
 
     public Set<String> filter(Set<String> withOutSignCategorized, Set<String> plusFiltered) {
-        for (String n : withOutSignCategorized) {
-            if (invertedIndex.containsKey(n)) {
-                if (plusFiltered.size() == 0)
-                    plusFiltered.addAll(invertedIndex.getValue(n));
+        Set<String> withoutSignFiltered = new HashSet<>(plusFiltered);
+        for (String withoutSignCat : withOutSignCategorized) {
+            if (invertedIndex.containsKey(withoutSignCat)) {
+                if (withoutSignFiltered.isEmpty())
+                    withoutSignFiltered.addAll(invertedIndex.getValue(withoutSignCat));
                 else {
-                    plusFiltered.retainAll(invertedIndex.getValue(n));
+                    withoutSignFiltered.retainAll(invertedIndex.getValue(withoutSignCat));
                 }
             } else {
-                plusFiltered.clear();
+                withoutSignFiltered.clear();
                 break;
             }
         }
         //Set<String> withOutSignFilter = plusFiltered;
-        return plusFiltered;
+        return withoutSignFiltered;
     }
 }

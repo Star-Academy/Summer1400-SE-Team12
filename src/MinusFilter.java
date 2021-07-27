@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Set;
 
 public class MinusFilter extends Filter{
@@ -8,14 +9,14 @@ public class MinusFilter extends Filter{
     }
 
     public Set<String> filter(Set<String> minusCategorized, Set<String> withOutSignFiltered) {
-
-        for (String minus : minusCategorized) {
-            String pureWord = minus.substring(1);
+        Set<String> minusFiltered = new HashSet<>(withOutSignFiltered);
+        for (String minusCat : minusCategorized) {
+            String pureWord = minusCat.substring(1);
             if (invertedIndex.containsKey(pureWord))
-                withOutSignFiltered.removeAll(invertedIndex.getValue(pureWord));
+                minusFiltered.removeAll(invertedIndex.getValue(pureWord));
         }
         //Set<String> minusFiltered = withOutSignFiltered;
 
-        return withOutSignFiltered;
+        return minusFiltered;
     }
 }
