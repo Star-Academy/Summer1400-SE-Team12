@@ -11,7 +11,7 @@ public class Filterizer {
         this.withOutSignFilter = new WithoutSignFilter(invertedIndex);
     }
 
-    public Set<String> filter(InputReader inputs, Set<String> preAnswers){
+    public Set<String> filter(QueryKeeper inputs, Set<String> preAnswers){
         Set<String> plusFiltered = plusFilter.filter(inputs.getPlusContain(), preAnswers);
         Set<String> withoutSignFiltered = withOutSignFilter.filter(
                 inputs.getWithOutSign(), plusFiltered);

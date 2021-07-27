@@ -11,18 +11,18 @@ public class WithoutSignFilter extends Filter {
     public Set<String> filter(Set<String> withOutSignCategorized, Set<String> plusFiltered) {
         Set<String> withoutSignFiltered = new HashSet<>(plusFiltered);
         for (String withoutSignCat : withOutSignCategorized) {
-            if (invertedIndex.containsKey(withoutSignCat)) {
+            if (invertedIndex.containsInvertedIndexKey(withoutSignCat)) {
                 if (withoutSignFiltered.isEmpty())
-                    withoutSignFiltered.addAll(invertedIndex.getValue(withoutSignCat));
+                    withoutSignFiltered.addAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
                 else {
-                    withoutSignFiltered.retainAll(invertedIndex.getValue(withoutSignCat));
+                    withoutSignFiltered.retainAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
                 }
             } else {
                 withoutSignFiltered.clear();
                 break;
             }
         }
-        //Set<String> withOutSignFilter = plusFiltered;
+
         return withoutSignFiltered;
     }
 }

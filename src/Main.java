@@ -3,14 +3,16 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        InputReader inputs = new InputReader();
+        final String PATH_OF_THE_FILE = "EnglishData";
+        QueryCategorizer inputs = new QueryCategorizer();
         FileReader fileReader = new FileReader();
         InvertedIndexMaker invertedIndexMaker = new InvertedIndexMaker(fileReader);
         Filterizer filterizer = new Filterizer(invertedIndexMaker);
         Set<String> answers = new HashSet<>();
 
-        String pathOfTheFile = inputs.readInput();
-        Map<String, String[]> splitDocumentInfo = invertedIndexMaker.wordSplitter(pathOfTheFile);
+        inputs.categorizeQuery();
+        Map<String, String[]> splitDocumentInfo =
+                invertedIndexMaker.splitDocumentsWords(PATH_OF_THE_FILE);
         invertedIndexMaker.buildInvertedIndex(splitDocumentInfo);
         answers = filterizer.filter(inputs, answers);
         printFilteredAnswers(answers);

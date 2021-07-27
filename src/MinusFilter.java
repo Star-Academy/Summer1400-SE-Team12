@@ -12,10 +12,9 @@ public class MinusFilter extends Filter{
         Set<String> minusFiltered = new HashSet<>(withOutSignFiltered);
         for (String minusCat : minusCategorized) {
             String pureWord = minusCat.substring(1);
-            if (invertedIndex.containsKey(pureWord))
-                minusFiltered.removeAll(invertedIndex.getValue(pureWord));
+            if (invertedIndex.containsInvertedIndexKey(pureWord))
+                minusFiltered.removeAll(invertedIndex.getInvertedIndexValue(pureWord));
         }
-        //Set<String> minusFiltered = withOutSignFiltered;
 
         return minusFiltered;
     }

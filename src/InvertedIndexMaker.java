@@ -1,10 +1,7 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class InvertedIndexMaker {
-    private final HashMap<String, List<String>> invertedIndex = new HashMap<>();
+    private final HashMap<String, Set<String>> invertedIndex = new HashMap<>();
     private final FileReader fileReader;
 
     public InvertedIndexMaker(FileReader fileReader) {
@@ -18,7 +15,7 @@ class InvertedIndexMaker {
                 if (invertedIndex.containsKey(doc.getValue()[j]))
                     invertedIndex.get(doc.getValue()[j]).add(doc.getKey());
                 else {
-                    ArrayList<String> documentNames = new ArrayList<>();
+                    Set<String> documentNames = new HashSet<>();
                     documentNames.add(doc.getKey());
                     invertedIndex.put(doc.getValue()[j], documentNames);
                 }
@@ -26,7 +23,7 @@ class InvertedIndexMaker {
         }
     }
 
-    public Map<String, String[]> wordSplitter(String pathOfTheDocument) {
+    public Map<String, String[]> splitDocumentsWords(String pathOfTheDocument) {
         Map<String, String[]> splittedDocumentInfo = new HashMap<>();
         Map<String, String> document = fileReader.readDocument(pathOfTheDocument);
         for (Map.Entry<String, String> doc : document.entrySet())
@@ -34,11 +31,11 @@ class InvertedIndexMaker {
         return splittedDocumentInfo;
     }
 
-    public boolean containsKey(String key){
+    public boolean containsInvertedIndexKey(String key){
         return invertedIndex.containsKey(key);
     }
 
-    public List<String> getValue(String key){
+    public Set<String> getInvertedIndexValue(String key){
         return invertedIndex.get(key);
     }
 
