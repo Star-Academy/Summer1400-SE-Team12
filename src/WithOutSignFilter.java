@@ -1,28 +1,26 @@
 import java.util.Set;
 
-public class WithOutSignFilter {
-    private final InvertedIndexMaker invertedIndexMaker;
+public class WithOutSignFilter extends Filter {
+
 
     public WithOutSignFilter(InvertedIndexMaker invertedIndexMaker) {
-
-        this.invertedIndexMaker = invertedIndexMaker;
+        super(invertedIndexMaker);
     }
-
 
     public Set<String> filter(Set<String> withOutSignCategorized, Set<String> plusFiltered) {
         for (String n : withOutSignCategorized) {
-            if (invertedIndexMaker.invertedIndex.containsKey(n)) {
+            if (invertedIndex.containsKey(n)) {
                 if (plusFiltered.size() == 0)
-                    plusFiltered.addAll(invertedIndexMaker.invertedIndex.get(n));
+                    plusFiltered.addAll(invertedIndex.getValue(n));
                 else {
-                    plusFiltered.retainAll(invertedIndexMaker.invertedIndex.get(n));
+                    plusFiltered.retainAll(invertedIndex.getValue(n));
                 }
             } else {
                 plusFiltered.clear();
                 break;
             }
         }
-        Set<String> withOutSignFilter = plusFiltered;
-        return withOutSignFilter;
+        //Set<String> withOutSignFilter = plusFiltered;
+        return plusFiltered;
     }
 }

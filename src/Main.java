@@ -9,15 +9,15 @@ public class Main {
         PlusFilter plusFilter = new PlusFilter(invertedIndexMaker);
         WithOutSignFilter withOutSignFilter = new WithOutSignFilter(invertedIndexMaker);
         MinusFilter minesFilter = new MinusFilter(invertedIndexMaker);
-        AllFilters allFilters = new AllFilters(plusFilter, minesFilter,
+        Filterizer filterizer = new Filterizer(plusFilter, minesFilter,
                 withOutSignFilter);
-        Set<String> answers;
+        Set<String> answers = new HashSet<>();
 
         String pathOfTheFile = inputs.readInput();
         Map<String, String[]> splitDocumentInfo = invertedIndexMaker.wordSpliter(pathOfTheFile);
         invertedIndexMaker.buildInvertedIndex(splitDocumentInfo);
-        answers = allFilters.filter(inputs);
-        allFilters.printFilteredAnswers(answers);
+        answers = filterizer.filter(inputs, answers);
+        filterizer.printFilteredAnswers(answers);
     }
 
 }

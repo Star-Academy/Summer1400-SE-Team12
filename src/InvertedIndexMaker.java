@@ -34,4 +34,12 @@ class InvertedIndexMaker {
         return splittedDocumentInfo;
     }
 
+    public boolean containsKey(String key){
+        return invertedIndex.containsKey(key);
+    }
+
+    public List<String> getValue(String key){
+        return invertedIndex.get(key);
+    }
+
 }

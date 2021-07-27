@@ -1,22 +1,22 @@
 import java.util.Set;
 
-public class AllFilters {
+public class Filterizer {
     private final PlusFilter plusFilter;
     private final MinusFilter minusFilter;
     private final WithOutSignFilter withOutSignFilter;
 
-    public AllFilters(PlusFilter plusFilter, MinusFilter minusFilter,
+    public Filterizer(PlusFilter plusFilter, MinusFilter minusFilter,
                       WithOutSignFilter withOutSignFilter) {
         this.plusFilter = plusFilter;
         this.minusFilter = minusFilter;
         this.withOutSignFilter = withOutSignFilter;
     }
 
-    public Set<String> filter(InputReader inputs){
-        Set<String> plusFiltered = plusFilter.filterWithPlus(inputs.getPlusContain());
+    public Set<String> filter(InputReader inputs, Set<String> preAnswers){
+        Set<String> plusFiltered = plusFilter.filter(inputs.getPlusContain(), preAnswers);
         Set<String> withoutSignFiltered = withOutSignFilter.filter(
                 inputs.getWithOutSign(), plusFiltered);
-        Set<String> minusFiltered = minusFilter.filterWithMinus(
+        Set<String> minusFiltered = minusFilter.filter(
                 inputs.getMinusContain(), withoutSignFiltered);
         return minusFiltered;
     }

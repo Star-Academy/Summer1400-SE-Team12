@@ -1,23 +1,24 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class PlusFilter {
-    private final InvertedIndexMaker invertedIndexMaker;
+public class PlusFilter extends Filter{
+
 
     public PlusFilter(InvertedIndexMaker invertedIndexMaker) {
-
-        this.invertedIndexMaker = invertedIndexMaker;
+        super(invertedIndexMaker);
     }
 
-    public Set<String> filterWithPlus(Set<String> plusCategorized) {
-        Set<String> plusFiltered = new HashSet<>();
+    @Override
+    public Set<String> filter(Set<String> plusCategorized, Set<String> previousFiltered) {
+        Set<String> plusFiltered = new HashSet<>(previousFiltered);
         for (String plus : plusCategorized) {
             String pureWord = plus.substring(1);
-            if (invertedIndexMaker.invertedIndex.containsKey(pureWord))
-                plusFiltered.addAll(invertedIndexMaker.invertedIndex.get(pureWord));
+            if (invertedIndex.containsKey(pureWord))
+                plusFiltered.addAll(invertedIndex.getValue(pureWord));
         }
         return plusFiltered;
     }
+
 
 
 }
