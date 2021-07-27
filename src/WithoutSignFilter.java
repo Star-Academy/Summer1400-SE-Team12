@@ -1,10 +1,10 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class WithOutSignFilter extends Filter {
+public class WithoutSignFilter extends Filter {
 
 
-    public WithOutSignFilter(InvertedIndexMaker invertedIndexMaker) {
+    public WithoutSignFilter(InvertedIndexMaker invertedIndexMaker) {
         super(invertedIndexMaker);
     }
 

@@ -3,13 +3,12 @@ import java.util.Set;
 public class Filterizer {
     private final PlusFilter plusFilter;
     private final MinusFilter minusFilter;
-    private final WithOutSignFilter withOutSignFilter;
+    private final WithoutSignFilter withOutSignFilter;
 
-    public Filterizer(PlusFilter plusFilter, MinusFilter minusFilter,
-                      WithOutSignFilter withOutSignFilter) {
-        this.plusFilter = plusFilter;
-        this.minusFilter = minusFilter;
-        this.withOutSignFilter = withOutSignFilter;
+    public Filterizer(InvertedIndexMaker invertedIndex) {
+        this.plusFilter = new PlusFilter(invertedIndex);
+        this.minusFilter = new MinusFilter(invertedIndex);
+        this.withOutSignFilter = new WithoutSignFilter(invertedIndex);
     }
 
     public Set<String> filter(InputReader inputs, Set<String> preAnswers){
@@ -21,12 +20,6 @@ public class Filterizer {
         return minusFiltered;
     }
 
-    public void printFilteredAnswers(Set<String> answers){
-        if (answers.size() == 0) {
-            System.out.println("We didn't find");
-        } else {
-            System.out.println(answers.toString());
-        }
-    }
+
 
 }

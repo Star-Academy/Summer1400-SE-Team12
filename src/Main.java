@@ -6,18 +6,21 @@ public class Main {
         InputReader inputs = new InputReader();
         FileReader fileReader = new FileReader();
         InvertedIndexMaker invertedIndexMaker = new InvertedIndexMaker(fileReader);
-        PlusFilter plusFilter = new PlusFilter(invertedIndexMaker);
-        WithOutSignFilter withOutSignFilter = new WithOutSignFilter(invertedIndexMaker);
-        MinusFilter minusFilter = new MinusFilter(invertedIndexMaker);
-        Filterizer filterizer = new Filterizer(plusFilter, minusFilter,
-                withOutSignFilter);
+        Filterizer filterizer = new Filterizer(invertedIndexMaker);
         Set<String> answers = new HashSet<>();
 
         String pathOfTheFile = inputs.readInput();
         Map<String, String[]> splitDocumentInfo = invertedIndexMaker.wordSplitter(pathOfTheFile);
         invertedIndexMaker.buildInvertedIndex(splitDocumentInfo);
         answers = filterizer.filter(inputs, answers);
-        filterizer.printFilteredAnswers(answers);
+        printFilteredAnswers(answers);
     }
 
+    public static void printFilteredAnswers(Set<String> answers){
+        if (answers.size() == 0) {
+            System.out.println("We didn't find");
+        } else {
+            System.out.println(answers.toString());
+        }
+    }
 }
