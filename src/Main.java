@@ -1,6 +1,8 @@
 import java.util.*;
 
 public class Main {
+
+
     final static String PATH_OF_THE_FILE = "src\\EnglishData";
 
     public static void main(String[] args) {
