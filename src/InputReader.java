@@ -3,9 +3,9 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class InputReader {
-    private Set<String> plusContain = new HashSet<>();
-    private Set<String> minusContain = new HashSet<>();
-    private Set<String> withOutSign = new HashSet<>();
+    private final Set<String> plusContain = new HashSet<>();
+    private final Set<String> minusContain = new HashSet<>();
+    private final Set<String> withOutSign = new HashSet<>();
 
     private void categorizeInput(String[] query) {
         for (String queryIterator : query) {
