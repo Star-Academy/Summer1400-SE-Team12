@@ -9,19 +9,20 @@ public class WithoutSignFilter extends Filter {
     }
 
     public Set<String> filter(Set<String> withOutSignCategorized, Set<String> documentsName) {
+        Set<String> withoutSignFilter = new HashSet<>();
         for (String withoutSignCat : withOutSignCategorized) {
             if (invertedIndex.containsInvertedIndexKey(withoutSignCat)) {
-                if (documentsName.isEmpty())
-                    documentsName.addAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
+                if (withoutSignFilter.isEmpty())
+                    withoutSignFilter.addAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
                 else {
-                    documentsName.retainAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
+                    withoutSignFilter.retainAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
                 }
             } else {
-                documentsName.clear();
+                withoutSignFilter.clear();
                 break;
             }
         }
 
-        return documentsName;
+        return withoutSignFilter;
     }
 }

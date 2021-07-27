@@ -9,12 +9,12 @@ public class MinusFilter extends Filter{
     }
 
     public Set<String> filter(Set<String> minusCategorized, Set<String> documentsName) {
+        Set<String> minusFiltered = new HashSet<>(documentsName);
         for (String minusCat : minusCategorized) {
-            String pureWord = minusCat.substring(1);
-            if (invertedIndex.containsInvertedIndexKey(pureWord))
-                documentsName.removeAll(invertedIndex.getInvertedIndexValue(pureWord));
+            if (invertedIndex.containsInvertedIndexKey(minusCat))
+                minusFiltered.removeAll(invertedIndex.getInvertedIndexValue(minusCat));
         }
 
-        return documentsName;
+        return minusFiltered;
     }
 }
