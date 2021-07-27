@@ -5,18 +5,19 @@ public class Filterizer {
     private final MinusFilter minusFilter;
     private final WithoutSignFilter withOutSignFilter;
 
-    public Filterizer(InvertedIndexMaker invertedIndex) {
-        this.plusFilter = new PlusFilter(invertedIndex);
-        this.minusFilter = new MinusFilter(invertedIndex);
-        this.withOutSignFilter = new WithoutSignFilter(invertedIndex);
+    public Filterizer(PlusFilter plusFilter, MinusFilter minusFilter, WithoutSignFilter withOutSignFilter) {
+        this.plusFilter = plusFilter;
+        this.minusFilter = minusFilter;
+        this.withOutSignFilter = withOutSignFilter;
     }
 
-    public Set<String> filter(QueryKeeper inputs, Set<String> preAnswers){
-        Set<String> plusFiltered = plusFilter.filter(inputs.getPlusContain(), preAnswers);
+
+    public Set<String> filter(QueryKeeper queryKeeper, Set<String> preAnswers){
+        Set<String> plusFiltered = plusFilter.filter(queryKeeper.getPlusContain(), preAnswers);
         Set<String> withoutSignFiltered = withOutSignFilter.filter(
-                inputs.getWithOutSign(), plusFiltered);
+                queryKeeper.getWithOutSign(), plusFiltered);
         Set<String> minusFiltered = minusFilter.filter(
-                inputs.getMinusContain(), withoutSignFiltered);
+                queryKeeper.getMinusContain(), withoutSignFiltered);
         return minusFiltered;
     }
 

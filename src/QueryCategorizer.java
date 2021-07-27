@@ -22,4 +22,8 @@ public class QueryCategorizer {
         separateBySign(query.split(" "));
     }
 
+    public QueryKeeper getQueryKeeper() {
+        return queryKeeper;
+    }
+
 }

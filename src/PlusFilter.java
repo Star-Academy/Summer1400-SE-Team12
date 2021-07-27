@@ -2,7 +2,6 @@ import java.util.Set;
 
 public class PlusFilter extends Filter{
 
-
     public PlusFilter(InvertedIndexMaker invertedIndexMaker) {
         super(invertedIndexMaker);
     }

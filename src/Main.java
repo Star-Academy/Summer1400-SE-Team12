@@ -1,20 +1,21 @@
 import java.util.*;
 
 public class Main {
+    final static String PATH_OF_THE_FILE = "EnglishData";
 
     public static void main(String[] args) {
-        final String PATH_OF_THE_FILE = "EnglishData";
-        QueryCategorizer inputs = new QueryCategorizer();
+        QueryCategorizer queryCategorizer = new QueryCategorizer();
         FileReader fileReader = new FileReader();
         InvertedIndexMaker invertedIndexMaker = new InvertedIndexMaker(fileReader);
-        Filterizer filterizer = new Filterizer(invertedIndexMaker);
-        Set<String> answers = new HashSet<>();
+        PlusFilter plusFilter = new PlusFilter(invertedIndexMaker);
+        MinusFilter minusFilter = new MinusFilter(invertedIndexMaker);
+        WithoutSignFilter withOutSignFilter = new WithoutSignFilter(invertedIndexMaker);
+        Filterizer filterizer = new Filterizer(plusFilter, minusFilter, withOutSignFilter);
 
-        inputs.categorizeQuery();
-        Map<String, String[]> splitDocumentInfo =
-                invertedIndexMaker.splitDocumentsWords(PATH_OF_THE_FILE);
+        queryCategorizer.categorizeQuery();
+        Map<String, String[]> splitDocumentInfo = invertedIndexMaker.splitDocumentsWords(PATH_OF_THE_FILE);
         invertedIndexMaker.buildInvertedIndex(splitDocumentInfo);
-        answers = filterizer.filter(inputs, answers);
+        Set<String> answers = filterizer.filter(queryCategorizer.getQueryKeeper(), new HashSet<>());
         printFilteredAnswers(answers);
     }
 
