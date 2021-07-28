@@ -1,20 +1,30 @@
 package Phase2;
 
+import Phase2.QueryKeeper;
+
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class QueryCategorizer {
     private final QueryKeeper queryKeeper = new QueryKeeper();
 
     private void separateBySign(String[] query) {
+        Set<String> plusContain = new HashSet<>();
+        Set<String> minusContain = new HashSet<>();
+        Set<String> withoutContain = new HashSet<>();
+
         for (String queryIterator : query) {
             if (queryIterator.contains("+")) {
-                queryKeeper.addPlusContain(queryIterator.substring(1));
+                plusContain.add(queryIterator.substring(1));
             } else if (queryIterator.contains("-")) {
-                queryKeeper.addMinusContain(queryIterator.substring(1));
+                minusContain.add(queryIterator.substring(1));
             } else {
-                queryKeeper.addWithoutSignContain(queryIterator);
+                withoutContain.add(queryIterator);
             }
         }
+//        queryKeeper.addAllSets(plusContain,minusContain,withoutContain);
+
     }
 
     public void categorizeQuery() {
