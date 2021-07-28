@@ -1,5 +1,4 @@
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Filterizer {
@@ -18,17 +17,26 @@ public class Filterizer {
 
 
     public Set<String> filter(QueryKeeper queryKeeper){
-        Set<String> plusFiltered = plusFilter.filter(queryKeeper.getPlusContain(), new HashSet<>());
-        Set<String> withoutSignFiltered = withOutSignFilter.filter(
-                queryKeeper.getWithOutSign(), documentsName);
-        Set<String> minusFiltered = minusFilter.filter(
-                queryKeeper.getMinusContain(), documentsName);
+        Set<String> plusFiltered = new HashSet<>(documentsName);
+        Set<String> withoutSignFiltered = new HashSet<>(documentsName);
+        Set<String> minusFiltered = new HashSet<>(documentsName);
 
-        withoutSignFiltered.retainAll(plusFiltered);
-        minusFiltered.retainAll(withoutSignFiltered);
-        return minusFiltered;
+        if(!queryKeeper.getPlusContain().isEmpty())
+            plusFiltered = plusFilter.filter(queryKeeper.getPlusContain(), new HashSet<>());
+        if(!queryKeeper.getWithOutSign().isEmpty())
+            withoutSignFiltered = withOutSignFilter.filter(queryKeeper.getWithOutSign(), new HashSet<>());
+        if(!queryKeeper.getMinusContain().isEmpty())
+            minusFiltered = minusFilter.filter(queryKeeper.getMinusContain(), documentsName);
+
+        return subscribeFiltered(plusFiltered, withoutSignFiltered, minusFiltered);
     }
 
+    private Set<String> subscribeFiltered(Set<String>... filtered){
+        Set<String> subscriptionResult = new HashSet<>(documentsName);
+        for(Set<String> filteredType : filtered)
+            subscriptionResult.retainAll(filteredType);
+        return subscriptionResult;
+    }
 
 
 }
