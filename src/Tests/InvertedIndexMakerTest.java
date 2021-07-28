@@ -1,16 +1,13 @@
-package AllTests;
+package Tests;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import Phase2.FileReader;
 import Phase2.InvertedIndexMaker;
-import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mock;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
 
 public class InvertedIndexMakerTest {
 
