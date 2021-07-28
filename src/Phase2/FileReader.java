@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FileReader {
-    public Map<String, String> readDocument(String path) {
+    public Map<String, String> readDocuments(String path) {
         final String Back_SLASH = "\\";
         final String documentsAddress = path + Back_SLASH;
         Map<String, String> documents = new HashMap<>();

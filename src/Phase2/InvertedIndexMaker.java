@@ -1,7 +1,5 @@
 package Phase2;
 
-import Phase2.FileReader;
-
 import java.util.*;
 
 class InvertedIndexMaker {
@@ -29,7 +27,7 @@ class InvertedIndexMaker {
 
     public Map<String, String[]> splitDocumentsWords(String pathOfTheDocument) {
         Map<String, String[]> splittedDocumentInfo = new HashMap<>();
-        Map<String, String> document = fileReader.readDocument(pathOfTheDocument);
+        Map<String, String> document = fileReader.readDocuments(pathOfTheDocument);
         for (Map.Entry<String, String> doc : document.entrySet())
             splittedDocumentInfo.put(doc.getKey(), doc.getValue().split("[\\W]+"));
         return splittedDocumentInfo;

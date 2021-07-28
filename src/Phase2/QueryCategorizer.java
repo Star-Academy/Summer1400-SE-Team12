@@ -8,11 +8,11 @@ public class QueryCategorizer {
     private void separateBySign(String[] query) {
         for (String queryIterator : query) {
             if (queryIterator.contains("+")) {
-                queryKeeper.getPlusContain().add(queryIterator.substring(1));
+                queryKeeper.addPlusContain(queryIterator.substring(1));
             } else if (queryIterator.contains("-")) {
-                queryKeeper.getMinusContain().add(queryIterator.substring(1));
+                queryKeeper.addMinusContain(queryIterator.substring(1));
             } else {
-                queryKeeper.getWithOutSign().add(queryIterator);
+                queryKeeper.addWithoutSignContain(queryIterator);
             }
         }
     }

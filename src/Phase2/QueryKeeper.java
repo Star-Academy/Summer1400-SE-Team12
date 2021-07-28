@@ -19,4 +19,16 @@ public class QueryKeeper {
     public Set<String> getWithOutSign() {
         return withOutSign;
     }
+
+    public void addPlusContain(String plusQuery) {
+        plusContain.add(plusQuery);
+    }
+
+    public void addMinusContain(String minusQuery) {
+        minusContain.add(minusQuery);
+    }
+
+    public void addWithoutSignContain(String withoutSignQuery) {
+        withOutSign.add(withoutSignQuery);
+    }
 }
