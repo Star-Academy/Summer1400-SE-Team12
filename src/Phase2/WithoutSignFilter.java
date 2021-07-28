@@ -1,3 +1,8 @@
+package Phase2;
+
+import Phase2.Filter;
+import Phase2.InvertedIndexMaker;
+
 import java.util.HashSet;
 import java.util.Set;
 

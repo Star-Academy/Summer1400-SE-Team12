@@ -1,3 +1,7 @@
+package Phase2;
+
+import Phase2.FileReader;
+
 import java.util.*;
 
 class InvertedIndexMaker {
@@ -8,9 +12,9 @@ class InvertedIndexMaker {
         this.fileReader = fileReader;
     }
 
-    public void buildInvertedIndex(Map<String, String[]> splitedDocumentInfo) {
+    public void buildInvertedIndex(Map<String, String[]> splittedDocumentInfo) {
 
-        for (Map.Entry<String, String[]> doc : splitedDocumentInfo.entrySet()) {
+        for (Map.Entry<String, String[]> doc : splittedDocumentInfo.entrySet()) {
             for (int j = 0; j < doc.getValue().length; j++) {
                 if (invertedIndex.containsKey(doc.getValue()[j]))
                     invertedIndex.get(doc.getValue()[j]).add(doc.getKey());
