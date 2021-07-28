@@ -8,7 +8,7 @@ public class PlusFilter extends Filter{
     }
 
     @Override
-    public Set<String> filter(Set<String> plusCategorized, Set<String> documentsName) {
+    public Set<String> filter(Set<String> plusCategorized, Set<String>emptySet) {
         Set<String> plusFiltered = new HashSet<>();
         for (String plusCat : plusCategorized) {
             if (invertedIndex.containsInvertedIndexKey(plusCat))

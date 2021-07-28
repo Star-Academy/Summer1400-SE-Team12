@@ -8,7 +8,7 @@ public class WithoutSignFilter extends Filter {
         super(invertedIndexMaker);
     }
 
-    public Set<String> filter(Set<String> withOutSignCategorized, Set<String> documentsName) {
+    public Set<String> filter(Set<String> withOutSignCategorized, Set<String> emptySet) {
         Set<String> withoutSignFilter = new HashSet<>();
         for (String withoutSignCat : withOutSignCategorized) {
             if (invertedIndex.containsInvertedIndexKey(withoutSignCat)) {

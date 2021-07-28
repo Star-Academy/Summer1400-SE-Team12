@@ -28,11 +28,15 @@ public class Filterizer {
         if(!queryKeeper.getMinusContain().isEmpty())
             minusFiltered = minusFilter.filter(queryKeeper.getMinusContain(), documentsName);
 
-        withoutSignFiltered.retainAll(plusFiltered); 
-        minusFiltered.retainAll(withoutSignFiltered);
-        return minusFiltered;
+        return subscribeFiltered(plusFiltered, withoutSignFiltered, minusFiltered);
     }
 
+    private Set<String> subscribeFiltered(Set<String>... filtered){
+        Set<String> subscriptionResult = new HashSet<>(documentsName);
+        for(Set<String> filteredType : filtered)
+            subscriptionResult.retainAll(filteredType);
+        return subscriptionResult;
+    }
 
 
 }
