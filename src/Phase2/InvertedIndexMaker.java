@@ -2,7 +2,8 @@ package Phase2;
 
 import java.util.*;
 
-class InvertedIndexMaker {
+public class InvertedIndexMaker {
+
     private final HashMap<String, Set<String>> invertedIndex = new HashMap<>();
     private final FileReader fileReader;
 
@@ -11,7 +12,6 @@ class InvertedIndexMaker {
     }
 
     public void buildInvertedIndex(Map<String, String[]> splittedDocumentInfo) {
-
         for (Map.Entry<String, String[]> doc : splittedDocumentInfo.entrySet()) {
             for (int j = 0; j < doc.getValue().length; j++) {
                 if (invertedIndex.containsKey(doc.getValue()[j]))
@@ -33,11 +33,11 @@ class InvertedIndexMaker {
         return splittedDocumentInfo;
     }
 
-    public boolean containsInvertedIndexKey(String key){
+    public boolean containsInvertedIndexKey(String key) {
         return invertedIndex.containsKey(key);
     }
 
-    public Set<String> getInvertedIndexValue(String key){
+    public Set<String> getInvertedIndexValue(String key) {
         return invertedIndex.get(key);
     }
 

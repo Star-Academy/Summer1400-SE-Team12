@@ -33,12 +33,15 @@ public class Filterizer {
         return subscribeFiltered(plusFiltered, withoutSignFiltered, minusFiltered);
     }
 
+
+
     private Set<String> subscribeFiltered(Set<String>... filtered){
         Set<String> subscriptionResult = new HashSet<>(documentsName);
         for(Set<String> filteredType : filtered)
             subscriptionResult.retainAll(filteredType);
         return subscriptionResult;
     }
+
 
 
 }
