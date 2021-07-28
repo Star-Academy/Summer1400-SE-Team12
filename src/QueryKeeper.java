@@ -17,4 +17,10 @@ public class QueryKeeper {
     public Set<String> getWithOutSign() {
         return withOutSign;
     }
+
+    public void addAllSets(Set<String> plusContain, Set<String> minusContain, Set<String>withOutSignContain){
+        this.plusContain.addAll(plusContain);
+        this.minusContain.addAll(minusContain);
+        this.withOutSign.addAll(withOutSignContain);
+    }
 }
