@@ -15,7 +15,7 @@ public class FileReader {
             File sourceFolder = new File(path);
             for (File sourceFile : sourceFolder.listFiles()) {
                 String fileName = sourceFile.getName();
-                documents.put(fileName, Files.readString(Path.of(documentsAddress , fileName)).
+                documents.put(fileName, Files.readString(Path.of(documentsAddress, fileName)).
                         toLowerCase());//open file
             }
         } catch (Exception e) {

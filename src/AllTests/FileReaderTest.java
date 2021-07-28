@@ -1,4 +1,5 @@
 package AllTests;
+
 import java.util.Map;
 
 import Phase2.FileReader;
@@ -12,14 +13,13 @@ public class FileReaderTest {
 
         FileReader fileReader = new FileReader();
 
-        String textFileExpected = "JUnit provides a tool for execution of your test cases.";
+        String textFileExpected = "JUnit provides a tool for execution of your test cases";
         String fileNameExpected = "text1.txt";
-        final String  PATH_OF_FILE = "src\\TesterFile";
+        final String PATH_OF_FILE = "src\\TesterFile";
         Map<String, String> actualValue = fileReader.readDocument(PATH_OF_FILE);
 
         Assert.assertTrue(actualValue.containsKey(fileNameExpected));
         Assert.assertTrue(actualValue.containsValue(textFileExpected.toLowerCase()));
-
 
     }
 }
