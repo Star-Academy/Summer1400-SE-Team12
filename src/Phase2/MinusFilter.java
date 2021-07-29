@@ -13,8 +13,8 @@ public class MinusFilter extends Filter {
     public Set<String> filter(Set<String> minusCategorized, Set<String> documentsName) {
         Set<String> minusFiltered = new HashSet<>(documentsName);
         for (String minusCat : minusCategorized) {
-            if (invertedIndex.containsInvertedIndexKey(minusCat))
-                minusFiltered.removeAll(invertedIndex.getInvertedIndexValue(minusCat));
+            if (invertedIndex.invertedIndex.containsKey(minusCat))
+                minusFiltered.removeAll(invertedIndex.invertedIndex.get(minusCat));
         }
 
         return minusFiltered;

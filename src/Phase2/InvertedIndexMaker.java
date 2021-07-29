@@ -4,7 +4,7 @@ import java.util.*;
 
 public class InvertedIndexMaker {
 
-    private final HashMap<String, Set<String>> invertedIndex = new HashMap<>();
+    public final HashMap<String, Set<String>> invertedIndex = new HashMap<>();
     private final FileReader fileReader;
 
     public InvertedIndexMaker(FileReader fileReader) {
@@ -23,8 +23,6 @@ public class InvertedIndexMaker {
                 }
             }
         }
-        System.out.println("the size of invertedIndex is");
-        System.out.println(invertedIndex.size());
         return invertedIndex.size();
     }
 
@@ -36,12 +34,5 @@ public class InvertedIndexMaker {
         return splittedDocumentInfo;
     }
 
-    public boolean containsInvertedIndexKey(String key) {
-        return invertedIndex.containsKey(key);
-    }
-
-    public Set<String> getInvertedIndexValue(String key) {
-        return invertedIndex.get(key);
-    }
 
 }
