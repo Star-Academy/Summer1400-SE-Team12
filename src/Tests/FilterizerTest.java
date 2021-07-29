@@ -54,6 +54,7 @@ public class FilterizerTest {
         Mockito.when(queryKeeper.getWithOutSign()).thenReturn(withoutSignFiltered);
 
         String testedFiltered = "plus1";
+        //کلمه مشترک بین شان Todo
 
         Set<String> resultFiltered=new HashSet<>();
         resultFiltered=filterizer.filter(queryKeeper);
