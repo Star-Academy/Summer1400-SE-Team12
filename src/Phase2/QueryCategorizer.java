@@ -23,7 +23,7 @@ public class QueryCategorizer {
                 withoutContain.add(queryIterator);
             }
         }
-//        queryKeeper.addAllSets(plusContain,minusContain,withoutContain);
+        queryKeeper.addAllSets(plusContain,minusContain,withoutContain);
 
     }
 

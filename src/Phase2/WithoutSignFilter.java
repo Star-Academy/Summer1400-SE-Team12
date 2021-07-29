@@ -16,11 +16,11 @@ public class WithoutSignFilter extends Filter {
     public Set<String> filter(Set<String> withOutSignCategorized, Set<String> emptySet) {
         Set<String> withoutSignFilter = new HashSet<>();
         for (String withoutSignCat : withOutSignCategorized) {
-            if (invertedIndex.containsInvertedIndexKey(withoutSignCat)) {
+            if (invertedIndex.invertedIndex.containsKey(withoutSignCat)) {
                 if (withoutSignFilter.isEmpty())
-                    withoutSignFilter.addAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
+                    withoutSignFilter.addAll(invertedIndex.invertedIndex.get(withoutSignCat));
                 else {
-                    withoutSignFilter.retainAll(invertedIndex.getInvertedIndexValue(withoutSignCat));
+                    withoutSignFilter.retainAll(invertedIndex.invertedIndex.get(withoutSignCat));
                 }
             } else {
                 withoutSignFilter.clear();

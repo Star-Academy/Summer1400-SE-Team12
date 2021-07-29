@@ -20,15 +20,10 @@ public class QueryKeeper {
         return withOutSign;
     }
 
-    public void addPlusContain(String plusQuery) {
-        plusContain.add(plusQuery);
-    }
 
-    public void addMinusContain(String minusQuery) {
-        minusContain.add(minusQuery);
-    }
-
-    public void addWithoutSignContain(String withoutSignQuery) {
-        withOutSign.add(withoutSignQuery);
+    public void addAllSets(Set<String> plusContain, Set<String> minusContain, Set<String> withoutContain) {
+        this.plusContain.addAll(plusContain);
+        this.minusContain.addAll(minusContain);
+        this.withOutSign.addAll(withoutContain);
     }
 }
