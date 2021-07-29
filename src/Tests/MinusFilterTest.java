@@ -8,6 +8,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.util.*;
 
@@ -31,12 +33,18 @@ public class MinusFilterTest {
     public void testMinusFilter(){
 
         Mockito.doAnswer(invocation -> {
-            Object invertedIndex = invocation.getArguments()[0];
-            
+            invocation.getArguments()[0] = returnSampleInvertedIndexForTest();
+//            Map<String, Set<String>> invertedIndex = (Map<String, Set<String>>) invocation.getArguments()[0];
+//            Assert.assertTrue(invertedIndex.containsKey("hello"));
             return null;
         }).when(MockInvertedIndexMaker).buildInvertedIndex( any(Map.class) );
         MockInvertedIndexMaker.buildInvertedIndex(new HashMap<>());
-        //Assert.assertEquals(MockInvertedIndexMaker.invertedIndex.size(),3);
+//        verify(MockInvertedIndexMaker,times(1)).buildInvertedIndex()
+//        Assert.assertEquals(3,MockInvertedIndexMaker.invertedIndex.size());
+//        Set<String> minusFilteredActual = minusFilter.filter(new HashSet<>(Arrays.asList("hello","world")),
+//                new HashSet<>(Arrays.asList("1","2","3","4","5","6")));
+//        String[] expected = {"4","5","6"};
+//        Assert.assertArrayEquals(expected, minusFilteredActual.toArray());
     }
 
     public Map<String, Set<String>> returnSampleInvertedIndexForTest(){
