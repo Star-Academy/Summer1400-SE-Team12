@@ -11,7 +11,7 @@ public class InvertedIndexMaker {
         this.fileReader = fileReader;
     }
 
-    public void buildInvertedIndex(Map<String, String[]> splittedDocumentInfo) {
+    public int buildInvertedIndex(Map<String, String[]> splittedDocumentInfo) {
         for (Map.Entry<String, String[]> doc : splittedDocumentInfo.entrySet()) {
             for (int j = 0; j < doc.getValue().length; j++) {
                 if (invertedIndex.containsKey(doc.getValue()[j]))
@@ -23,6 +23,9 @@ public class InvertedIndexMaker {
                 }
             }
         }
+        System.out.println("the size of invertedIndex is");
+        System.out.println(invertedIndex.size());
+        return invertedIndex.size();
     }
 
     public Map<String, String[]> splitDocumentsWords(String pathOfTheDocument) {
