@@ -1,18 +1,18 @@
-package AllTests;
-
-import java.util.HashMap;
+package Tests;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import Phase2.*;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.when;
 
-
+@RunWith(MockitoJUnitRunner.class)
 public class FilterizerTest {
 
     @Mock
@@ -33,6 +33,7 @@ public class FilterizerTest {
 
     @Test
     public void testFilter() {
+
         Set<String> plusFiltered = new HashSet<>();
         plusFiltered.add("plus1");
         plusFiltered.add("plus2");
@@ -44,26 +45,25 @@ public class FilterizerTest {
         withoutSignFiltered.add("none3");
 
         Set<String> minusFiltered = new HashSet<>();
-        minusFiltered.add("minus1");
+        minusFiltered.add("plus1");
         minusFiltered.add("minus2");
         minusFiltered.add("minus3");
 
-        when(queryKeeper.getMinusContain()).thenReturn(minusFiltered);
-        when(queryKeeper.getPlusContain()).thenReturn(plusFiltered);
-        when(queryKeeper.getWithOutSign()).thenReturn(withoutSignFiltered);
+        Mockito.when(queryKeeper.getMinusContain()).thenReturn(minusFiltered);
+        Mockito.when(queryKeeper.getPlusContain()).thenReturn(plusFiltered);
+        Mockito.when(queryKeeper.getWithOutSign()).thenReturn(withoutSignFiltered);
 
-        filterizer.filter(queryKeeper);
+        String testedFiltered = "plus1";
 
-//        Assert.assertNotNull();
+        Set<String> resultFiltered=new HashSet<>();
+        resultFiltered=filterizer.filter(queryKeeper);
 
-    }
-
-
-    @Test
-    public void testSubscribeFiltered() {
-
+        Assert.assertTrue(resultFiltered.contains(testedFiltered));
 
     }
+
+
+
 
 
 }
