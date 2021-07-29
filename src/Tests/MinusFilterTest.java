@@ -29,9 +29,10 @@ public class MinusFilterTest {
 
     @Test
     public void testMinusFilter(){
-        Assert.assertNotNull(MockInvertedIndexMaker);
+
         Mockito.doAnswer(invocation -> {
-            Map<String, Set<String>> invertedIndex = returnSampleInvertedIndexForTest();
+            Object invertedIndex = invocation.getArguments()[0];
+            
             return null;
         }).when(MockInvertedIndexMaker).buildInvertedIndex( any(Map.class) );
         MockInvertedIndexMaker.buildInvertedIndex(new HashMap<>());
