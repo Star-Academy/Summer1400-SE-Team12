@@ -31,8 +31,11 @@ public class FilterizerTest {
     @Mock
     QueryKeeper queryKeeper;
 
+
     @Test
     public void testFilter() {
+
+        Set<String> nullSet = new HashSet<>();
 
         Set<String> plusFiltered = new HashSet<>();
         plusFiltered.add("plus1");
@@ -49,11 +52,30 @@ public class FilterizerTest {
         minusFiltered.add("minus2");
         minusFiltered.add("minus3");
 
+        Set<String> plusDocsName = new HashSet<>();
+        plusDocsName.add("t1");
+        plusDocsName.add("t2");
+        plusDocsName.add("t3");
+
+        Set<String> minusDocsName = new HashSet<>();
+        plusDocsName.add("t4");
+        plusDocsName.add("t5");
+        plusDocsName.add("t6");
+
+        Set<String> noneDocsName = new HashSet<>();
+        plusDocsName.add("t1");
+        plusDocsName.add("t7");
+        plusDocsName.add("t8");
+
         Mockito.when(queryKeeper.getMinusContain()).thenReturn(minusFiltered);
         Mockito.when(queryKeeper.getPlusContain()).thenReturn(plusFiltered);
         Mockito.when(queryKeeper.getWithOutSign()).thenReturn(withoutSignFiltered);
 
-        String testedFiltered = "plus1";
+        Mockito.when(plusFilter.filter(plusFiltered,nullSet)).thenReturn(plusDocsName);
+        Mockito.when(minusFilter.filter(minusFiltered,nullSet)).thenReturn(minusDocsName);
+        Mockito.when(withOutSignFilter.filter(withoutSignFiltered,nullSet)).thenReturn(noneDocsName);
+
+        String testedFiltered = "t1";
         //کلمه مشترک بین شان Todo
 
         Set<String> resultFiltered=new HashSet<>();
