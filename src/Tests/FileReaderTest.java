@@ -1,4 +1,4 @@
-package AllTests;
+package Tests;
 
 import java.util.Map;
 
