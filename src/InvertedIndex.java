@@ -4,8 +4,8 @@ public class InvertedIndex {
 
     private final HashMap<String, Set<String>> invertedIndex = new HashMap<>();
 
-    public void buildInvertedIndex(Map<String, String> DocNameMapToContent) {
-        for (Map.Entry<String, String> doc : DocNameMapToContent.entrySet()) {
+    public void buildInvertedIndex(Map<String, String> docNameMapToContent) {
+        for (Map.Entry<String, String> doc : docNameMapToContent.entrySet()) {
             String[] words = splitDocumentsWords(doc.getValue());
             addDocumentWords(doc.getKey(), words);
         }

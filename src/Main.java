@@ -7,17 +7,17 @@ public class Main {
 
     public static void main(String[] args) {
         FileReader fileReader = new FileReader();
-        InvertedIndex invertedIndex = new InvertedIndex(fileReader);
+        InvertedIndex invertedIndex = new InvertedIndex();
         QueryCategorizer queryCategorizer = new QueryCategorizer();
         PlusFilter plusFilter = new PlusFilter();
         MinusFilter minusFilter = new MinusFilter();
         WithoutSignFilter withOutSignFilter = new WithoutSignFilter();
 
-        Map<String, String[]> splitDocumentInfo = invertedIndex.splitDocumentsWords(PATH_OF_THE_FILE);
+        Map<String,String> docNameMapToContent = fileReader.readDocuments(PATH_OF_THE_FILE);
+        invertedIndex.buildInvertedIndex(docNameMapToContent);
         queryCategorizer.categorizeQuery();
-        Filterizer filterizer = new Filterizer(plusFilter, minusFilter, withOutSignFilter, invertedIndex,
-                splitDocumentInfo.keySet());
-        invertedIndex.buildInvertedIndex(splitDocumentInfo);
+        Filterizer filterizer = new Filterizer(plusFilter, minusFilter, withOutSignFilter,
+                invertedIndex, docNameMapToContent.keySet());
         filterizer.filterDocuments(queryCategorizer.getQueryKeeper());
         printFilteredAnswers(filterizer.getAnswers());
     }
