@@ -7,6 +7,8 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class QueryCategorizer {
+    private String query;
+
     private final QueryKeeper queryKeeper = new QueryKeeper();
 
     private void separateBySign(String[] query) {
@@ -30,12 +32,17 @@ public class QueryCategorizer {
     public void categorizeQuery() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter a query");
-        String query = scanner.nextLine();
+         query = scanner.nextLine();
         separateBySign(query.split(" "));
     }
+    //String query global shode o getter gozashtam
 
     public QueryKeeper getQueryKeeper() {
         return queryKeeper;
     }
-
+    public String getQuery() {
+        return query;
+    }
 }
+
+
