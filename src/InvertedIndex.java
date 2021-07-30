@@ -1,11 +1,11 @@
 import java.util.*;
 
-public class InvertedIndexMaker {
+public class InvertedIndex {
 
     private final HashMap<String, Set<String>> invertedIndex = new HashMap<>();
     private final FileReader fileReader;
 
-    public InvertedIndexMaker(FileReader fileReader) {
+    public InvertedIndex(FileReader fileReader) {
         this.fileReader = fileReader;
     }
 

@@ -8,14 +8,14 @@ public class Main {
     public static void main(String[] args) {
         QueryCategorizer queryCategorizer = new QueryCategorizer();
         FileReader fileReader = new FileReader();
-        InvertedIndexMaker invertedIndexMaker = new InvertedIndexMaker(fileReader);
-        PlusFilter plusFilter = new PlusFilter(invertedIndexMaker);
-        MinusFilter minusFilter = new MinusFilter(invertedIndexMaker);
-        WithoutSignFilter withOutSignFilter = new WithoutSignFilter(invertedIndexMaker);
+        InvertedIndex invertedIndexMaker = new InvertedIndex(fileReader);
+        PlusFilter plusFilter = new PlusFilter();
+        MinusFilter minusFilter = new MinusFilter();
+        WithoutSignFilter withOutSignFilter = new WithoutSignFilter();
 
         queryCategorizer.categorizeQuery();
         Map<String, String[]> splitDocumentInfo = invertedIndexMaker.splitDocumentsWords(PATH_OF_THE_FILE);
-        Filterizer filterizer = new Filterizer(plusFilter, minusFilter, withOutSignFilter, splitDocumentInfo.keySet());
+        Filterizer filterizer = new Filterizer();
         invertedIndexMaker.buildInvertedIndex(splitDocumentInfo);
         Set<String> answers = filterizer.filter(queryCategorizer.getQueryKeeper());
         printFilteredAnswers(answers);
