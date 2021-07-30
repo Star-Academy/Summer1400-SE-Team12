@@ -6,19 +6,21 @@ public class Main {
     final static String PATH_OF_THE_FILE = "src\\EnglishData";
 
     public static void main(String[] args) {
-        QueryCategorizer queryCategorizer = new QueryCategorizer();
         FileReader fileReader = new FileReader();
-        InvertedIndex invertedIndexMaker = new InvertedIndex(fileReader);
+        InvertedIndex invertedIndex = new InvertedIndex(fileReader);
+        QueryCategorizer queryCategorizer = new QueryCategorizer();
         PlusFilter plusFilter = new PlusFilter();
         MinusFilter minusFilter = new MinusFilter();
         WithoutSignFilter withOutSignFilter = new WithoutSignFilter();
 
+
+        Map<String, String[]> splitDocumentInfo = invertedIndex.splitDocumentsWords(PATH_OF_THE_FILE);
         queryCategorizer.categorizeQuery();
-        Map<String, String[]> splitDocumentInfo = invertedIndexMaker.splitDocumentsWords(PATH_OF_THE_FILE);
-        Filterizer filterizer = new Filterizer();
-        invertedIndexMaker.buildInvertedIndex(splitDocumentInfo);
-        Set<String> answers = filterizer.filter(queryCategorizer.getQueryKeeper());
-        printFilteredAnswers(answers);
+        Filterizer filterizer = new Filterizer(plusFilter, minusFilter, withOutSignFilter, invertedIndex,
+                splitDocumentInfo.keySet());
+        invertedIndex.buildInvertedIndex(splitDocumentInfo);
+        filterizer.filterDocuments(queryCategorizer.getQueryKeeper());
+        printFilteredAnswers(filterizer.getAnswers());
     }
 
     public static void printFilteredAnswers(Set<String> answers){
