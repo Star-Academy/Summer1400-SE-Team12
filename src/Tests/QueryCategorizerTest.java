@@ -16,6 +16,7 @@ public class QueryCategorizerTest {
 
         String query = "mom dad +sister +sisi -brother -bro";
         System.setIn(new ByteArrayInputStream(query.getBytes()));
+        //in khat ok kar mikonne o neshon mide vorodi  ok migire
 
         Assert.assertTrue(String.valueOf(queryCategorizer.getQuery().isEmpty()),false);
         // bayad toye  (queryCategorizer.getQuery().isEmpty())  poor bashe va false bede
