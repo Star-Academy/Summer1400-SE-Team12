@@ -1,13 +1,16 @@
-package Phase2;
-
-import Phase2.QueryKeeper;
-
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
 public class QueryCategorizer {
     private final QueryKeeper queryKeeper = new QueryKeeper();
+
+    public void categorizeQuery() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter a query");
+        String query = scanner.nextLine();
+        separateBySign(query.toLowerCase().split(" "));
+    }
 
     private void separateBySign(String[] query) {
         Set<String> plusContain = new HashSet<>();
@@ -25,13 +28,6 @@ public class QueryCategorizer {
         }
         queryKeeper.addAllSets(plusContain,minusContain,withoutContain);
 
-    }
-
-    public void categorizeQuery() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter a query");
-        String query = scanner.nextLine();
-        separateBySign(query.split(" "));
     }
 
     public QueryKeeper getQueryKeeper() {
