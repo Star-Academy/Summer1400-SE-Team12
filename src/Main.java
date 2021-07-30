@@ -13,7 +13,6 @@ public class Main {
         MinusFilter minusFilter = new MinusFilter();
         WithoutSignFilter withOutSignFilter = new WithoutSignFilter();
 
-
         Map<String, String[]> splitDocumentInfo = invertedIndex.splitDocumentsWords(PATH_OF_THE_FILE);
         queryCategorizer.categorizeQuery();
         Filterizer filterizer = new Filterizer(plusFilter, minusFilter, withOutSignFilter, invertedIndex,

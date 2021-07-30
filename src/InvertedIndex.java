@@ -31,12 +31,8 @@ public class InvertedIndex {
         return splittedDocumentInfo;
     }
 
-    public boolean containsInvertedIndexKey(String key) {
-        return invertedIndex.containsKey(key);
-    }
-
     public Set<String> getInvertedIndexValue(String key) {
-        return invertedIndex.get(key);
+        return invertedIndex.getOrDefault(key,new HashSet<>());
     }
 
 }
