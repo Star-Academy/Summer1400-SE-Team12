@@ -20,11 +20,11 @@ import static org.mockito.Mockito.when;
 public class InvertedIndexMakerTest {
 
     @Mock
-      FileReader fileReader;
+    FileReader fileReader;
     @Rule
 //    public MockitoRule mockitoRule = MockitoJUnit.rule();
 
-    InvertedIndexMaker invertedIndexMaker = new InvertedIndexMaker(fileReader);
+            InvertedIndexMaker invertedIndexMaker = new InvertedIndexMaker(fileReader);
     final String PATH_OF_FILE = "src\\TesterFile";
 
     Map<String, String[]> splittedDocumentInfo = new HashMap<>();

@@ -78,7 +78,7 @@ public class FilterizerTest {
         String testedFiltered = "t1";
         //کلمه مشترک بین شان Todo
 
-        Set<String> resultFiltered=new HashSet<>();
+        Set<String> resultFiltered;
         resultFiltered=filterizer.filter(queryKeeper);
 
         Assert.assertTrue(resultFiltered.contains(testedFiltered));

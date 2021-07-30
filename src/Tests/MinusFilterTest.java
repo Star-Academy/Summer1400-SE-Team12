@@ -1,15 +1,13 @@
 package Tests;
 
-import Phase2.InvertedIndexMaker;
-import Phase2.MinusFilter;
 
+import Phase02.InvertedIndex;
+import Phase02.MinusFilter;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 import java.util.*;
 
@@ -22,11 +20,11 @@ public class MinusFilterTest {
     private MinusFilter minusFilter;
 
     @Mock
-    InvertedIndexMaker MockInvertedIndexMaker;
+    InvertedIndex MockInvertedIndexMaker;
 
     @Before
     public void setup(){
-        this.minusFilter = new MinusFilter(MockInvertedIndexMaker);
+        this.minusFilter = new MinusFilter();
     }
 
     @Test
