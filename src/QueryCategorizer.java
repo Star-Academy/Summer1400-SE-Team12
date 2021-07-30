@@ -5,7 +5,7 @@ import java.util.Set;
 public class QueryCategorizer {
     private final QueryKeeper queryKeeper = new QueryKeeper();
 
-    private void separateBySign(String[] query) {
+    public void categorizeQuery(String[] query) {
         Set<String> plusContain = new HashSet<>();
         Set<String> minusContain = new HashSet<>();
         Set<String> withoutContain = new HashSet<>();
@@ -19,15 +19,7 @@ public class QueryCategorizer {
                 withoutContain.add(queryIterator);
             }
         }
-        queryKeeper.addAllSets(plusContain,minusContain,withoutContain);
-
-    }
-
-    public void categorizeQuery() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter a query");
-        String query = scanner.nextLine();
-        separateBySign(query.split(" "));
+        queryKeeper.addAllSets(plusContain, minusContain, withoutContain);
     }
 
     public QueryKeeper getQueryKeeper() {
