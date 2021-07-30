@@ -1,26 +1,12 @@
 package Tests;
 
-
-import Phase02.InvertedIndex;
 import Phase02.MinusFilter;
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
-
 import java.util.*;
 
-import static org.mockito.Matchers.any;
-
-
-@RunWith(MockitoJUnitRunner.class)
 public class MinusFilterTest {
 
     private MinusFilter minusFilter;
-
-    @Mock
-    InvertedIndex MockInvertedIndexMaker;
 
     @Before
     public void setup(){
@@ -28,34 +14,50 @@ public class MinusFilterTest {
     }
 
     @Test
-    public void testMinusFilter(){
+    public void testMinusFilterPreFilteredContainDocumentsWithMinusQuery(){
+        Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5","doc7","doc4","doc9"));
+        Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc4","doc7","doc10","doc9"));
 
-        Mockito.doAnswer(invocation -> {
-            invocation.getArguments()[0] = returnSampleInvertedIndexForTest();
-//            Map<String, Set<String>> invertedIndex = (Map<String, Set<String>>) invocation.getArguments()[0];
-//            Assert.assertTrue(invertedIndex.containsKey("hello"));
-            return null;
-        }).when(MockInvertedIndexMaker).buildInvertedIndex( any(Map.class) );
-        MockInvertedIndexMaker.buildInvertedIndex(new HashMap<>());
-//        verify(MockInvertedIndexMaker,times(1)).buildInvertedIndex()
-//        Assert.assertEquals(3,MockInvertedIndexMaker.invertedIndex.size());
-//        Set<String> minusFilteredActual = minusFilter.filter(new HashSet<>(Arrays.asList("hello","world")),
-//                new HashSet<>(Arrays.asList("1","2","3","4","5","6")));
-//        String[] expected = {"4","5","6"};
-//        Assert.assertArrayEquals(expected, minusFilteredActual.toArray());
+        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5"));
+        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        Set<String> actualFiltered = preFiltered;
+
+        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
     }
 
-    public Map<String, Set<String>> returnSampleInvertedIndexForTest(){
-        Map<String, Set<String>> sampleInvertedIndex = new HashMap<>();
+    @Test
+    public void testMinusFilterPreFilteredNotContainDocumentsWithMinusQuery(){
+        Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5","doc7","doc4"));
+        Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc6"));
 
-        Set<String> documentsHelloContain = new HashSet<>(Arrays.asList("1","2","3"));
-        sampleInvertedIndex.put("hello",new HashSet<>(documentsHelloContain));
+        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5","doc7","doc4"));
+        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        Set<String> actualFiltered = preFiltered;
 
-        Set<String> documentsWorldContain = new HashSet<>(Arrays.asList("2","3"));
-        sampleInvertedIndex.put("world", documentsWorldContain);
+        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+    }
 
-        Set<String> documentsMockContain = new HashSet<>(Arrays.asList("1","5","2"));
-        sampleInvertedIndex.put("mock", documentsMockContain);
-        return sampleInvertedIndex;
+    @Test
+    public void testMinusFilterEmptyPreFilteredAndTheOtherFilled(){
+        Set<String> preFiltered = new HashSet<>();
+        Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc8"));
+
+        Set<String> expectedFiltered = new HashSet<>();
+        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        Set<String> actualFiltered = preFiltered;
+
+        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+    }
+
+    @Test
+    public void testMinusFilteredFilledPreFilteredAndTheOtherEmpty(){
+        Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc5","doc4"));
+        Set<String> documentsContainMinusQuery = new HashSet<>();
+
+        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc5","doc4"));
+        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        Set<String> actualFiltered = preFiltered;
+
+        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
     }
 }
