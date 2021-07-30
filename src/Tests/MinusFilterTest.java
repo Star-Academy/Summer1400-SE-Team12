@@ -38,7 +38,7 @@ public class MinusFilterTest {
     }
 
     @Test
-    public void testMinusFilterEmptyPreFilteredAndTheOtherFilled(){
+    public void testMinusFilterEmptyPreFiltered(){
         Set<String> preFiltered = new HashSet<>();
         Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc8"));
 
@@ -50,7 +50,7 @@ public class MinusFilterTest {
     }
 
     @Test
-    public void testMinusFilteredFilledPreFilteredAndTheOtherEmpty(){
+    public void testMinusFilteredEmptyDocumentsWithMinusQuery(){
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc5","doc4"));
         Set<String> documentsContainMinusQuery = new HashSet<>();
 

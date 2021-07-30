@@ -19,7 +19,7 @@ public class PlusFilterTest {
     }
 
     @Test
-    public void testPlusFilterPreFilteredContainDocumentsWithPlusQuery(){
+    public void testPlusFilterPreFilteredContainHalfOfDocumentsWithPlusQuery(){
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc6"));
         Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc4","doc5"));
 
