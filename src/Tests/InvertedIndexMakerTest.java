@@ -32,6 +32,8 @@ public class InvertedIndexMakerTest {
     Map<String, String> resultOfFileReaderFunc=new HashMap<>();
 
 
+
+
 //    @Test
 //    public void testInvertedIndexMaker() {
 //
