@@ -1,4 +1,4 @@
-package Phase2;
+package Phase02;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,10 +20,9 @@ public class QueryKeeper {
         return withOutSign;
     }
 
-
-    public void addAllSets(Set<String> plusContain, Set<String> minusContain, Set<String> withoutContain) {
+    public void addAllSets(Set<String> plusContain, Set<String> minusContain, Set<String>withOutSignContain){
         this.plusContain.addAll(plusContain);
         this.minusContain.addAll(minusContain);
-        this.withOutSign.addAll(withoutContain);
+        this.withOutSign.addAll(withOutSignContain);
     }
 }

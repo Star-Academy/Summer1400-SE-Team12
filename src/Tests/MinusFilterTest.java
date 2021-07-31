@@ -1,54 +1,63 @@
 package Tests;
 
-import Phase2.InvertedIndexMaker;
-import Phase2.MinusFilter;
-
+import Phase02.MinusFilter;
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
-
 import java.util.*;
 
-import static org.mockito.Matchers.any;
-
-
-@RunWith(MockitoJUnitRunner.class)
 public class MinusFilterTest {
 
     private MinusFilter minusFilter;
 
-    @Mock
-    InvertedIndexMaker MockInvertedIndexMaker;
-
     @Before
     public void setup(){
-        this.minusFilter = new MinusFilter(MockInvertedIndexMaker);
+        this.minusFilter = new MinusFilter();
     }
 
     @Test
-    public void testMinusFilter(){
-        Assert.assertNotNull(MockInvertedIndexMaker);
-        Mockito.doAnswer(invocation -> {
-            Map<String, Set<String>> invertedIndex = returnSampleInvertedIndexForTest();
-            return null;
-        }).when(MockInvertedIndexMaker).buildInvertedIndex( any(Map.class) );
-        MockInvertedIndexMaker.buildInvertedIndex(new HashMap<>());
-        //Assert.assertEquals(MockInvertedIndexMaker.invertedIndex.size(),3);
+    public void testMinusFilterPreFilteredContainDocumentsWithMinusQuery(){
+        Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5","doc7","doc4","doc9"));
+        Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc4","doc7","doc10","doc9"));
+
+        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5"));
+        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        Set<String> actualFiltered = preFiltered;
+
+        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
     }
 
-    public Map<String, Set<String>> returnSampleInvertedIndexForTest(){
-        Map<String, Set<String>> sampleInvertedIndex = new HashMap<>();
+    @Test
+    public void testMinusFilterPreFilteredNotContainDocumentsWithMinusQuery(){
+        Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5","doc7","doc4"));
+        Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc6"));
 
-        Set<String> documentsHelloContain = new HashSet<>(Arrays.asList("1","2","3"));
-        sampleInvertedIndex.put("hello",new HashSet<>(documentsHelloContain));
+        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5","doc7","doc4"));
+        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        Set<String> actualFiltered = preFiltered;
 
-        Set<String> documentsWorldContain = new HashSet<>(Arrays.asList("2","3"));
-        sampleInvertedIndex.put("world", documentsWorldContain);
+        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+    }
 
-        Set<String> documentsMockContain = new HashSet<>(Arrays.asList("1","5","2"));
-        sampleInvertedIndex.put("mock", documentsMockContain);
-        return sampleInvertedIndex;
+    @Test
+    public void testMinusFilterEmptyPreFiltered(){
+        Set<String> preFiltered = new HashSet<>();
+        Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc8"));
+
+        Set<String> expectedFiltered = new HashSet<>();
+        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        Set<String> actualFiltered = preFiltered;
+
+        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+    }
+
+    @Test
+    public void testMinusFilteredEmptyDocumentsWithMinusQuery(){
+        Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc5","doc4"));
+        Set<String> documentsContainMinusQuery = new HashSet<>();
+
+        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc5","doc4"));
+        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        Set<String> actualFiltered = preFiltered;
+
+        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
     }
 }

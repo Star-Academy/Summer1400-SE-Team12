@@ -2,7 +2,7 @@ package Tests;
 
 import java.util.Map;
 
-import Phase2.FileReader;
+import Phase02.FileReader;
 import org.junit.Assert;
 import org.junit.Test;
 

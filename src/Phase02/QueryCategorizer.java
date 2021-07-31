@@ -1,15 +1,18 @@
-package Phase2;
-
-import Phase2.QueryKeeper;
+package Phase02;
 
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
 public class QueryCategorizer {
-    private String query;
-
     private final QueryKeeper queryKeeper = new QueryKeeper();
+
+    public void categorizeQuery() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter a query");
+        String query = scanner.nextLine();
+        separateBySign(query.toLowerCase().split(" "));
+    }
 
     private void separateBySign(String[] query) {
         Set<String> plusContain = new HashSet<>();
@@ -29,20 +32,8 @@ public class QueryCategorizer {
 
     }
 
-    public void categorizeQuery() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter a query");
-         query = scanner.nextLine();
-        separateBySign(query.split(" "));
-    }
-    //String query global shode o getter gozashtam
-
     public QueryKeeper getQueryKeeper() {
         return queryKeeper;
     }
-    public String getQuery() {
-        return query;
-    }
+
 }
-
-
