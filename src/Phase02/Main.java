@@ -14,14 +14,14 @@ public class Main {
         PlusFilter plusFilter = new PlusFilter();
         MinusFilter minusFilter = new MinusFilter();
         WithoutSignFilter withOutSignFilter = new WithoutSignFilter();
+        Filterizer filterizer = new Filterizer(plusFilter, minusFilter, withOutSignFilter, invertedIndex);
 
         Map<String,String> docNameMapToContent = fileReader.readDocuments(PATH_OF_THE_FILE);
         invertedIndex.buildInvertedIndex(docNameMapToContent);
         queryCategorizer.categorizeQuery();
-        Filterizer filterizer = new Filterizer(plusFilter, minusFilter, withOutSignFilter,
-                invertedIndex, docNameMapToContent.keySet());
-        filterizer.filterDocuments(queryCategorizer.getQueryKeeper());
-        printFilteredAnswers(filterizer.getAnswers());
+        Set<String> answers = filterizer.filterDocuments(queryCategorizer.getQueryKeeper()
+                ,docNameMapToContent.keySet());
+        printFilteredAnswers(answers);
     }
 
     public static void printFilteredAnswers(Set<String> answers){
