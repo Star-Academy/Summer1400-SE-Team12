@@ -7,34 +7,30 @@ public class Filterizer {
     private final WithoutSignFilter withOutSignFilter;
     private final InvertedIndex invertedIndex;
 
-    private Set<String> answers;
 
     public Filterizer(PlusFilter plusFilter, MinusFilter minusFilter, WithoutSignFilter withOutSignFilter,
-                      InvertedIndex invertedIndex, Set<String> documentsName) {
+                      InvertedIndex invertedIndex) {
         this.plusFilter = plusFilter;
         this.minusFilter = minusFilter;
         this.withOutSignFilter = withOutSignFilter;
         this.invertedIndex = invertedIndex;
-        this.answers = documentsName;
     }
 
-    public void filterDocuments(QueryKeeper queryKeeper) {
+    public Set<String> filterDocuments(QueryKeeper queryKeeper ,Set<String> answersDocumentsName) {
         boolean firstIterationFlag = true;
         for (String plusQuery : queryKeeper.getPlusContain()) {
             if (firstIterationFlag) {
-                answers = new HashSet<>();
+                answersDocumentsName = new HashSet<>();
                 firstIterationFlag = false;
             }
-            plusFilter.filter(invertedIndex.getInvertedIndexValue(plusQuery), answers);
+            plusFilter.filter(invertedIndex.getInvertedIndexValue(plusQuery), answersDocumentsName);
         }
         for (String withoutSignQuery : queryKeeper.getWithOutSign())
-            withOutSignFilter.filter(invertedIndex.getInvertedIndexValue(withoutSignQuery), answers);
+            withOutSignFilter.filter(invertedIndex.getInvertedIndexValue(withoutSignQuery), answersDocumentsName);
         for (String minusQuery : queryKeeper.getMinusContain())
-            minusFilter.filter(invertedIndex.getInvertedIndexValue(minusQuery), answers);
+            minusFilter.filter(invertedIndex.getInvertedIndexValue(minusQuery), answersDocumentsName);
+        return answersDocumentsName;
     }
 
-    public Set<String> getAnswers() {
-        return answers;
-    }
 
 }
