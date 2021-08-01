@@ -3,14 +3,13 @@ package Tests;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import Phase02.*;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 
@@ -29,64 +28,80 @@ public class FilterizerTest {
     QueryKeeper mockedQueryKeeper;
 
     private Set<String> documentsName;
+    private Filterizer filterizer;
+    private Set<String> plusContain;
+    private Set<String> withoutSignContain;
+    private Set<String> minusContain;
 
     @Before
     public void setup() {
-        this.documentsName = new HashSet<>(Arrays.asList("t1","t2","t3","t4","t5", "t6",
-                "t7", "t8","t9","t10","t11","t12"));
-        Filterizer filterizer = new Filterizer(mockedPlusFilter, mockedMinusFilter, mockedWithOutSignFilter,
-                mockedInvertedIndex, documentsName);
+        this.documentsName = new HashSet<>(Arrays.asList("t1", "t2", "t3", "t4", "t5", "t6",
+                "t7", "t8", "t9", "t10", "t11", "t12"));
+        this.filterizer = new Filterizer(mockedPlusFilter, mockedMinusFilter,
+                mockedWithOutSignFilter, mockedInvertedIndex);
+
+        plusContain = new HashSet<>(Arrays.asList("1"));
+        withoutSignContain = new HashSet<>(Arrays.asList("1"));
+        minusContain = new HashSet<>(Arrays.asList("1"));
+
+        Mockito.when(mockedQueryKeeper.getMinusContain()).thenReturn(minusContain);
+        Mockito.when(mockedQueryKeeper.getPlusContain()).thenReturn(plusContain);
+        Mockito.when(mockedQueryKeeper.getWithOutSign()).thenReturn(withoutSignContain);
+        Mockito.when(mockedInvertedIndex.getInvertedIndexValue(Mockito.anyString())).thenReturn(new HashSet<>());
     }
 
 
     @Test
     public void testFilterizerWithAllTypesOfFilter() {
-        Set<String> plusDocsName = new HashSet<>(Arrays.asList("t1","t2","t3"));
-        Set<String> minusDocsName = new HashSet<>(Arrays.asList("t4","t5","t6"));
-        Set<String> noneDocsName = new HashSet<>(Arrays.asList("t1","t7","t8"));
+        stubbleMockedObjectsMethod();
 
-        Mockito.when(mockedQueryKeeper.getPlusContain()).thenReturn(plusDocsName);
-        Mockito.when(mockedQueryKeeper.getMinusContain()).thenReturn(minusDocsName);
-        Mockito.when(mockedQueryKeeper.getWithOutSign()).thenReturn(noneDocsName);
-
-        Mockito.doAnswer(invocation -> {
-            
-        }).when(mockedPlusFilter).filter(Mockito.anySet(),Mockito.anySet());
-
-//        Set<String> nullSet = new HashSet<>();
-//
-//        Set<String> plusFiltered = new HashSet<>();
-//        plusFiltered.add("plus1");
-//        plusFiltered.add("plus2");
-//        plusFiltered.add("plus3");
-//
-//        Set<String> withoutSignFiltered = new HashSet<>();
-//        withoutSignFiltered.add("none1");
-//        withoutSignFiltered.add("none2");
-//        withoutSignFiltered.add("none3");
-//
-//        Set<String> minusFiltered = new HashSet<>();
-//        minusFiltered.add("plus1");
-//        minusFiltered.add("minus2");
-//        minusFiltered.add("minus3");
-//
-
-//
-
-//
-//        Mockito.when(plusFilter.filter(plusFiltered, nullSet)).thenReturn(plusDocsName);
-//        Mockito.when(minusFilter.filter(minusFiltered, nullSet)).thenReturn(minusDocsName);
-//        Mockito.when(withOutSignFilter.filter(withoutSignFiltered, nullSet)).thenReturn(noneDocsName);
-//
-//        String testedFiltered = "t1";
-//        //کلمه مشترک بین شان Todo
-//
-//        Set<String> resultFiltered;
-//        resultFiltered = filterizer.filter(queryKeeper);
-//
-//        Assert.assertTrue(resultFiltered.contains(testedFiltered));
-
+        Set<String> filtered = filterizer.filterDocuments(mockedQueryKeeper,documentsName);
+        Assert.assertArrayEquals(new String[]{"t4","t3"},filtered.toArray());
     }
 
+    @Test
+    public void testFilterizerWithoutPlusQuery(){
+        plusContain.clear();
+        stubbleMockedObjectsMethod();
+
+        Set<String> filtered = filterizer.filterDocuments(mockedQueryKeeper,documentsName);
+        Assert.assertArrayEquals(new String[]{"t4","t3"},filtered.toArray());
+    }
+
+    @Test
+    public void testFilterizerWithoutNoSignQuery(){
+        withoutSignContain.clear();
+        stubbleMockedObjectsMethod();
+
+        Set<String> filtered = filterizer.filterDocuments(mockedQueryKeeper,documentsName);
+        Assert.assertArrayEquals(new String[]{"t4","t5","t1","t3"},filtered.toArray());
+    }
+
+    @Test
+    public void testFilterizerWithoutMinusQuery(){
+        minusContain.clear();
+        stubbleMockedObjectsMethod();
+
+        Set<String> filtered = filterizer.filterDocuments(mockedQueryKeeper,documentsName);
+        Assert.assertArrayEquals(new String[]{"t4","t2","t3"},filtered.toArray());
+    }
+
+    private void stubbleMockedObjectsMethod(){
+        Mockito.doAnswer(invocation -> {
+            Set<String> arg1 = (HashSet) invocation.getArguments()[1];
+            arg1.addAll(Arrays.asList("t1", "t2", "t3","t4","t5"));
+            return null;
+        }).when(mockedPlusFilter).filter(Mockito.anySet(), Mockito.anySet());
+        Mockito.doAnswer(invocation -> {
+            Set<String> arg1 = (HashSet) invocation.getArguments()[1];
+            arg1.retainAll(Arrays.asList("t4","t2","t3"));
+            return null;
+        }).when(mockedWithOutSignFilter).filter(Mockito.anySet(),Mockito.anySet());
+        Mockito.doAnswer(invocation -> {
+            Set<String> arg1 = (HashSet) invocation.getArguments()[1];
+            arg1.remove("t2");
+            return null;
+        }).when(mockedMinusFilter).filter(Mockito.anySet(),Mockito.anySet());
+    }
 
 }
