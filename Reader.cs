@@ -27,7 +27,7 @@
 
                 }
 
-                var studentTOPoint = studentsList.Select(s => point.Where(p => p.StudentNumber == s.StudentNumber));
+                //var studentTOPoint = studentsList.Select(s => point.Where(p => p.StudentNumber == s.StudentNumber));
 
 
                 return studentsList;
