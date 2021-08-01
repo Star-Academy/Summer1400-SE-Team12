@@ -1,6 +1,5 @@
 package Tests;
 
-import Phase02.MinusFilter;
 import Phase02.PlusFilter;
 import org.junit.Assert;
 import org.junit.Before;
