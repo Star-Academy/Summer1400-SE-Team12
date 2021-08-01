@@ -1,11 +1,9 @@
 package Tests;
 
 import Phase02.QueryCategorizer;
-import org.junit.*;
 
+import org.junit.*;
 import java.io.ByteArrayInputStream;
-import java.util.Arrays;
-import java.util.HashSet;
 
 public class QueryCategorizerTest {
 
