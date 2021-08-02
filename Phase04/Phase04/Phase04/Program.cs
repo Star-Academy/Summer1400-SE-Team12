@@ -2,8 +2,8 @@
 {
     class Program
     {
-        private static string _pathNames = @"D:\programming\code-star\phase04\Summer1400-SE-Team12\Phase04\Phase04\Phase04\Names.json";
-        private static string _pathPoints = @"D:\programming\code-star\phase04\Summer1400-SE-Team12\Phase04\Phase04\Phase04\Points.json";
+        private static string _pathNames = @"JsonFiles\Students.json";
+        private static string _pathPoints = @"JsonFiles\Scores.json";
         
         static void Main(string[] args)
         {
