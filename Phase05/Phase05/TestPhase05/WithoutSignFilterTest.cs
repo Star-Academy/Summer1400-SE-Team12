@@ -13,7 +13,7 @@ namespace TestPhase05
         public WithoutSignFilterTest()
         {
             _invertedIndex = Substitute.For<IInvertedIndex>();
-            var withoutSignFilter= new WithoutSignFilter(_invertedIndex);
+             withoutSignFilter= new WithoutSignFilter(_invertedIndex);
         }
 
 
