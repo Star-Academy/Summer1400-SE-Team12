@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Phase05
 {
@@ -10,10 +11,14 @@ namespace Phase05
         {
             _invertedIndex = invertedIndex;
         }
+        
+        
         public HashSet<string> Filter(HashSet<string> signQueries)
         {
             throw new System.NotImplementedException();
         }
+        
+        
         
     }
 }
