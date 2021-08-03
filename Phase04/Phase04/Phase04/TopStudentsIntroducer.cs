@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Phase4
 {
-    public class TopStudents
+    public class TopStudentsIntroducer
     {
-        private Reader _reader;
-        private AverageEngine _averageEngine;
+        private readonly Reader _reader;
+        private readonly AverageEngine _averageEngine;
         
-        public TopStudents(Reader reader, AverageEngine averageEngine)
+        public TopStudentsIntroducer(Reader reader, AverageEngine averageEngine)
         {
             _reader = reader;
             _averageEngine = averageEngine;
@@ -19,16 +20,15 @@ namespace Phase4
             
             var students = _reader.ReadJson<Student>(_pathStudents);
             var studentsScores = _reader.ReadJson<StudentScore>(_pathScores);
-            var studentsAverage = _averageEngine.calculateAvg(students, studentsScores);
+            var studentsAverage = _averageEngine.CalculateAvg(students, studentsScores);
             PrintTopStudents(3,studentsAverage);
         }
 
-        private void PrintTopStudents(int numberOfTopStudents, IOrderedEnumerable<dynamic> studentsAverage)
+        private void PrintTopStudents(int numberOfTopStudents, IEnumerable<StudentAverage> studentsAverage)
         {
             var topStudents = studentsAverage.Take(numberOfTopStudents);
             foreach (var topStudent in topStudents)
-                Console.WriteLine($"Name : {topStudent.Student.FirstName} {topStudent.Student.LastName} " +
-                                  $"With grade point average : {topStudent.Average}");
+                Console.WriteLine(topStudent);
         }
         
     }

@@ -6,16 +6,16 @@ namespace Phase4
 {
     public class AverageEngine
     {
-        public dynamic calculateAvg(List<Student> students, List<StudentScore> studentScores)
+        public IEnumerable<StudentAverage> CalculateAvg(IEnumerable<Student> students, IEnumerable<StudentScore> studentScores)
         {
-            var studentAverage = students.Select(s => new
-            {
-                Student = s,
-                Average = studentScores.Where(p => p.StudentNumber == s.StudentNumber).Select(x => x.Score).Average()
-            }).OrderByDescending(x => x.Average);
+            var studentAverage = students.GroupJoin(studentScores,
+                s => s.StudentNumber,
+                scr => scr.StudentNumber,
+                (s, scr) => new
+                    StudentAverage(s, scr.Select(x => x.Score).Average())).
+                OrderByDescending(x => x.AverageScore);
 
             return studentAverage;
         }
-        
     }
 }
