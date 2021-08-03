@@ -8,14 +8,14 @@ namespace Phase05
         private Dictionary<string, HashSet<string>> _invertedIndexMap = new Dictionary<string, HashSet<string>>(); 
         public HashSet<string> GetInvertedIndexValue(string key)
         {
-            throw new System.NotImplementedException();
+            return _invertedIndexMap.GetValueOrDefault(key);
         }
 
         public void BuildInvertedIndex(Dictionary<string, string> docMapToContent)
         {
             foreach (var doc in docMapToContent)
             {
-                string[] words = doc.Value.Split("[\\W]+");
+                var words = doc.Value.Split("[\\W]+");
                 foreach (var wordsIterator in words)
                 {
                     if (_invertedIndexMap.ContainsKey(wordsIterator))

@@ -25,7 +25,7 @@ namespace TestPhase05
             Assert.Equal(expected, actual);
         }
 
-        private void setupInvertedIndexGetMethod()
+        private void SetupInvertedIndexGetMethod()
         {
             _invertedIndex.GetInvertedIndexValue("hello").Returns(new HashSet<string>() {"doc1", "doc2", "doc3"});
             _invertedIndex.GetInvertedIndexValue("bye").Returns(new HashSet<string>() {"doc3", "doc4", "doc5"});

@@ -4,17 +4,10 @@
     <projectFile>Phase05/Phase05.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32b4c2d2-4cba-4a24-9142-4681ac607a0a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Phase05/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Phase05/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="32b4c2d2-4cba-4a24-9142-4681ac607a0a" name="Default Changelist" comment="Inverted Index">
       <change beforePath="$PROJECT_DIR$/Phase05/InvertedIndex.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/InvertedIndex.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase05/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/Debug/netcoreapp3.1/TestPhase05.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/Debug/netcoreapp3.1/TestPhase05.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/TestPhase05.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/TestPhase05.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/TestPhase05.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/TestPhase05.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestPhase05/MinusFilterTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/MinusFilterTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestPhase05/UnitTest1.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +21,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/ts/RiderProjects/Summer1400-SE-Team12/Phase05/Phase05/Phase05/InvertedIndex.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -44,9 +40,9 @@
       <option value="$PROJECT_DIR$/Phase05/PlusFilter.cs" />
       <option value="$PROJECT_DIR$/Phase05/WithoutSignFilter.cs" />
       <option value="$PROJECT_DIR$/Phase05/IInvertedIndex.cs" />
-      <option value="$PROJECT_DIR$/TestPhase05/MinusFilterTest.cs" />
       <option value="$PROJECT_DIR$/Phase05/MinusFilter.cs" />
       <option value="$PROJECT_DIR$/Phase05/InvertedIndex.cs" />
+      <option value="$PROJECT_DIR$/TestPhase05/MinusFilterTest.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1wCcI0IdEcmD6h9oCSRNQ975JG3" />
@@ -62,7 +58,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Project.Phase05">
     <configuration name="Phase05" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -106,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627988502932</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Inverted Index">
+      <created>1627990539662</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1627990539662</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,6 +133,26 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Interfaces was added to begin test" />
     <MESSAGE value="test usual state for minusFilter" />
-    <option name="LAST_COMMIT_MESSAGE" value="test usual state for minusFilter" />
+    <MESSAGE value="Inverted Index" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inverted Index" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/TestPhase05/MinusFilterTest.cs</url>
+          <line>23</line>
+          <properties documentPath="C:\Users\ts\RiderProjects\Summer1400-SE-Team12\Phase05\Phase05\TestPhase05\MinusFilterTest.cs" initialLine="23" containingFunctionPresentation="method 'MinusFilter_shouldReturnRemovedDocumentsContainSingleQuery'">
+            <startOffsets>
+              <option value="714" />
+            </startOffsets>
+            <endOffsets>
+              <option value="762" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
