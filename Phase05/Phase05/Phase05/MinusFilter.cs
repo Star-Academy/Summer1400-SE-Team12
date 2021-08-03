@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Phase05
 {
@@ -10,9 +11,15 @@ namespace Phase05
         {
             _invertedIndex = invertedIndex;
         }
-        public HashSet<string> Filter(HashSet<string> signQueries)
+        
+        public HashSet<string> Filter(HashSet<string> minusQueries)
         {
-            throw new System.NotImplementedException();
+            var minusFiltered = new HashSet<string>();
+            foreach (var query in minusQueries)
+            {
+                minusFiltered.Union(_invertedIndex.GetInvertedIndexValue(query)).ToHashSet();
+            }
+            return minusFiltered;
         }
         
     }

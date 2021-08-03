@@ -4,24 +4,10 @@
     <projectFile>Phase05/Phase05.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32b4c2d2-4cba-4a24-9142-4681ac607a0a" name="Default Changelist" comment="Interfaces was added to begin test">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Phase05/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Phase05/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase05/IFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/IFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase05/IInvertedIndex.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/IInvertedIndex.cs" afterDir="false" />
+    <list default="true" id="32b4c2d2-4cba-4a24-9142-4681ac607a0a" name="Default Changelist" comment="test usual state for minusFilter">
       <change beforePath="$PROJECT_DIR$/Phase05/InvertedIndex.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/InvertedIndex.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Phase05/MinusFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/MinusFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase05/PlusFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/PlusFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase05/WithoutSignFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/WithoutSignFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase05/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/MinusFilterTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/MinusFilterTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/TestPhase05.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/TestPhase05.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/Debug/netcoreapp3.1/TestPhase05.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/Debug/netcoreapp3.1/TestPhase05.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/Debug/netcoreapp3.1/TestPhase05.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/Debug/netcoreapp3.1/TestPhase05.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/TestPhase05.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/TestPhase05.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestPhase05/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/TestPhase05/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase05/obj/Debug/netcoreapp3.1/Phase05.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/Debug/netcoreapp3.1/Phase05.csprojAssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +21,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://D:/programming/code-star/phase04/Summer1400-SE-Team12/Phase05/Phase05/Phase05/IFilter.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -50,10 +39,10 @@
       <option value="$PROJECT_DIR$/Phase05/IFilter.cs" />
       <option value="$PROJECT_DIR$/Phase05/PlusFilter.cs" />
       <option value="$PROJECT_DIR$/Phase05/WithoutSignFilter.cs" />
-      <option value="$PROJECT_DIR$/Phase05/MinusFilter.cs" />
       <option value="$PROJECT_DIR$/Phase05/IInvertedIndex.cs" />
-      <option value="$PROJECT_DIR$/Phase05/InvertedIndex.cs" />
       <option value="$PROJECT_DIR$/TestPhase05/MinusFilterTest.cs" />
+      <option value="$PROJECT_DIR$/Phase05/MinusFilter.cs" />
+      <option value="$PROJECT_DIR$/Phase05/InvertedIndex.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1wCcI0IdEcmD6h9oCSRNQ975JG3" />
@@ -106,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627986394395</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="test usual state for minusFilter">
+      <created>1627988502932</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1627988502932</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +125,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Interfaces was added to begin test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Interfaces was added to begin test" />
+    <MESSAGE value="test usual state for minusFilter" />
+    <option name="LAST_COMMIT_MESSAGE" value="test usual state for minusFilter" />
   </component>
 </project>
