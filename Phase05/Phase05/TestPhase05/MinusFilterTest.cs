@@ -21,6 +21,7 @@ namespace TestPhase05
         {
             var expected = new HashSet<string>() {"doc1", "doc2", "doc3", "doc4", "doc5"};
             var minusQuery = new HashSet<string>() {"hello", "bye"};
+            SetupInvertedIndexGetMethod();
             var actual = _minusFilterSUT.Filter(minusQuery);
             Assert.Equal(expected, actual);
         }

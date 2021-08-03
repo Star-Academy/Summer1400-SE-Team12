@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+rg6Kg28llf7rPp94moaRxnZ8qCiz16S5FnujWmkXaG9u+xkI+gD+LbO2SxLoAWmmQ6+f1NCZZ+89YdS0tZjAg==",
+  "dgSpecHash": "NmG81VXI14O6R6IOcltqs2/7BK+bcZwJZQZjzgeUvJIo1CH2aInug4+o5XGFYrjP6JtsFAG/MBgcpgrMs48SPA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ts\\RiderProjects\\Summer1400-SE-Team12\\Phase05\\Phase05\\Phase05\\Phase05.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\ts\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
-    "C:\\Users\\ts\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
-    "C:\\Users\\ts\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
-    "C:\\Users\\ts\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.16\\microsoft.netcore.app.host.win-x64.3.1.16.nupkg.sha512"
-  ],
+  "projectFilePath": "D:\\programming\\code-star\\phase04\\Summer1400-SE-Team12\\Phase05\\Phase05\\Phase05\\Phase05.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

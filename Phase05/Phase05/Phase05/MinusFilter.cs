@@ -15,9 +15,9 @@ namespace Phase05
         public HashSet<string> Filter(HashSet<string> minusQueries)
         {
             var minusFiltered = new HashSet<string>();
-            foreach (var query in minusQueries)
+            foreach (var s in minusQueries.Select(query => _invertedIndex.GetInvertedIndexValue(query)).SelectMany(set => set))
             {
-                minusFiltered.Union(_invertedIndex.GetInvertedIndexValue(query)).ToHashSet();
+                minusFiltered.Add(s);
             }
             return minusFiltered;
         }

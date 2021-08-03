@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\ts\\.nuget\\packages\\": {}
+    "C:\\Users\\zahra\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ts\\RiderProjects\\Summer1400-SE-Team12\\Phase05\\Phase05\\Phase05\\Phase05.csproj",
+      "projectUniqueName": "D:\\programming\\code-star\\phase04\\Summer1400-SE-Team12\\Phase05\\Phase05\\Phase05\\Phase05.csproj",
       "projectName": "Phase05",
-      "projectPath": "C:\\Users\\ts\\RiderProjects\\Summer1400-SE-Team12\\Phase05\\Phase05\\Phase05\\Phase05.csproj",
-      "packagesPath": "C:\\Users\\ts\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ts\\RiderProjects\\Summer1400-SE-Team12\\Phase05\\Phase05\\Phase05\\obj\\",
+      "projectPath": "D:\\programming\\code-star\\phase04\\Summer1400-SE-Team12\\Phase05\\Phase05\\Phase05\\Phase05.csproj",
+      "packagesPath": "C:\\Users\\zahra\\.nuget\\packages\\",
+      "outputPath": "D:\\programming\\code-star\\phase04\\Summer1400-SE-Team12\\Phase05\\Phase05\\Phase05\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ts\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\zahra\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -30,7 +30,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -42,7 +41,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "imports": [
           "net461",
           "net462",
@@ -53,30 +51,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[3.1.10, 3.1.10]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.16, 3.1.16]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[3.1.0, 3.1.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[3.1.0, 3.1.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\ts\\.dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.411\\RuntimeIdentifierGraph.json"
       }
     }
   }
