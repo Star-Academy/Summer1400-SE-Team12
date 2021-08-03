@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32b4c2d2-4cba-4a24-9142-4681ac607a0a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Phase04/Phase04/Phase04/AverageCalculator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Phase04/Phase04/Phase04/AverageEngine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Phase05/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Phase05/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase05/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase05/obj/Debug/netcoreapp3.1/Phase05.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/Debug/netcoreapp3.1/Phase05.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase05/obj/Debug/netcoreapp3.1/Phase05.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/Debug/netcoreapp3.1/Phase05.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase05/obj/Phase05.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/Phase05.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase05/obj/Phase05.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/Phase05.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase05/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase05/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase05/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase05/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +21,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="Phase05" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="IdeDocumentHistory">
@@ -72,6 +83,18 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
