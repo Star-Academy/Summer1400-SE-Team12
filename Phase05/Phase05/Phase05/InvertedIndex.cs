@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Phase05
 {
@@ -12,6 +13,30 @@ namespace Phase05
 
         public void BuildInvertedIndex(Dictionary<string, string> docMapToContent)
         {
+            foreach (var doc in docMapToContent)
+            {
+                string[] words = doc.Value.Split("[\\W]+");
+                foreach (var wordsIterator in words)
+                {
+                    if (_invertedIndexMap.ContainsKey(wordsIterator))
+                    {
+                        _invertedIndexMap.GetValueOrDefault(wordsIterator).Add(doc.Key);
+                    }
+                    else
+                    {
+                        var docNames = new HashSet<string>(){doc.Key};
+                        _invertedIndexMap.Add(wordsIterator,docNames);
+                    }
+                    
+                }
+                
+                
+                
+            }
+            
         }
+        
+        
+        
     }
 }
