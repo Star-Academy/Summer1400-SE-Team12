@@ -9,7 +9,8 @@
         {
             var reader = new Reader();
             var averageEngine = new AverageEngine();
-            
+            var topStudents = new TopStudents(reader, averageEngine);
+            topStudents.processInfo(_pathStudents, _pathScores);
         }
         
     }

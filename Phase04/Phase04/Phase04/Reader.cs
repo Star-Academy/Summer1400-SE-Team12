@@ -7,7 +7,6 @@ namespace Phase4
 {
     public class Reader
     {
-        
         public List<T> ReadJson<T>(string path)
         {
             StreamReader streamReader = new StreamReader(path);
