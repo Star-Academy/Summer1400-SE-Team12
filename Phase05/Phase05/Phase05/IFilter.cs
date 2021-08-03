@@ -2,7 +2,7 @@
 
 namespace Phase05
 {
-    public interface IFilter : IInvertedIndex
+    public interface IFilter
     {
         HashSet<string> Filter(HashSet<string> signQueries);
     }

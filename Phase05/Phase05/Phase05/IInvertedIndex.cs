@@ -4,6 +4,6 @@ namespace Phase05
 {
     public interface IInvertedIndex
     {
-        HashSet<string> getInvertedIndexValue(string key);
+        HashSet<string> GetInvertedIndexValue(string key);
     }
 }

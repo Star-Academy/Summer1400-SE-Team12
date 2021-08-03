@@ -4,7 +4,7 @@ namespace Phase05
 {
     public class InvertedIndex : IInvertedIndex
     {
-        public HashSet<string> getInvertedIndexValue(string key)
+        public HashSet<string> GetInvertedIndexValue(string key)
         {
             throw new System.NotImplementedException();
         }
