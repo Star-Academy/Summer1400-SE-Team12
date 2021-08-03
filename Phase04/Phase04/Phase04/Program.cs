@@ -8,13 +8,8 @@
         static void Main(string[] args)
         {
             var reader = new Reader();
-            var information = new AverageEngine();
+            var averageEngine = new AverageEngine();
             
-            var students = reader.ReadJson<Student>(_pathStudents);
-            var studentsScores = reader.ReadJson<StudentScore>(_pathScores);
-            var studentsAverage = information.calculateAvg(students, studentsScores);
-            information.PrintTopStudents(3,studentsAverage);
-
         }
         
     }

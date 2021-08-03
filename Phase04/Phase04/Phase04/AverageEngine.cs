@@ -17,12 +17,5 @@ namespace Phase4
             return studentAverage;
         }
         
-        public void PrintTopStudents(int numberOfTopStudents, IOrderedEnumerable<dynamic> studentsAverage)
-        {
-            var topStudents = studentsAverage.Take(numberOfTopStudents);
-            foreach (var topStudent in topStudents)
-                Console.WriteLine($"Name : {topStudent.Student.FirstName} {topStudent.Student.LastName} " +
-                                  $"With grade point average : {topStudent.Average}");
-        }
     }
 }
