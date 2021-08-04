@@ -15,7 +15,6 @@ namespace TestPhase05
             var content = "the fox is hear.";
             var name = path+"\\testText1.txt";
             
-
             Dictionary<string,string> documents = fileReader.ReadFile(path);
             
             Assert.Equal(documents.ContainsKey(name),true);
