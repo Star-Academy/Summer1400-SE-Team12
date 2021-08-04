@@ -10,7 +10,7 @@ namespace TestPhase05
         [Fact]
         public void ReadFileTest_shouldReturnDictionaryThatContainNamesAndContent()
         {
-            string path = @"C:\Users\ts\RiderProjects\Summer1400-SE-Team12\Phase05\Phase05\TestPhase05\testFile";
+            string path = @"C:\Users\ts\Desktop\testFile";
             var fileReader = new FileReader();
             var content = "the fox is hear.";
             var name = "testText.txt";

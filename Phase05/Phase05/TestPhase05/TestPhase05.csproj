@@ -17,4 +17,10 @@
       <ProjectReference Include="..\Phase05\Phase05.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="testFile\testText1.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
