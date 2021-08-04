@@ -7,13 +7,13 @@ namespace TestPhase05
 {
     public class DisjunctionFilterTest
     {
-        private readonly DisjunctionFilter _disjunctionFilterSut;
+        private readonly DisjunctionFilter _disjunctionFilter;
         private readonly IInvertedIndex _invertedIndex;
 
         public DisjunctionFilterTest()
         {
             _invertedIndex = Substitute.For<IInvertedIndex>();
-            _disjunctionFilterSut = new DisjunctionFilter(_invertedIndex);
+            _disjunctionFilter = new DisjunctionFilter(_invertedIndex);
         }
 
         [Fact]
@@ -22,7 +22,7 @@ namespace TestPhase05
             var expected = new HashSet<string>() {"doc1", "doc2", "doc3", "doc4", "doc5"};
             var minusQuery = new HashSet<string>() {"hello", "bye"};
             SetupInvertedIndexGetMethod();
-            var actual = _disjunctionFilterSut.Filter(minusQuery);
+            var actual = _disjunctionFilter.Filter(minusQuery);
             Assert.Equal(expected, actual);
         }
 
