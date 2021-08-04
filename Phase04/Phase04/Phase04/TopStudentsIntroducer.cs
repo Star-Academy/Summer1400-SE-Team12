@@ -29,6 +29,7 @@ namespace Phase4
             var topStudents = studentsAverage.Take(numberOfTopStudents);
             foreach (var topStudent in topStudents)
                 Console.WriteLine(topStudent);
+            
         }
         
     }
