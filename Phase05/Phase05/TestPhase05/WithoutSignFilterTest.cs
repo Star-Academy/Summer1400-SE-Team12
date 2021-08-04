@@ -20,7 +20,6 @@ namespace TestPhase05
         [Fact]
         public void FilterTest_shouldReturnDocumentsThatContainSingleQuery()
         {
-            
             var expected = new HashSet<string>() {"s3"};
             var withoutSignFilterQuery = new HashSet<string>() {"hello", "bye"};
             SetupInvertedIndexGetMethod();
@@ -28,7 +27,6 @@ namespace TestPhase05
             Assert.Equal(expected, actual);
             
         }
-
         
         private void SetupInvertedIndexGetMethod()
         {
