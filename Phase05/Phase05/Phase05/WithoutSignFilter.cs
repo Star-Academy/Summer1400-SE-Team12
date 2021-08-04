@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Castle.Core.Internal;
 
 namespace Phase05
 {
@@ -10,10 +12,35 @@ namespace Phase05
         {
             _invertedIndex = invertedIndex;
         }
+        
+        
         public HashSet<string> Filter(HashSet<string> signQueries)
         {
-            throw new System.NotImplementedException();
+            
+            var WithoutSignFiltered = new HashSet<string>();
+
+            bool firstTime = true;
+            foreach (var signQueriesIterator in signQueries)
+            {
+                if (firstTime)
+                {
+                    WithoutSignFiltered= _invertedIndex.GetInvertedIndexValue(signQueriesIterator);
+                    firstTime = false;
+
+                }
+                else
+                {
+                    //WithoutSignFiltered.
+                    //TODO eshterak bgir
+                }
+                
+
+            }
+            
+            return WithoutSignFiltered;
         }
+        
+        
         
     }
 }
