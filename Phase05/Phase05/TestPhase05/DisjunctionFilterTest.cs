@@ -5,15 +5,15 @@ using Xunit;
 
 namespace TestPhase05
 {
-    public class MinusFilterTest
+    public class DisjunctionFilterTest
     {
-        private readonly MinusFilter _minusFilterSUT;
+        private readonly DisjunctionFilter _disjunctionFilterSut;
         private readonly IInvertedIndex _invertedIndex;
 
-        public MinusFilterTest()
+        public DisjunctionFilterTest()
         {
             _invertedIndex = Substitute.For<IInvertedIndex>();
-            _minusFilterSUT = new MinusFilter(_invertedIndex);
+            _disjunctionFilterSut = new DisjunctionFilter(_invertedIndex);
         }
 
         [Fact]
@@ -22,7 +22,7 @@ namespace TestPhase05
             var expected = new HashSet<string>() {"doc1", "doc2", "doc3", "doc4", "doc5"};
             var minusQuery = new HashSet<string>() {"hello", "bye"};
             SetupInvertedIndexGetMethod();
-            var actual = _minusFilterSUT.Filter(minusQuery);
+            var actual = _disjunctionFilterSut.Filter(minusQuery);
             Assert.Equal(expected, actual);
         }
 
