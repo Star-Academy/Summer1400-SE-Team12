@@ -14,7 +14,7 @@ namespace Phase05
             {
                 using (var streamReader = new StreamReader(txtName))
                 {
-                    documents.Add(txtName.Replace("C:\\Users\\ts\\Desktop\\EnglishData\\",""),streamReader.ReadToEnd());
+                    documents.Add(txtName,streamReader.ReadToEnd());
                     
                 }
             }

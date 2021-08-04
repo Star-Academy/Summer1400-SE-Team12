@@ -13,7 +13,8 @@ namespace TestPhase05
             string path = @"C:\Users\ts\Desktop\testFile";
             var fileReader = new FileReader();
             var content = "the fox is hear.";
-            var name = "testText.txt";
+            var name = path+"\\testText1.txt";
+            
 
             Dictionary<string,string> documents = fileReader.ReadFile(path);
             
