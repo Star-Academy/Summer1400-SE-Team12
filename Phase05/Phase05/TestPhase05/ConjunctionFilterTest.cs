@@ -5,15 +5,15 @@ using Xunit;
 
 namespace TestPhase05
 {
-    public class WithoutSignFilterTest
+    public class ConjunctionFilterTest
     {
-        private readonly WithoutSignFilter withoutSignFilter;
+        private readonly ConjunctionFilter _conjunctionFilter;
         private readonly IInvertedIndex _invertedIndex;
 
-        public WithoutSignFilterTest()
+        public ConjunctionFilterTest()
         {
             _invertedIndex = Substitute.For<IInvertedIndex>();
-            withoutSignFilter= new WithoutSignFilter(_invertedIndex);
+            _conjunctionFilter= new ConjunctionFilter(_invertedIndex);
         }
 
 
@@ -23,7 +23,7 @@ namespace TestPhase05
             var expected = new HashSet<string>() {"s3"};
             var withoutSignFilterQuery = new HashSet<string>() {"hello", "bye"};
             SetupInvertedIndexGetMethod();
-            var actual = withoutSignFilter.Filter(withoutSignFilterQuery);
+            var actual = _conjunctionFilter.Filter(withoutSignFilterQuery);
             Assert.Equal(expected, actual);
             
         }

@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Phase05
 {
-    public class WithoutSignFilter : IFilter
+    public class ConjunctionFilter : IFilter
     {
         private readonly IInvertedIndex _invertedIndex;
 
-        public WithoutSignFilter(IInvertedIndex invertedIndex)
+        public ConjunctionFilter(IInvertedIndex invertedIndex)
         {
             _invertedIndex = invertedIndex;
         }
