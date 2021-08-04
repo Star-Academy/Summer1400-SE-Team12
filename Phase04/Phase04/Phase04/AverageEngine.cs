@@ -9,11 +9,11 @@ namespace Phase4
         public IEnumerable<StudentAverage> CalculateAvg(IEnumerable<Student> students, IEnumerable<StudentScore> studentScores)
         {
             var studentAverage = students.GroupJoin(studentScores,
-                s => s.StudentNumber,
+                stu => stu.StudentNumber,
                 scr => scr.StudentNumber,
-                (s, scr) => new
-                    StudentAverage(s, scr.Select(x => x.Score).Average())).
-                OrderByDescending(x => x.AverageScore);
+                (stu, scr) => new
+                    StudentAverage(stu, scr.Select(s => s.Score).Average())).
+                OrderByDescending(s => s.AverageScore);
 
             return studentAverage;
         }

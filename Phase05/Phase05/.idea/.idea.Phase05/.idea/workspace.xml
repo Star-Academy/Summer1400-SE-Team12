@@ -4,13 +4,7 @@
     <projectFile>Phase05/Phase05.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32b4c2d2-4cba-4a24-9142-4681ac607a0a" name="Default Changelist" comment="MinusFilter implement">
-      <change afterPath="$PROJECT_DIR$/../../Phase04/Phase04/Phase04/StudentAverage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Phase04/Phase04/Phase04/AverageEngine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Phase04/Phase04/Phase04/AverageEngine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Phase04/Phase04/Phase04/TopStudents.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Phase04/Phase04/Phase04/TopStudents.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Phase05/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Phase05/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase05/obj/Debug/netcoreapp3.1/Phase05.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Phase05/obj/Debug/netcoreapp3.1/Phase05.csprojAssemblyReference.cache" afterDir="false" />
-    </list>
+    <list default="true" id="32b4c2d2-4cba-4a24-9142-4681ac607a0a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,6 +69,15 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
