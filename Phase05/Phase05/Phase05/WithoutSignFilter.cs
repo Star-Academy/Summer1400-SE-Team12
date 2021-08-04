@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Castle.Core.Internal;
 
@@ -16,7 +17,8 @@ namespace Phase05
         
         public HashSet<string> Filter(HashSet<string> signQueries)
         {
-            
+            var answer = new HashSet<string>();
+
             var WithoutSignFiltered = new HashSet<string>();
 
             bool firstTime = true;
@@ -30,14 +32,21 @@ namespace Phase05
                 }
                 else
                 {
-                    //WithoutSignFiltered.
-                    //TODO eshterak bgir
+                    IEnumerable<string> subscribesSets = from planet in WithoutSignFiltered.Intersect(
+                            _invertedIndex.GetInvertedIndexValue(signQueriesIterator))
+                        select planet;
+
+                    foreach (var iterator in subscribesSets)
+                    {
+                        answer.Add(iterator);
+                    }
+                    
                 }
                 
 
             }
             
-            return WithoutSignFiltered;
+            return answer;
         }
         
         
