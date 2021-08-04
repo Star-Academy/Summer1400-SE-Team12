@@ -3,5 +3,10 @@
     public interface IQueryKeeper
     {
         
+        
+        
+        
+        
+        
     }
 }
