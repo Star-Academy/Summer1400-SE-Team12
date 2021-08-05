@@ -4,6 +4,6 @@ namespace Phase05
 {
     public interface IFilter
     {
-        HashSet<string> Filter(HashSet<string> signQueries);
+        ISet<string> Filter(ISet<string> signQueries);
     }
 }

@@ -12,7 +12,7 @@ namespace Phase05
             _invertedIndex = invertedIndex;
         }
         
-        public HashSet<string> Filter(HashSet<string> signQueries)
+        public ISet<string> Filter(ISet<string> signQueries)
         {
             var answer = new HashSet<string>();
 

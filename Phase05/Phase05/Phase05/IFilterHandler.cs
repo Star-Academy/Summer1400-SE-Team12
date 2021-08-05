@@ -4,6 +4,6 @@ namespace Phase05
 {
     public interface IFilterHandler
     {
-        HashSet<string> Filter(QueryKeeper queryKeeper);
+        ISet<string> Filter(IQueryKeeper queryKeeper);
     }
 }

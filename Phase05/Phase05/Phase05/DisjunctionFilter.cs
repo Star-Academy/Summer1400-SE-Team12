@@ -12,7 +12,7 @@ namespace Phase05
             _invertedIndex = invertedIndex;
         }
         
-        public HashSet<string> Filter(HashSet<string> minusQueries)
+        public ISet<string> Filter(ISet<string> minusQueries)
         {
             var minusFiltered = new HashSet<string>();
             foreach (var s in minusQueries.Select(query => _invertedIndex.GetInvertedIndexValue(query)).SelectMany(set => set))

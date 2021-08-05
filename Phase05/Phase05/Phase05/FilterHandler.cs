@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Phase05
 {
@@ -13,19 +15,19 @@ namespace Phase05
         }
 
 
-        public HashSet<string> Filter(QueryKeeper queryKeeper)
+        public ISet<string> Filter(IQueryKeeper queryKeeper)
         {
             var plusFiltered = _disjunctionFilter.Filter(queryKeeper.GetPlusContain());
             var minusFiltered = _disjunctionFilter.Filter(queryKeeper.GetMinusContain());
-            var withoutSignFiltered = -_conjunctionFilter.Filter(queryKeeper.GetWithoutSignContain());
-            
+            var withoutSignFiltered = _conjunctionFilter.Filter(queryKeeper.GetWithoutSignContain());
+            return GeneralizeSignFiltered(plusFiltered, minusFiltered, withoutSignFiltered);
         }
 
-        private HashSet<string> GeneralizeSignFiltered(HashSet<string> plusFiltered, HashSet<string> minusFiltere,
-            HashSet<string> withoutSignFiltered)
+        private ISet<string> GeneralizeSignFiltered(ISet<string> plusFiltered, ISet<string> minusFiltered,
+            ISet<string> withoutSignFiltered)
         {
             var finalFiltered = new HashSet<string>(withoutSignFiltered);
-            finalFiltered.re
+            return finalFiltered.Except(minusFiltered).Intersect(plusFiltered).ToHashSet();
         }
     }
 }
