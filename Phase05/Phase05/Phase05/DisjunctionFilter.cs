@@ -12,11 +12,11 @@ namespace Phase05
             _invertedIndex = invertedIndex;
         }
         
-        public ISet<string> Filter(ISet<string> minusOrPlusQueries)
+        public ISet<string> Filter(ISet<string> signQueries)
         {
             var disjunctionFiltered = new HashSet<string>();
 
-            return minusOrPlusQueries.Aggregate(disjunctionFiltered, (current, query) =>
+            return signQueries.Aggregate(disjunctionFiltered, (current, query) =>
                 current.Union(_invertedIndex.GetInvertedIndexValue(query)).ToHashSet());
         }
         

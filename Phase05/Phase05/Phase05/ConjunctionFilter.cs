@@ -11,41 +11,15 @@ namespace Phase05
         {
             _invertedIndex = invertedIndex;
         }
-        
+
         public ISet<string> Filter(ISet<string> signQueries)
         {
-            var answer = new HashSet<string>();
+            ISet<string> conjunctionFiltered = new HashSet<string>(
+                _invertedIndex.GetInvertedIndexValue(signQueries.First()));
 
-            var WithoutSignFiltered = new HashSet<string>();
-
-            bool firstTime = true;
-            foreach (var signQueriesIterator in signQueries)
-            {
-                if (firstTime)
-                {
-                    WithoutSignFiltered= _invertedIndex.GetInvertedIndexValue(signQueriesIterator);
-                    firstTime = false;
-
-                }
-                else
-                {
-                    IEnumerable<string> subscribesSets = from planet in WithoutSignFiltered.Intersect(
-                            _invertedIndex.GetInvertedIndexValue(signQueriesIterator))
-                        select planet;
-
-                    foreach (var iterator in subscribesSets)
-                    {
-                        answer.Add(iterator);
-                    }
-                    
-                }
-                
-            }
-            
-            return answer;
+            return signQueries.Aggregate(conjunctionFiltered, (current, query) =>
+                current.Intersect(_invertedIndex.GetInvertedIndexValue(query))
+                    .ToHashSet());
         }
-        
-        
-        
     }
 }
