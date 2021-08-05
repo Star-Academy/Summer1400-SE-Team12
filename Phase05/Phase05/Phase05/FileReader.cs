@@ -10,20 +10,10 @@ namespace Phase05
         {
             var documents = new Dictionary<string, string>();
             
-            foreach (string txtName in Directory.GetFiles(path))
-            {
-                using (var streamReader = new StreamReader(txtName))
-                {
-                    documents.Add(txtName,streamReader.ReadToEnd());
-                    
-                }
-            }
-            return documents;
+            foreach (string filePath in Directory.GetFiles(path))
+                documents.Add(Path.GetFileName(filePath), File.ReadAllText(filePath));
 
+            return documents;
         }
-        
-        
-        
-        
     }
 }
