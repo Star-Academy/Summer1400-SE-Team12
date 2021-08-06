@@ -8,13 +8,14 @@ namespace Phase05
         public static void Main(string[] args)
         {
             var fileReader = new FileReader();
-            var ioHandler = new IOHandler();
+            var ioHandler = new IOHandler(fileReader);
             var queryCategorizer = new QueryCategorizer();
             var invertedIndex = new InvertedIndex();
             var conjunctionFilter = new ConjunctionFilter(invertedIndex);
             var disjunctionFilter = new DisjunctionFilter(invertedIndex);
             var filterHandler = new FilterHandler(conjunctionFilter, disjunctionFilter);
-            var searchEngine = new SearchEngine(fileReader,ioHandler,queryCategorizer,invertedIndex,filterHandler);
+            
+            var searchEngine = new SearchEngine(ioHandler,queryCategorizer,invertedIndex,filterHandler);
             searchEngine.Search(FilePath);
         }
     }

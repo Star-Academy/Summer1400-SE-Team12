@@ -2,24 +2,22 @@
 {
     public class SearchEngine
     {
-        private readonly IFileReader _fileReader;
         private readonly IIOHandler _ioHandler;
         private readonly IQueryCategorizer _queryCategorizer;
         private readonly IInvertedIndex _invertedIndex;
         private readonly IFilterHandler _filterHandler;
 
-        public SearchEngine(IFileReader fileReader, IIOHandler ioHandler, IQueryCategorizer queryCategorizer, IInvertedIndex invertedIndex, IFilterHandler filterHandler)
+        public SearchEngine(IIOHandler ioHandler, IQueryCategorizer queryCategorizer, IInvertedIndex invertedIndex, IFilterHandler filterHandler)
         {
-            _fileReader = fileReader;
             _ioHandler = ioHandler;
             _queryCategorizer = queryCategorizer;
             _invertedIndex = invertedIndex;
             _filterHandler = filterHandler;
         }
 
-        public void Search(string filePath)
+        public void Search(string folderPath)
         {
-            var documents = _fileReader.ReadFile(filePath);
+            var documents = _ioHandler.ReadDocuments(folderPath);
             var queries = _ioHandler.ReadQueries();
             _invertedIndex.BuildInvertedIndex(documents);
             var queryKeeper = _queryCategorizer.CategorizeQueries(queries);
