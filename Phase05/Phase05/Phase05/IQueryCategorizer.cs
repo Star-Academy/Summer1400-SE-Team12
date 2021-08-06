@@ -2,7 +2,7 @@
 {
     public interface IQueryCategorizer
     {
-        
+        IQueryKeeper CategorizeQueries(string[] queries);
     }
     
 }

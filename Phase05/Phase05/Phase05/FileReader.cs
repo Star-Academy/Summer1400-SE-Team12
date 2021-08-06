@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Phase05
 {
-    public class FileReader
+    public class FileReader : IFileReader
     {
         public Dictionary<string, string> ReadFile(string path)
         {

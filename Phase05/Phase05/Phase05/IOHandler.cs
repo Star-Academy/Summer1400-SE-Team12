@@ -15,14 +15,11 @@ namespace Phase05
         public void PrintResultDocuments(ISet<string> answers)
         {
             if (answers.Count == 0)
-            {
                 Console.WriteLine("We didn't find");
-            }
             else
-            {
                 foreach (var answer in answers)
-                    Console.WriteLine(answer);
-            }
+                    Console.Write(answer + " ");
+            
         }
     }
 }
