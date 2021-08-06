@@ -21,7 +21,7 @@ namespace TestPhase05
         }
 
         [Fact]
-        public void testInvertedIndex_WordExistInADoc() {
+        public void TestBuildInvertedIndex_WordExistInADoc() {
             _invertedIndex.BuildInvertedIndex(_docNameMapToContent);
             Assert.Equal(new HashSet<string>(){"text2"}, 
                 _invertedIndex.GetInvertedIndexValue("six"));
@@ -29,7 +29,7 @@ namespace TestPhase05
         }
 
         [Fact]
-        public void testInvertedIndexWordExistInTwoDoc() {
+        public void TestBuildInvertedIndex_WordExistInTwoDoc() {
             _invertedIndex.BuildInvertedIndex(_docNameMapToContent);
             Assert.Equal(new HashSet<string>(){"text3", "text1"},
                 _invertedIndex.GetInvertedIndexValue("one"));
@@ -37,7 +37,7 @@ namespace TestPhase05
         }
 
         [Fact]
-        public void testInvertedIndexWordNotExistInDoc() {
+        public void TestBuildInvertedIndex_WordNotExistInDoc() {
             _invertedIndex.BuildInvertedIndex(_docNameMapToContent);
             Assert.Equal(new HashSet<string>(),
                 _invertedIndex.GetInvertedIndexValue("ten"));

@@ -29,5 +29,10 @@ namespace Phase05
         {
             return _withOutSignContain;
         }
+
+        public override bool Equals( object? obj)
+        {
+            return _plusContain.Equals(obj.)
+        }
     }
 }
