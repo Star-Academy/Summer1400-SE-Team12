@@ -12,9 +12,13 @@ namespace Phase05
             return queries;
         }
 
-        public void PrintResultDocuments()
+        public void PrintResultDocuments(ISet<string> answers)
         {
-            
+            if (answers.Count == 0) {
+                Console.WriteLine("We didn't find");
+            } else {
+                Console.WriteLine(answers);
+            }
         }
     }
 }
