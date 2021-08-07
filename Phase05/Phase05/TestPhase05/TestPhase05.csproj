@@ -22,6 +22,12 @@
       <None Update="testFile\testText1.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="TestFiles\one.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestFiles\two.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

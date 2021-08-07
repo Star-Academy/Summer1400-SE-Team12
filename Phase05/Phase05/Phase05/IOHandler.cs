@@ -5,19 +5,33 @@ namespace Phase05
 {
     public class IOHandler : IIOHandler
     {
-        public HashSet<string> HandleIO()
-      {
-          var  result=new HashSet<string>();
-          Console.WriteLine("Please enter a query");
-          string input = Console.ReadLine();
-          var lowerInput = input.ToLower();
-          foreach (var eachWord in lowerInput.Split(" "))
-          {
-              result.Add(eachWord);
-          }
+        private readonly FileReader _fileReader;
 
-          return result;
-      }
+        public IOHandler(FileReader fileReader)
+        {
+            _fileReader = fileReader;
+        }
 
+        public Dictionary<string, string> ReadDocuments(string path)
+        {
+            return _fileReader.ReadFile(path);
+        }
+        
+        public string[] ReadQueries()
+        {
+            Console.WriteLine("Please enter a query");
+            var queries = Console.ReadLine().ToLower().Split(" ");
+            return queries;
+        }
+
+        public void PrintResultDocuments(ISet<string> answers)
+        {
+            if (answers.Count == 0)
+                Console.WriteLine("We didn't find");
+            else
+                foreach (var answer in answers)
+                    Console.Write(answer + "  ");
+            
+        }
     }
 }
