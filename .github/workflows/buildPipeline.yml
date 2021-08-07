@@ -8,24 +8,28 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
+
+    - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
-    - name: Restore dependencies
+        dotnet-version: 3.1.301
+    
+    - name: Install dependencies
       run: dotnet restore
-      working-directory: phase05
+      working-directory: <path to solution>
+
     - name: Build
-      run: dotnet build --no-restore
-      working-directory: phase05
+      run: dotnet build --configuration Release --no-restore
+      working-directory: <path to solution>
+
     - name: Test
-      run: dotnet test --no-build --verbosity normal --collect:"XPlat Code Coverage"
-      working-directory: phase05
+      run: dotnet test --no-restore --verbosity normal --collect:"XPlat Code Coverage"
+      working-directory: <path to solution>
+
     - name: Publish code coverage reports to codecove.io
       uses: codecov/codecov-action@v1
       with:
