@@ -11,9 +11,9 @@ namespace Phase4
             var studentAverage = students.GroupJoin(studentScores,
                 stu => stu.StudentNumber,
                 scr => scr.StudentNumber,
-                (stu, scr) => new
-                    StudentAverage(stu, scr.Select(s => s.Score).Average())).
-                OrderByDescending(s => s.AverageScore);
+                (stu, scr) => 
+                    new StudentAverage(stu, scr.Select(s => s.Score).Average())).
+                OrderByDescending(s => s.averageScore);
 
             return studentAverage;
         }

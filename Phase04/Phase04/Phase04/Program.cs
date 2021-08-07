@@ -1,4 +1,7 @@
-﻿namespace Phase4
+﻿using System;
+using System.Collections.Generic;
+
+namespace Phase4
 {
     class Program
     {
@@ -9,10 +12,19 @@
         {
             var reader = new Reader();
             var averageEngine = new AverageEngine();
-            var topStudents = new TopStudentsIntroducer(reader, averageEngine);
-            topStudents.processInfo(PathStudents, PathScores);
+            var topStudentsIntroducer = new TopStudentsIntroducer(reader, averageEngine);
+            var studentAverages = topStudentsIntroducer.ProcessInfo(PathStudents, PathScores);
+            PrintTopStudents(topStudentsIntroducer.GetTopStudents(3,studentAverages));
+            
         }
-        
+
+        private static void PrintTopStudents(IEnumerable<StudentAverage> topStudents)
+        {
+            foreach (var topStudent in topStudents)
+            {
+                Console.WriteLine(topStudent.ToString());
+            }
+        }
     }
 
 }

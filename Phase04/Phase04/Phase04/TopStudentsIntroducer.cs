@@ -15,21 +15,18 @@ namespace Phase4
             _averageEngine = averageEngine;
         }
 
-        public void processInfo( string _pathStudents, string _pathScores)
+        public IEnumerable<StudentAverage> ProcessInfo( string _pathStudents, string _pathScores)
         {
             
             var students = _reader.ReadJson<Student>(_pathStudents);
             var studentsScores = _reader.ReadJson<StudentScore>(_pathScores);
             var studentsAverage = _averageEngine.CalculateAvg(students, studentsScores);
-            PrintTopStudents(3,studentsAverage);
+            return studentsAverage;
         }
 
-        private void PrintTopStudents(int numberOfTopStudents, IEnumerable<StudentAverage> studentsAverage)
+        public IEnumerable<StudentAverage> GetTopStudents(int numberOfTopStudents, IEnumerable<StudentAverage> studentsAverage)
         {
-            var topStudents = studentsAverage.Take(numberOfTopStudents);
-            foreach (var topStudent in topStudents)
-                Console.WriteLine(topStudent);
-            
+            return studentsAverage.Take(numberOfTopStudents);
         }
         
     }
