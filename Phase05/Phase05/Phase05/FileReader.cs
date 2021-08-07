@@ -10,21 +10,18 @@ namespace Phase05
         {
             try
             {
-                
-                 var documents = new Dictionary<string, string>();
-                            
-                            foreach (string filePath in Directory.GetFiles(path))
-                                documents.Add(Path.GetFileName(filePath), File.ReadAllText(filePath));
-                
-                            return documents;
+                var documents = new Dictionary<string, string>();
 
+                foreach (string filePath in Directory.GetFiles(path))
+                    documents.Add(Path.GetFileName(filePath), File.ReadAllText(filePath));
+
+                return documents;
             }
             catch (FileNotFoundException filException)
             {
                 Console.WriteLine(filException);
                 throw;
             }
-           
         }
     }
 }
