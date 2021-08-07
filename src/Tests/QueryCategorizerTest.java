@@ -5,19 +5,13 @@ import Phase02.QueryCategorizer;
 import Phase02.QueryKeeper;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.ByteArrayInputStream;
-import java.util.HashSet;
-import java.util.Scanner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class QueryCategorizerTest {
 
-    @Mock
-    private Scanner mockedScanner;
 
     private QueryCategorizer queryCategorizer;
 
