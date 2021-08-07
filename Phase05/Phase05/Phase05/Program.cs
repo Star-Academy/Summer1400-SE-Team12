@@ -3,7 +3,7 @@ namespace Phase05
 {
     class Program
     {
-        private const string FilePath = "D:\\programming\\java\\code-star\\src\\EnglishData";
+        private const string FilePath = "EnglishData";
 
         public static void Main(string[] args)
         {
