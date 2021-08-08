@@ -14,7 +14,6 @@ namespace Phase05
             _withOutSignContain = withOutSignContain;
         }
 
-
         public HashSet<string> GetPlusContain()
         {
             return _plusContain;

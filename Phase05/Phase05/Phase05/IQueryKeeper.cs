@@ -7,6 +7,5 @@ namespace Phase05
         HashSet<string> GetPlusContain();
         HashSet<string> GetMinusContain();
         HashSet<string> GetWithoutSignContain();
-        
     }
 }

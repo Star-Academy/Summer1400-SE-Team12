@@ -1,0 +1,31 @@
+DECLARE @JSON NVARCHAR(MAX);
+SELECT @JSON=BulkColumn
+FROM OPENROWSET (BULK 'C:\Users\zahra\Desktop\JsonFiles\Students.json', SINGLE_CLOB)  import
+INSERT INTO Students (StudentNumber, FirstName, LastName)
+ SELECT StudentNumber, FirstName, LastName
+ FROM OPENJSON(@json)
+ WITH ( StudentNumber VARCHAR(8),
+    FirstName  VARCHAR(20),
+    LastName VARCHAR(20)
+    );
+
+
+DECLARE @JSON NVARCHAR(MAX);
+SELECT @JSON=BulkColumn
+FROM OPENROWSET (BULK 'C:\Users\zahra\Desktop\JsonFiles\Scores.json', SINGLE_CLOB)  import
+INSERT INTO Scores (StudentNumber, Lesson, Score)
+ SELECT StudentNumber, Lesson, Score
+ FROM OPENJSON(@json)
+ WITH ( 
+     StudentNumber VARCHAR(8),
+    Lesson  VARCHAR(20),
+    Score FLOAT(10)
+    );
+
+SELECT * FROM Students;
+SELECT * FROM Scores;
+
+SELECT Students.StudentNumber, Students.FirstName, Students.LastName ,AVG(Scores.Score) AS average FROM Students
+INNER JOIN Scores ON Scores.StudentNumber = Students.StudentNumber
+GROUP BY Students.StudentNumber, Students.FirstName , Students.LastName
+ORDER BY average DESC;
