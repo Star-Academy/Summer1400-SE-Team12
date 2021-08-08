@@ -18,9 +18,9 @@ namespace Phase4
             catch (FileNotFoundException e)
             {
                 Console.WriteLine(e);
-                Environment.Exit(1);
+                throw;
             }
-            
+
         }
 
     }
