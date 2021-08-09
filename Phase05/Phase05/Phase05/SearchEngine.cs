@@ -1,4 +1,6 @@
-﻿namespace Phase05
+﻿using System.Collections.Generic;
+
+namespace Phase05
 {
     public class SearchEngine
     {
@@ -15,14 +17,14 @@
             _filterHandler = filterHandler;
         }
 
-        public void Search(string folderPath)
+        public ISet<string> Search(string folderPath)
         {
             var documents = _ioHandler.ReadDocuments(folderPath);
             var queries = _ioHandler.ReadQueries();
             _invertedIndex.BuildInvertedIndex(documents);
             var queryKeeper = _queryCategorizer.CategorizeQueries(queries);
             var answers = _filterHandler.Filter(queryKeeper);
-            _ioHandler.PrintResultDocuments(answers);
+            return answers;
         }
     }
 }

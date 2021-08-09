@@ -3,7 +3,7 @@ namespace Phase05
 {
     class Program
     {
-        private const string FilePath = "EnglishData";
+        private const string FilePath = @"D:\programming\java\code-star\src\EnglishData";
 
         public static void Main(string[] args)
         {
@@ -16,7 +16,8 @@ namespace Phase05
             var filterHandler = new FilterHandler(conjunctionFilter, disjunctionFilter);
             
             var searchEngine = new SearchEngine(ioHandler,queryCategorizer,invertedIndex,filterHandler);
-            searchEngine.Search(FilePath);
+            var answers = searchEngine.Search(FilePath);
+            ioHandler.PrintResultDocuments(answers);
         }
     }
 }

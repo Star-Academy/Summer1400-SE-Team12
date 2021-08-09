@@ -19,7 +19,8 @@ namespace Phase05
             var plusFiltered = _disjunctionFilter.Filter(queryKeeper.GetPlusContain());
             var minusFiltered = _disjunctionFilter.Filter(queryKeeper.GetMinusContain());
             var withoutSignFiltered = _conjunctionFilter.Filter(queryKeeper.GetWithoutSignContain());
-            return GeneralizeSignFiltered(plusFiltered, minusFiltered, withoutSignFiltered);
+            var finalFiltered = GeneralizeSignFiltered(plusFiltered, minusFiltered, withoutSignFiltered);
+            return finalFiltered;
         }
 
         private ISet<string> GeneralizeSignFiltered(ISet<string> plusFiltered, ISet<string> minusFiltered,
