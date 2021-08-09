@@ -15,19 +15,14 @@ namespace Phase4
             _averageEngine = averageEngine;
         }
 
-        public IEnumerable<StudentAverage> ProcessInfo( string _pathStudents, string _pathScores)
+        public IEnumerable<StudentAverage> GetTopStudents(int numberOfTopStudents, string _pathStudents, string _pathScores)
         {
             
-            var students = _reader.ReadJson<Student>(_pathStudents);
-            var studentsScores = _reader.ReadJson<StudentScore>(_pathScores);
+            var students = _reader.DeserializeReadJson<Student>(_pathStudents);
+            var studentsScores = _reader.DeserializeReadJson<StudentScore>(_pathScores);
             var studentsAverage = _averageEngine.CalculateAvg(students, studentsScores);
-            return studentsAverage;
-        }
-
-        public IEnumerable<StudentAverage> GetTopStudents(int numberOfTopStudents, IEnumerable<StudentAverage> studentsAverage)
-        {
             return studentsAverage.Take(numberOfTopStudents);
         }
-        
+
     }
 }

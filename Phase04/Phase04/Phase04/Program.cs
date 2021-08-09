@@ -13,8 +13,9 @@ namespace Phase4
             var reader = new Reader();
             var averageEngine = new AverageEngine();
             var topStudentsIntroducer = new TopStudentsIntroducer(reader, averageEngine);
-            var studentAverages = topStudentsIntroducer.ProcessInfo(PathStudents, PathScores);
-            PrintTopStudents(topStudentsIntroducer.GetTopStudents(3,studentAverages));
+            var studentAverages = topStudentsIntroducer.
+                GetTopStudents(3,PathStudents, PathScores);
+            PrintTopStudents(studentAverages);
             
         }
 
