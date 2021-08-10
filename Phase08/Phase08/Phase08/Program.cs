@@ -6,7 +6,8 @@ namespace Phase08
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using var invertedIndexContext = new InvertedIndexContext();
+            
         }
     }
 }
