@@ -14,11 +14,11 @@ namespace Phase08
             optionsBuilder.UseSqlServer("Server=. ; Database=EfcorePhase08Project ; Trusted_Connection=true; ");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Document>().HasMany(docIterator => docIterator.wordsCollection).WithMany(wordIterator => wordIterator.DocsCollection);
-
-        }
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     base.OnModelCreating(modelBuilder);
+        //     modelBuilder.Entity<Document>().HasMany(docIterator => docIterator.wordsCollection).WithMany(wordIterator => wordIterator.DocsCollection);
+        //
+        // }
     }
 }

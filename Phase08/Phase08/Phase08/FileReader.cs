@@ -25,8 +25,8 @@ namespace Phase08
                 foreach (string filePath in Directory.GetFiles(path))
                     _documentsDbSet.Add(new Document()
                         {
-                            DocName = Path.GetFileName(filePath), DocContents = File.ReadAllText(filePath),
-                            wordsCollection = SplitDocumentsWords(File.ReadAllText(filePath))
+                            DocName = Path.GetFileName(filePath), DocContents = File.ReadAllText(filePath)
+                            // wordsCollection = (new HashSet<Word>())
                         }
                     );
             }
@@ -43,21 +43,23 @@ namespace Phase08
             ISet<Word> words = new HashSet<Word>();
             foreach (var wordSplitted in Regex.Split(docContent, "[\\W]+"))
             {
-               // var customer= dataContext.Customer.Where(x=>x.CustomerID==your_key).FirstOrDefault();
-               var wordInDoc = _wordsDbSet.Where(w => w.eachWord == wordSplitted).FirstOrDefault();
-               if (wordInDoc==null)
-               {
-                    var wordObj = new Word(wordSplitted,new HashSet<Document>());
-               }
-               else
-               {
-                   //_wordsDbSet.Update(new Word(wordSplitted) , wordInDoc.DocsCollection.Add())
-               }
-               
-               
 
+                // words.Add(new Word(wordSplitted, new HashSet<Document>()));
+
+                // var customer= dataContext.Customer.Where(x=>x.CustomerID==your_key).FirstOrDefault();
+                // var wordInDoc = _wordsDbSet.Where(w => w.eachWord == wordSplitted).FirstOrDefault();
+
+
+
+                // if (wordInDoc==null)
+                // {
+                //      var wordObj = new Word(wordSplitted,new HashSet<Document>());
+                // }
+                // else
+                // {
+                //     //_wordsDbSet.Update(new Word(wordSplitted) , wordInDoc.DocsCollection.Add())
+                // }
             }
-
             return words;
         }
     }

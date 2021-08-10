@@ -8,10 +8,12 @@ namespace Phase08
         {
             string path = @"C:\Users\ts\Desktop\EnglishData";
             using var invertedIndexContext = new InvertedIndexContext();
+            invertedIndexContext.Database.EnsureCreated();
             
             FileReader fileReader = new FileReader(invertedIndexContext.DocumentsDbContext ,  invertedIndexContext.WordsDbContext);
            fileReader.ReadFile(path);
-            //<TargetFramework>net5.0</TargetFramework>
+           invertedIndexContext.SaveChanges();
+           //<TargetFramework>net5.0</TargetFramework>
         }
     }
 }
