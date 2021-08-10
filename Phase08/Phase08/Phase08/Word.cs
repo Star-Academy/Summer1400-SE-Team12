@@ -15,7 +15,6 @@ namespace Phase08
         [Key]
         public int Id { get; set; }
         
-        
         public string eachWord{ get; set; }
         
         public ISet<Document> DocsCollection { get; set; }

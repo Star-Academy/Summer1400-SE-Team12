@@ -6,12 +6,15 @@ namespace Phase08
     {
         static void Main(string[] args)
         {
-            string path = @"C:\Users\ts\Desktop\EnglishData";
+            string path = @"D:\programming\code-star\Summer1400-SE-Team12\Phase03\EnglishData";
             using var invertedIndexContext = new InvertedIndexContext();
             invertedIndexContext.Database.EnsureCreated();
             
-            FileReader fileReader = new FileReader(invertedIndexContext.DocumentsDbContext ,  invertedIndexContext.WordsDbContext);
-           fileReader.ReadFile(path);
+            FileReader fileReader = new FileReader(invertedIndexContext.DocumentsDbContext);
+            InvertedIndex invertedIndex = new InvertedIndex(invertedIndexContext.WordsDbContext);
+            fileReader.ReadFile(path);
+           invertedIndexContext.SaveChanges();
+           invertedIndex.BuildInvertedIndex(invertedIndexContext.DocumentsDbContext);
            invertedIndexContext.SaveChanges();
            //<TargetFramework>net5.0</TargetFramework>
         }

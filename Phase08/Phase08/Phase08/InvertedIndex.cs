@@ -1,38 +1,69 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Phase08
-{ 
+{
     public class InvertedIndex : IInvertedIndex
     {
-        private Dictionary<string, HashSet<string>> _invertedIndexMap = new Dictionary<string, HashSet<string>>();
+        // private Dictionary<string, HashSet<string>> _invertedIndexMap = new Dictionary<string, HashSet<string>>();
 
-        public void BuildInvertedIndex(Dictionary<string, string> docMapToContent)
+        private DbSet<Word> _wordDbSet;
+
+        public InvertedIndex(DbSet<Word> wordDbSet)
         {
-            foreach (var doc in docMapToContent)
+            _wordDbSet = wordDbSet;
+        }
+
+        public void BuildInvertedIndex(DbSet<Document> documents)
+        {
+            foreach (var doc in documents)
             {
-                //var words = SplitDocumentsWords(doc.Value);
-                //AddDocumentWords(doc.Key, words);
+                var words = Regex.Split(doc.DocContents, "[\\W]+");
+                foreach (var wordIterator in words)
+                {
+                    var containWord = _wordDbSet.FirstOrDefault(w => w.eachWord == wordIterator);
+                    if (containWord == null)
+                    {
+                        _wordDbSet.Add(new Word()
+                        {
+                            eachWord = wordIterator, DocsCollection = new HashSet<Document>() {doc}
+                        });
+                    }
+                    else
+                    {
+                        var word = _wordDbSet.Find(wordIterator);
+                        word.DocsCollection.Add(doc);
+                        // var docs = 
+                        // _wordDbSet.Update(new Word(){eachWord = wordIterator, DocsCollection = word.DocsCollection.Add(doc)})
+                    }
+                }
+                // var words = SplitDocumentsWords(doc.DocContents);
+                // AddDocumentWords(doc.Key, words);
             }
         }
 
-        
-
-        private void AddDocumentWords(string docName, string[] docWords)
-        {
-            foreach (string word in docWords)
-            {
-                if (_invertedIndexMap.ContainsKey(word))
-                    _invertedIndexMap.GetValueOrDefault(word, new HashSet<string>()).Add(docName);
-                else
-                    _invertedIndexMap.Add(word, new HashSet<string> {docName});
-            }
-        }
-
-
-        public HashSet<string> GetInvertedIndexValue(string key)
-        {
-            return _invertedIndexMap.GetValueOrDefault(key, new HashSet<string>());
-        }
+        // private string[] SplitDocumentsWords(string docContent)
+        // {
+        //     return
+        // }
+        //
+        // private void AddDocumentWords(string docName, string[] docWords)
+        // {
+        //     foreach (string word in docWords)
+        //     {
+        //         if (_invertedIndexMap.ContainsKey(word))
+        //             _invertedIndexMap.GetValueOrDefault(word, new HashSet<string>()).Add(docName);
+        //         else
+        //             _invertedIndexMap.Add(word, new HashSet<string> {docName});
+        //     }
+        // }
+        //
+        //
+        // public HashSet<string> GetInvertedIndexValue(string key)
+        // {
+        //     return _invertedIndexMap.GetValueOrDefault(key, new HashSet<string>());
+        // }
     }
 }
