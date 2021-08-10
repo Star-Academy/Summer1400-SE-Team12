@@ -11,15 +11,12 @@ namespace Phase08
         {
             foreach (var doc in docMapToContent)
             {
-                var words = SplitDocumentsWords(doc.Value);
-                AddDocumentWords(doc.Key, words);
+                //var words = SplitDocumentsWords(doc.Value);
+                //AddDocumentWords(doc.Key, words);
             }
         }
 
-        private string[] SplitDocumentsWords(string docContent)
-        {
-            return Regex.Split(docContent, "[\\W]+");
-        }
+        
 
         private void AddDocumentWords(string docName, string[] docWords)
         {

@@ -12,9 +12,9 @@ namespace Phase08
             _fileReader = fileReader;
         }
 
-        public Dictionary<string, string> ReadDocuments(string path)
+        public void ReadDocuments(string path)
         {
-            return _fileReader.ReadFile(path);
+             _fileReader.ReadFile(path);
         }
         
         public string[] ReadQueries()

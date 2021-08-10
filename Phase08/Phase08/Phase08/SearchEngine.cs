@@ -18,14 +18,14 @@ namespace Phase08
             _filterHandler = filterHandler;
         }
 
-        public ISet<string> Search(string folderPath)
-        {
-            var documents = _ioHandler.ReadDocuments(folderPath);
-            var queries = _ioHandler.ReadQueries();
-            _invertedIndex.BuildInvertedIndex(documents);
-            var queryKeeper = _queryCategorizer.CategorizeQueries(queries);
-            var answers = _filterHandler.Filter(queryKeeper);
-            return answers;
-        }
+        // public ISet<string> Search(string folderPath)
+        // {
+        //     var documents = _ioHandler.ReadDocuments(folderPath);
+        //     var queries = _ioHandler.ReadQueries();
+        //     _invertedIndex.BuildInvertedIndex(documents);
+        //     var queryKeeper = _queryCategorizer.CategorizeQueries(queries);
+        //     var answers = _filterHandler.Filter(queryKeeper);
+        //     return answers;
+        // }
     }
 }
