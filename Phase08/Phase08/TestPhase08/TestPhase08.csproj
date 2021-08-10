@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetFramework>netcoreapp5</TargetFramework>
 
         <IsPackable>false</IsPackable>
     </PropertyGroup>
@@ -16,6 +16,15 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Phase08\Phase08.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="TestFiles\one.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="TestFiles\two.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
