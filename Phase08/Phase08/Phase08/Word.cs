@@ -9,10 +9,9 @@ namespace Phase08
         [Key]
         public int Id { get; set; }
         
-        [ForeignKey("eachWord")]
         public string eachWord{ get; set; }
         
-        public ICollection<Document> DocsCollection { get; set; }
+        public ISet<Document> DocsCollection { get; set; }
 
     }
     

@@ -11,11 +11,8 @@ namespace Phase08
         public int Id { get; set; }
         public string DocName { get; set; }
         public string DocContents { get; set; }
-        
-        [ForeignKey("eachWord")]
-        public string eachWord{ get; set; }
 
-        public ICollection<Word> wordsCollection { get; set; }
+        public ISet<Word> wordsCollection { get; set; }
     }
     
 }
