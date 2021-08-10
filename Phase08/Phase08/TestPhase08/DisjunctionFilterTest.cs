@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NSubstitute;
+using NUnit.Framework;
 using Phase08;
 using Xunit;
 
@@ -16,6 +17,7 @@ namespace TestPhase08
             _disjunctionFilter = new DisjunctionFilter(_invertedIndex);
         }
 
+      
         [Fact]
         public void MinusFilterTest_shouldReturnRemovedDocumentsContainSingleQuery()
         {
@@ -23,7 +25,7 @@ namespace TestPhase08
             var minusQuery = new HashSet<string>() {"hello", "bye"};
             SetupInvertedIndexGetMethod();
             var actual = _disjunctionFilter.Filter(minusQuery);
-            Assert.Equal(expected, actual);
+            Assert.Equals(expected, actual);
         }
 
         private void SetupInvertedIndexGetMethod()
