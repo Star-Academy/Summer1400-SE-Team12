@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
@@ -16,14 +17,16 @@ namespace Phase08
             _wordDbSet = wordDbSet;
         }
 
-        public void BuildInvertedIndex(DbSet<Document> documents)
+        public void BuildInvertedIndex(ISet<Document> documents)
         {
+
             foreach (var doc in documents)
             {
                 var words = Regex.Split(doc.DocContents, "[\\W]+");
                 foreach (var wordIterator in words)
                 {
-                    var containWord = _wordDbSet.FirstOrDefault(w => w.eachWord == wordIterator);
+                    var containWord = _wordDbSet.Find(wordIterator);
+                    
                     if (containWord == null)
                     {
                         _wordDbSet.Add(new Word()

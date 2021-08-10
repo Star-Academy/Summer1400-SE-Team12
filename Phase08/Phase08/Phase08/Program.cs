@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Phase08
 {
@@ -13,8 +14,9 @@ namespace Phase08
             FileReader fileReader = new FileReader(invertedIndexContext.DocumentsDbContext);
             InvertedIndex invertedIndex = new InvertedIndex(invertedIndexContext.WordsDbContext);
             fileReader.ReadFile(path);
-           invertedIndexContext.SaveChanges();
-           invertedIndex.BuildInvertedIndex(invertedIndexContext.DocumentsDbContext);
+            invertedIndexContext.SaveChanges();
+            ISet<Document> docs = new HashSet<Document>(invertedIndexContext.DocumentsDbContext);
+            invertedIndex.BuildInvertedIndex(docs);
            invertedIndexContext.SaveChanges();
            //<TargetFramework>net5.0</TargetFramework>
         }
