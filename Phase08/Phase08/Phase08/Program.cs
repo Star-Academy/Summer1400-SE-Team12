@@ -7,7 +7,7 @@ namespace Phase08
         static void Main(string[] args)
         {
             using var invertedIndexContext = new InvertedIndexContext();
-            
+            //<TargetFramework>net5.0</TargetFramework>
         }
     }
 }
