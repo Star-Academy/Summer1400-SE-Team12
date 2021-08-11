@@ -17,56 +17,32 @@ namespace Phase08
             _wordDbSet = wordDbSet;
         }
 
-        public void BuildInvertedIndex(ISet<Document> documents)
+        public void BuildInvertedIndex(ISet<Document> documents, InvertedIndexContext invertedIndexContext)
         {
-
             foreach (var doc in documents)
             {
                 var words = Regex.Split(doc.DocContents, "[\\W]+");
                 foreach (var wordIterator in words)
                 {
-                    var containWord = _wordDbSet.Find(wordIterator);
-                    
-                    if (containWord == null)
+                    var word = _wordDbSet.Find(wordIterator);
+
+                    if (word == null)
                     {
                         _wordDbSet.Add(new Word()
                         {
                             eachWord = wordIterator, DocsCollection = new HashSet<Document>() {doc}
                         });
+                        invertedIndexContext.SaveChanges();
                     }
                     else
                     {
-                        var word = _wordDbSet.Find(wordIterator);
                         word.DocsCollection.Add(doc);
-                        // var docs = 
-                        // _wordDbSet.Update(new Word(){eachWord = wordIterator, DocsCollection = word.DocsCollection.Add(doc)})
+                        // invertedIndexContext.SaveChanges();
                     }
                 }
-                // var words = SplitDocumentsWords(doc.DocContents);
-                // AddDocumentWords(doc.Key, words);
+                
             }
         }
-
-        // private string[] SplitDocumentsWords(string docContent)
-        // {
-        //     return
-        // }
-        //
-        // private void AddDocumentWords(string docName, string[] docWords)
-        // {
-        //     foreach (string word in docWords)
-        //     {
-        //         if (_invertedIndexMap.ContainsKey(word))
-        //             _invertedIndexMap.GetValueOrDefault(word, new HashSet<string>()).Add(docName);
-        //         else
-        //             _invertedIndexMap.Add(word, new HashSet<string> {docName});
-        //     }
-        // }
-        //
-        //
-        // public HashSet<string> GetInvertedIndexValue(string key)
-        // {
-        //     return _invertedIndexMap.GetValueOrDefault(key, new HashSet<string>());
-        // }
+        
     }
 }

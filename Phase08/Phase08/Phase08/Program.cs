@@ -7,7 +7,7 @@ namespace Phase08
     {
         static void Main(string[] args)
         {
-            string path = @"D:\programming\code-star\Summer1400-SE-Team12\Phase03\EnglishData";
+            string path = @"D:\programming\codestar_internship\Phase08\Phase08\Phase08\EnglishData";
             using var invertedIndexContext = new InvertedIndexContext();
             invertedIndexContext.Database.EnsureCreated();
             
@@ -16,8 +16,8 @@ namespace Phase08
             fileReader.ReadFile(path);
             invertedIndexContext.SaveChanges();
             ISet<Document> docs = new HashSet<Document>(invertedIndexContext.DocumentsDbContext);
-            invertedIndex.BuildInvertedIndex(docs);
-           invertedIndexContext.SaveChanges();
+            invertedIndex.BuildInvertedIndex(docs, invertedIndexContext); 
+            // invertedIndexContext.SaveChanges();
            //<TargetFramework>net5.0</TargetFramework>
         }
     }
