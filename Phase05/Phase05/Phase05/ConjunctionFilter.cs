@@ -15,10 +15,10 @@ namespace Phase05
         public ISet<string> Filter(ISet<string> signQueries)
         {
             ISet<string> conjunctionFiltered = new HashSet<string>(
-                _invertedIndex.GetInvertedIndexValue(signQueries.First()));
+                _invertedIndex.GetValueOfInvertedIndexKey(signQueries.First()));
 
             return signQueries.Aggregate(conjunctionFiltered, (current, query) =>
-                current.Intersect(_invertedIndex.GetInvertedIndexValue(query))
+                current.Intersect(_invertedIndex.GetValueOfInvertedIndexKey(query))
                     .ToHashSet());
         }
     }

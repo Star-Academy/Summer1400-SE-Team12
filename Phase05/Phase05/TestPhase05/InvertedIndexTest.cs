@@ -14,27 +14,26 @@ namespace TestPhase05
             _invertedIndex = new InvertedIndex();
         }
 
-        [Theory, MemberData(nameof(BuildInvertedIndexTestData))]
-        public void BuildInvertedIndexTest(ISet<string> expectedDocContain, string searchingWord)
-        {
-            var docNameMapToContent = new Dictionary<string, string>
-            {
-                {"text1", "one two"}, {"text2", "five six seven eight nine"}, {"text3", "one two three "}
-            };
-            _invertedIndex.BuildInvertedIndex(docNameMapToContent);
-            var actual = _invertedIndex.GetInvertedIndexValue(searchingWord);
-            Assert.Equal(expectedDocContain, actual);
-        }
-        
-
         public static IEnumerable<object[]> BuildInvertedIndexTestData()
         {
             yield return new object[] { new HashSet<string> { "text2" }, "six" };
             yield return new object[] { new HashSet<string> {"text1","text3"}, "one" };
             yield return new object[] { new HashSet<string>() , "ten" };
         }
+        
+        [Theory, MemberData(nameof(BuildInvertedIndexTestData))]
+        public void BuildInvertedIndexShouldCheckWordCorrectlyMappedToDocs(ISet<string> expectedDocContain, string searchingWord)
+        {
+            var docNameMapToContent = new Dictionary<string, string>
+            {
+                {"text1", "one two"}, {"text2", "five six seven eight nine"}, {"text3", "one two three "}
+            };
+            _invertedIndex.BuildInvertedIndex(docNameMapToContent);
+            var actual = _invertedIndex.GetValueOfInvertedIndexKey(searchingWord);
+            Assert.Equal(expectedDocContain, actual);
+        }
 
-        
-        
+
+
     }
 }

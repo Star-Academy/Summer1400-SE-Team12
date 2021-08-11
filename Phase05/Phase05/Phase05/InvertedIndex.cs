@@ -33,7 +33,7 @@ namespace Phase05
         }
 
 
-        public HashSet<string> GetInvertedIndexValue(string key)
+        public HashSet<string> GetValueOfInvertedIndexKey(string key)
         {
             return _invertedIndexMap.GetValueOrDefault(key, new HashSet<string>());
         }

@@ -20,7 +20,7 @@ namespace TestPhase05
         }
 
         [Fact]
-        public void FilterTest_queryKeeperContainsAllTypesOfFilter()
+        public void FilterShouldReturnTwoDocContainNoSignQueryAndPlusQueryWithoutMinusQuery()
         {
             SetupQueryKeeper();
             var expectedValue = new HashSet<string>() {"doc4", "doc7"};

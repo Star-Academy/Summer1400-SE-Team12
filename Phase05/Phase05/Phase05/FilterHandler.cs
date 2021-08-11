@@ -19,12 +19,12 @@ namespace Phase05
             var plusFiltered = _disjunctionFilter.Filter(queryKeeper._plusContain);
             var minusFiltered = _disjunctionFilter.Filter(queryKeeper._minusContain);
             var withoutSignFiltered = _conjunctionFilter.Filter(queryKeeper._withoutSignContain);
-            var finalFiltered = GeneralizeSignFiltered(plusFiltered, minusFiltered, withoutSignFiltered);
+            var finalFiltered = ExecuteFilterRelatedToSign(plusFiltered, minusFiltered, withoutSignFiltered);
             return finalFiltered;
         }
 
-        private ISet<string> GeneralizeSignFiltered(ISet<string> plusFiltered, ISet<string> minusFiltered,
-            ISet<string> withoutSignFiltered)
+        private ISet<string> ExecuteFilterRelatedToSign(IEnumerable<string> plusFiltered, IEnumerable<string> minusFiltered,
+            IEnumerable<string> withoutSignFiltered)
         {
             var finalFiltered = new HashSet<string>(withoutSignFiltered);
             return finalFiltered.Except(minusFiltered).Intersect(plusFiltered).ToHashSet();

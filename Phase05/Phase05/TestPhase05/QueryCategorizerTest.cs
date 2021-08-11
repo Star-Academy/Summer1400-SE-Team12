@@ -14,7 +14,7 @@ namespace TestPhase05
         }
         
         [Fact]
-        public void TestCategorize_ForNoSignQueries() {
+        public void CategorizeShouldFillQueryKeeperProperlyWithTheirSign() {
             string[] queries = {"mom","dad","+sister","+sisi","-brother","-bro"};
             var categorized = _queryCategorizer.CategorizeQueries(queries);
             
