@@ -12,8 +12,7 @@ namespace Phase05
             var documents = new Dictionary<string, string>();
             try
             {
-                Directory.GetFiles(path).ToDictionary(Path.GetFileName,
-                    File.ReadAllText);
+                Directory.GetFiles(path).ToDictionary(Path.GetFileName, File.ReadAllText);
             }
             catch (FileNotFoundException filException)
             {

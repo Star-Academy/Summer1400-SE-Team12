@@ -7,48 +7,34 @@ namespace TestPhase05
     public class InvertedIndexTest
     {
         private readonly InvertedIndex _invertedIndex;
-        private Dictionary<string,string> _docNameMapToContent;
 
 
         public InvertedIndexTest()
         {
             _invertedIndex = new InvertedIndex();
-            InitializeDocNameMapToContent();
         }
 
-        private void InitializeDocNameMapToContent()
+        [Theory, MemberData(nameof(BuildInvertedIndexTestData))]
+        public void BuildInvertedIndexTest(ISet<string> expectedDocContain, string searchingWord)
         {
-            _docNameMapToContent = new Dictionary<string, string>
+            var docNameMapToContent = new Dictionary<string, string>
             {
                 {"text1", "one two"}, {"text2", "five six seven eight nine"}, {"text3", "one two three "}
             };
+            _invertedIndex.BuildInvertedIndex(docNameMapToContent);
+            var actual = _invertedIndex.GetInvertedIndexValue(searchingWord);
+            Assert.Equal(expectedDocContain, actual);
         }
         
-        [Fact]
-        public void BuildInvertedIndexTest_CheckIfWordExistInJustOneDoc() {
-            _invertedIndex.BuildInvertedIndex(_docNameMapToContent);
-            var expected = new HashSet<string>() {"text2"};
-            var actual = _invertedIndex.GetInvertedIndexValue("six");
-            Assert.Equal(expected, actual);
 
+        public static IEnumerable<object[]> BuildInvertedIndexTestData()
+        {
+            yield return new object[] { new HashSet<string> { "text2" }, "six" };
+            yield return new object[] { new HashSet<string> {"text1","text3"}, "one" };
+            yield return new object[] { new HashSet<string>() , "ten" };
         }
 
-        [Fact]
-        public void BuildInvertedIndexTest_CheckIfWordExistInTwoDoc() {
-            _invertedIndex.BuildInvertedIndex(_docNameMapToContent);
-            var expected = new HashSet<string>() {"text3", "text1"};
-            var actual = _invertedIndex.GetInvertedIndexValue("one");
-            Assert.Equal(expected, actual);
-
-        }
-
-        [Fact]
-        public void BuildInvertedIndexTest_CheckIfWordNotExistInDoc() {
-            _invertedIndex.BuildInvertedIndex(_docNameMapToContent);
-            var expected = new HashSet<string>();
-            var actual = _invertedIndex.GetInvertedIndexValue("ten");
-            Assert.Equal(expected,actual);
-
-        }
+        
+        
     }
 }
