@@ -2,33 +2,19 @@
 
 namespace Phase05
 {
-    public class QueryKeeper : IQueryKeeper
+    public class QueryKeeper
     {
-        private readonly HashSet<string> _plusContain;
-        private readonly HashSet<string> _minusContain;
-        private readonly HashSet<string> _withOutSignContain;
-        public QueryKeeper(HashSet<string> plusContain, HashSet<string> minusContain, HashSet<string> withOutSignContain)
+        public HashSet<string> _plusContain { get; set;}
+        public HashSet<string> _minusContain { get; set; }
+        public HashSet<string> _withoutSignContain { get; set; }
+        public QueryKeeper(HashSet<string> plusContain, HashSet<string> minusContain, HashSet<string> withoutSignContain)
         {
             _plusContain = plusContain;
             _minusContain = minusContain;
-            _withOutSignContain = withOutSignContain;
+            _withoutSignContain = withoutSignContain;
         }
 
-
-        public HashSet<string> GetPlusContain()
-        {
-            return _plusContain;
-        }
-
-        public HashSet<string> GetMinusContain()
-        {
-            return _minusContain;
-        }
-
-        public HashSet<string> GetWithoutSignContain()
-        {
-            return _withOutSignContain;
-        }
+        
         
     }
 }

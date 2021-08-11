@@ -5,7 +5,7 @@ namespace Phase05
 {
     public class QueryCategorizer : IQueryCategorizer
     {
-        public IQueryKeeper CategorizeQueries(string[] queries)
+        public QueryKeeper CategorizeQueries(string[] queries)
         {
             var plusContained = new HashSet<string>(); 
             var minusContained = new HashSet<string>(); 

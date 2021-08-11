@@ -2,16 +2,18 @@
 
 namespace Phase05
 {
-    public class SearchEngine
+    public class SearchEngine : ISearchEngine
     {
         private readonly IIOHandler _ioHandler;
+        private readonly IFileReader _fileReader;
         private readonly IQueryCategorizer _queryCategorizer;
         private readonly IInvertedIndex _invertedIndex;
         private readonly IFilterHandler _filterHandler;
 
-        public SearchEngine(IIOHandler ioHandler, IQueryCategorizer queryCategorizer, IInvertedIndex invertedIndex, IFilterHandler filterHandler)
+        public SearchEngine(IIOHandler ioHandler,IFileReader fileReader, IQueryCategorizer queryCategorizer, IInvertedIndex invertedIndex, IFilterHandler filterHandler)
         {
             _ioHandler = ioHandler;
+            _fileReader = fileReader;
             _queryCategorizer = queryCategorizer;
             _invertedIndex = invertedIndex;
             _filterHandler = filterHandler;
@@ -19,7 +21,7 @@ namespace Phase05
 
         public ISet<string> Search(string folderPath)
         {
-            var documents = _ioHandler.ReadDocuments(folderPath);
+            var documents = _fileReader.ReadFile(folderPath);
             var queries = _ioHandler.ReadQueries();
             _invertedIndex.BuildInvertedIndex(documents);
             var queryKeeper = _queryCategorizer.CategorizeQueries(queries);

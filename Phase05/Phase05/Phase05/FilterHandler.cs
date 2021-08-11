@@ -14,11 +14,11 @@ namespace Phase05
         }
 
 
-        public ISet<string> Filter(IQueryKeeper queryKeeper)
+        public ISet<string> Filter(QueryKeeper queryKeeper)
         {
-            var plusFiltered = _disjunctionFilter.Filter(queryKeeper.GetPlusContain());
-            var minusFiltered = _disjunctionFilter.Filter(queryKeeper.GetMinusContain());
-            var withoutSignFiltered = _conjunctionFilter.Filter(queryKeeper.GetWithoutSignContain());
+            var plusFiltered = _disjunctionFilter.Filter(queryKeeper._plusContain);
+            var minusFiltered = _disjunctionFilter.Filter(queryKeeper._minusContain);
+            var withoutSignFiltered = _conjunctionFilter.Filter(queryKeeper._withoutSignContain);
             var finalFiltered = GeneralizeSignFiltered(plusFiltered, minusFiltered, withoutSignFiltered);
             return finalFiltered;
         }

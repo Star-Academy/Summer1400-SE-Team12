@@ -20,7 +20,7 @@ namespace TestPhase05
             
             var fileNameExpected = "one.txt";
             var contentExpected = "A woman finds a pot of treasure";
-            Dictionary<string,string> documents = _fileReader.ReadFile(path);
+            var documents = _fileReader.ReadFile(path);
             
             Assert.True(documents.ContainsKey(fileNameExpected));
             Assert.Equal(contentExpected, documents.GetValueOrDefault(fileNameExpected));
