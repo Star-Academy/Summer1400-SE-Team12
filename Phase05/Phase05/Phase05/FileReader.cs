@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Phase05
 {
@@ -11,8 +12,8 @@ namespace Phase05
             var documents = new Dictionary<string, string>();
             try
             {
-                foreach (string filePath in Directory.GetFiles(path))
-                    documents.Add(Path.GetFileName(filePath), File.ReadAllText(filePath));
+                Directory.GetFiles(path).ToDictionary(Path.GetFileName,
+                    File.ReadAllText);
             }
             catch (FileNotFoundException filException)
             {

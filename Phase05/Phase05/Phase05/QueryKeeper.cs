@@ -4,9 +4,9 @@ namespace Phase05
 {
     public class QueryKeeper
     {
-        public HashSet<string> _plusContain { get; set;}
-        public HashSet<string> _minusContain { get; set; }
-        public HashSet<string> _withoutSignContain { get; set; }
+        public HashSet<string> _plusContain { get;}
+        public HashSet<string> _minusContain { get;}
+        public HashSet<string> _withoutSignContain { get;}
         public QueryKeeper(HashSet<string> plusContain, HashSet<string> minusContain, HashSet<string> withoutSignContain)
         {
             _plusContain = plusContain;

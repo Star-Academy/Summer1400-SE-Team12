@@ -23,7 +23,7 @@ namespace TestPhase05
                 {"text1", "one two"}, {"text2", "five six seven eight nine"}, {"text3", "one two three "}
             };
         }
-
+        
         [Fact]
         public void BuildInvertedIndexTest_CheckIfWordExistInJustOneDoc() {
             _invertedIndex.BuildInvertedIndex(_docNameMapToContent);
