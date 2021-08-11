@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 
-namespace Phase08
+namespace SQLHandler
 {
     public class InvertedIndexContext:DbContext
     {

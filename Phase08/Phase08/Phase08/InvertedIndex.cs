@@ -10,29 +10,30 @@ namespace Phase08
     {
         // private Dictionary<string, HashSet<string>> _invertedIndexMap = new Dictionary<string, HashSet<string>>();
 
-        private DbSet<Word> _wordDbSet;
+        private InvertedIndexContext _invertedIndexContext;
+        // private DbSet<Word> _wordDbSet;
 
-        public InvertedIndex(DbSet<Word> wordDbSet)
+        public InvertedIndex(InvertedIndexContext invertedIndexContext)
         {
-            _wordDbSet = wordDbSet;
+            _invertedIndexContext = invertedIndexContext;
         }
 
-        public void BuildInvertedIndex(ISet<Document> documents, InvertedIndexContext invertedIndexContext)
+        public void BuildInvertedIndex(ISet<Document> documents)
         {
             foreach (var doc in documents)
             {
                 var words = Regex.Split(doc.DocContents, "[\\W]+");
                 foreach (var wordIterator in words)
                 {
-                    var word = _wordDbSet.Find(wordIterator);
+                    var word = _invertedIndexContext.WordsDbContext.Find(wordIterator);
 
                     if (word == null)
                     {
-                        _wordDbSet.Add(new Word()
+                        _invertedIndexContext.WordsDbContext.Add(new Word()
                         {
                             eachWord = wordIterator, DocsCollection = new HashSet<Document>() {doc}
                         });
-                        invertedIndexContext.SaveChanges();
+                        _invertedIndexContext.SaveChanges();
                     }
                     else
                     {

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Phase08
 {
@@ -9,16 +9,22 @@ namespace Phase08
         {
             string path = @"D:\programming\codestar_internship\Phase08\Phase08\Phase08\EnglishData";
             using var invertedIndexContext = new InvertedIndexContext();
-            invertedIndexContext.Database.EnsureCreated();
+            if(!(invertedIndexContext.Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists())
+                invertedIndexContext.Database.EnsureCreated();
             
-            FileReader fileReader = new FileReader(invertedIndexContext.DocumentsDbContext);
-            InvertedIndex invertedIndex = new InvertedIndex(invertedIndexContext.WordsDbContext);
-            fileReader.ReadFile(path);
-            invertedIndexContext.SaveChanges();
-            ISet<Document> docs = new HashSet<Document>(invertedIndexContext.DocumentsDbContext);
-            invertedIndex.BuildInvertedIndex(docs, invertedIndexContext); 
-            // invertedIndexContext.SaveChanges();
-           //<TargetFramework>net5.0</TargetFramework>
+            var fileReader = new FileReader(invertedIndexContext.DocumentsDbContext);
+            var ioHandler = new IOHandler();
+            var queryCategorizer = new QueryCategorizer();
+            var invertedIndex = new InvertedIndex(invertedIndexContext);
+            var conjunctionFilter = new ConjunctionFilter(invertedIndexContext.WordsDbContext);
+            var disjunctionFilter = new DisjunctionFilter(invertedIndexContext.WordsDbContext);
+            var filterHandler = new FilterHandler(conjunctionFilter, disjunctionFilter);
+            
+            var searchEngine = new SearchEngine(fileReader,ioHandler,queryCategorizer, 
+                invertedIndex, filterHandler,invertedIndexContext);
+            var answers = searchEngine.Search(path);
+            ioHandler.PrintResultDocuments(answers);
+            
         }
     }
 }

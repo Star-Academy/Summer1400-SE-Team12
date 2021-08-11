@@ -5,18 +5,6 @@ namespace Phase08
 {
     public class IOHandler : IIOHandler
     {
-        private readonly FileReader _fileReader;
-
-        public IOHandler(FileReader fileReader)
-        {
-            _fileReader = fileReader;
-        }
-
-        public void ReadDocuments(string path)
-        {
-             _fileReader.ReadFile(path);
-        }
-        
         public string[] ReadQueries()
         {
             Console.WriteLine("Please enter a query");
