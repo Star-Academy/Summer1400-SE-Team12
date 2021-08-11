@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
+using SQLHandler;
 
 namespace Phase08
 {
@@ -9,8 +10,13 @@ namespace Phase08
         {
             string path = @"D:\programming\codestar_internship\Phase08\Phase08\Phase08\EnglishData";
             using var invertedIndexContext = new InvertedIndexContext();
-            if(!(invertedIndexContext.Database.GetService<IDatabaseCreator>() as RelationalDatabaseCreator).Exists())
+           
+            if(!invertedIndexContext.Database.CanConnect())
                 invertedIndexContext.Database.EnsureCreated();
+            
+            
+            
+            
             
             var fileReader = new FileReader(invertedIndexContext.DocumentsDbContext);
             var ioHandler = new IOHandler();
