@@ -9,11 +9,8 @@ namespace Phase08
 {
     public class InvertedIndex : IInvertedIndex
     {
-        // private Dictionary<string, HashSet<string>> _invertedIndexMap = new Dictionary<string, HashSet<string>>();
-
         private InvertedIndexContext _invertedIndexContext;
-        // private DbSet<Word> _wordDbSet;
-
+        
         public InvertedIndex(InvertedIndexContext invertedIndexContext)
         {
             _invertedIndexContext = invertedIndexContext;

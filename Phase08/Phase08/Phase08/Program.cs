@@ -1,19 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
-using SQLHandler;
+﻿using SQLHandler;
 
 namespace Phase08
 {
     class Program
     {
+        const string path = @"D:\programming\codestar_internship\Phase08\Phase08\Phase08\EnglishData";
         static void Main(string[] args)
         {
-            string path = @"D:\programming\codestar_internship\Phase08\Phase08\Phase08\EnglishData";
-            using var invertedIndexContext = new InvertedIndexContext();
-           
-            // if(!invertedIndexContext.Database.CanConnect())
-            //     invertedIndexContext.Database.EnsureCreated();
-
+            var invertedIndexContext = new InvertedIndexContext();
             var fileReader = new FileReader(invertedIndexContext.DocumentsDbContext);
             var ioHandler = new IOHandler();
             var queryCategorizer = new QueryCategorizer();
@@ -22,9 +16,10 @@ namespace Phase08
             var disjunctionFilter = new DisjunctionFilter(invertedIndexContext.WordsDbContext);
             var filterHandler = new FilterHandler(conjunctionFilter, disjunctionFilter);
             
-            var searchEngine = new SearchEngine(fileReader,ioHandler,queryCategorizer, 
-                invertedIndex, filterHandler,invertedIndexContext);
-            var answers = searchEngine.Search(path);
+            var searchEngine = new SearchEngine(ioHandler,queryCategorizer, filterHandler);
+            var dataHandler = new DataHandler(fileReader, invertedIndex, invertedIndexContext);
+            var connectorDataAndSearchEngine = new ConnectorDataAndSearchEngine(searchEngine, dataHandler);
+            var answers = connectorDataAndSearchEngine.Connect(path);
             ioHandler.PrintResultDocuments(answers);
             
         }
