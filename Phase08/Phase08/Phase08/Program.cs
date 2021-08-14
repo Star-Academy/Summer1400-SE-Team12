@@ -11,13 +11,9 @@ namespace Phase08
             string path = @"D:\programming\codestar_internship\Phase08\Phase08\Phase08\EnglishData";
             using var invertedIndexContext = new InvertedIndexContext();
            
-            if(!invertedIndexContext.Database.CanConnect())
-                invertedIndexContext.Database.EnsureCreated();
-            
-            
-            
-            
-            
+            // if(!invertedIndexContext.Database.CanConnect())
+            //     invertedIndexContext.Database.EnsureCreated();
+
             var fileReader = new FileReader(invertedIndexContext.DocumentsDbContext);
             var ioHandler = new IOHandler();
             var queryCategorizer = new QueryCategorizer();
