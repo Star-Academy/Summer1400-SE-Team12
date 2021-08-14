@@ -10,6 +10,16 @@ namespace SQLHandler
         public string DocContents { get; set; }
 
         public ISet<Word> wordsCollection { get; set; }
+
+        public Document()
+        {
+        }
+
+        public Document(string docName, string docContents)
+        {
+            DocName = docName;
+            DocContents = docContents;
+        }
     }
     
 }

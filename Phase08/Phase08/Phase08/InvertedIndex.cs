@@ -10,38 +10,33 @@ namespace Phase08
     public class InvertedIndex : IInvertedIndex
     {
         private InvertedIndexContext _invertedIndexContext;
-        
+
         public InvertedIndex(InvertedIndexContext invertedIndexContext)
         {
             _invertedIndexContext = invertedIndexContext;
         }
 
-        public void BuildInvertedIndex(ISet<Document> documents)
+        public void BuildInvertedIndex(Dictionary<string, string> documents)
         {
             foreach (var doc in documents)
             {
-                var words = Regex.Split(doc.DocContents, "[\\W]+");
+                var words = Regex.Split(doc.Value, "[\\W]+");
+                var docu = new Document(doc.Key, doc.Value);
                 foreach (var wordIterator in words)
                 {
                     var word = _invertedIndexContext.WordsDbContext.Find(wordIterator);
-
+                    
                     if (word == null)
                     {
-                        _invertedIndexContext.WordsDbContext.Add(new Word()
-                        {
-                            eachWord = wordIterator, DocsCollection = new HashSet<Document>() {doc}
-                        });
+                        _invertedIndexContext.WordsDbContext.Add(new Word(wordIterator, new HashSet<Document>() {docu}));
                         _invertedIndexContext.SaveChanges();
                     }
                     else
                     {
-                        word.DocsCollection.Add(doc);
-                        // invertedIndexContext.SaveChanges();
+                        word.DocsCollection.Add(docu);
                     }
                 }
-                
             }
         }
-        
     }
 }

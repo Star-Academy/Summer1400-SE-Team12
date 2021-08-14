@@ -4,6 +4,6 @@ namespace Phase08
 {
     public interface IFileReader
     {
-        void ReadFile(string path);
+        Dictionary<string,string> ReadFile(string path);
     }
 }

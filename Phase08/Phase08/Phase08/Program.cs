@@ -8,7 +8,7 @@ namespace Phase08
         static void Main(string[] args)
         {
             var invertedIndexContext = new InvertedIndexContext();
-            var fileReader = new FileReader(invertedIndexContext.DocumentsDbContext);
+            var fileReader = new FileReader();
             var ioHandler = new IOHandler();
             var queryCategorizer = new QueryCategorizer();
             var invertedIndex = new InvertedIndex(invertedIndexContext);

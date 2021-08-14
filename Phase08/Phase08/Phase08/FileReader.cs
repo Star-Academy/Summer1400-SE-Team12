@@ -1,36 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using Microsoft.EntityFrameworkCore;
-using SQLHandler;
+using System.Linq;
 
 namespace Phase08
 {
     public class FileReader : IFileReader
     {
-        private DbSet<Document> _documentsDbSet;
-
-        public FileReader(DbSet<Document> documentsDbSet)
+        public Dictionary<string, string> ReadFile(string path)
         {
-            _documentsDbSet = documentsDbSet;
-        }
-
-        public void ReadFile(string path)
-        {
+            var documents = new Dictionary<string, string>();
             try
             {
-                foreach (string filePath in Directory.GetFiles(path))
-                    _documentsDbSet.Add(new Document()
-                        {
-                            DocName = Path.GetFileName(filePath), DocContents = File.ReadAllText(filePath)
-                        }
-                    );
+                documents = Directory.GetFiles(path).ToDictionary(Path.GetFileName, File.ReadAllText);
             }
             catch (FileNotFoundException filException)
             {
                 Console.WriteLine(filException);
                 Environment.Exit(1);
             }
+
+            return documents;
         }
-        
     }
 }

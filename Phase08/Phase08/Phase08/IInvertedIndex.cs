@@ -5,6 +5,6 @@ namespace Phase08
 {
     public interface IInvertedIndex
     {
-        void BuildInvertedIndex(ISet<Document> documents);
+        void BuildInvertedIndex(Dictionary<string, string> documents);
     }
 }
