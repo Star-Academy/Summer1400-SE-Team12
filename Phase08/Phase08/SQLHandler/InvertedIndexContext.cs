@@ -7,12 +7,13 @@ namespace SQLHandler
         public DbSet<Word> WordsDbContext { get; set; }
         public DbSet<Document> DocumentsDbContext { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public InvertedIndexContext()
         {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=. ; Database=EfcorePhase08Project ; Trusted_Connection=true; ");
         }
-
+        
+        public InvertedIndexContext(DbContextOptions<InvertedIndexContext> options) : base(options)
+        { }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

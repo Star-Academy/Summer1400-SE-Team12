@@ -9,7 +9,7 @@ namespace SQLHandler
         public string DocName { get; set; }
         public string DocContents { get; set; }
 
-        public ISet<Word> wordsCollection { get; set; }
+        public ISet<Word> wordsCollection { get; set; } = new HashSet<Word>();
 
         public Document()
         {
