@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Castle.Core.Internal;
+﻿using Castle.Core.Internal;
 using SQLHandler;
 
 namespace Phase08
@@ -21,12 +19,12 @@ namespace Phase08
 
         public void InitializeDataBase(string folderPath)
         {
-            // if (_invertedIndexContext.DocumentsDbContext.IsNullOrEmpty() &&
-            //     _invertedIndexContext.WordsDbContext.IsNullOrEmpty())
-            // {
+            if (_invertedIndexContext.DocumentsDbContext.IsNullOrEmpty() &&
+                _invertedIndexContext.WordsDbContext.IsNullOrEmpty())
+            {
                 var documents = _fileReader.ReadFile(folderPath);
                 _invertedIndex.BuildInvertedIndex(documents);
-            // }
+            }
         }
     }
 }

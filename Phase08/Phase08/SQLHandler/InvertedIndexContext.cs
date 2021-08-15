@@ -8,8 +8,7 @@ namespace SQLHandler
         public DbSet<Document> DocumentsDbContext { get; set; }
 
         public InvertedIndexContext()
-        {
-        }
+        { }
         
         public InvertedIndexContext(DbContextOptions<InvertedIndexContext> options) : base(options)
         { }
@@ -17,8 +16,9 @@ namespace SQLHandler
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Document>().HasMany(docIterator => docIterator.wordsCollection).WithMany(wordIterator => wordIterator.DocsCollection);
-        
+            modelBuilder.Entity<Document>().
+                HasMany(docIterator => docIterator.wordsCollection).
+                WithMany(wordIterator => wordIterator.DocsCollection);
         }
     }
 }

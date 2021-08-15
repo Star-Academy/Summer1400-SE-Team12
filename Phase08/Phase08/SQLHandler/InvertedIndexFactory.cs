@@ -11,5 +11,6 @@ namespace SQLHandler
             builder.UseSqlServer("Server=. ; Database=EfcorePhase08Project ; Trusted_Connection=true; ");
             return new InvertedIndexContext(builder.Options);
         }
+        
     }
 }
