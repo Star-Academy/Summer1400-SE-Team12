@@ -7,7 +7,7 @@ namespace Phase08
         const string path = @"D:\programming\codestar_internship\Phase08\Phase08\Phase08\EnglishData";
         static void Main(string[] args)
         {
-            var invertedIndexContext = new InvertedIndexContext();
+            var invertedIndexContext = new InvertedIndexFactory().CreateDbContext(args);
             var fileReader = new FileReader();
             var ioHandler = new IOHandler();
             var queryCategorizer = new QueryCategorizer();

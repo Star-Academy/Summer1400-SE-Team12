@@ -10,52 +10,36 @@ namespace TestEFCorePhase08
 {
     public class InvertedIndexTest
     {
-        private readonly Dictionary<string,string> _docNameMapToContent;
-        private InvertedIndexContext _context;
+        private readonly Dictionary<string, string> _docNameMapToContent;
+        private readonly InvertedIndex _invertedIndex;
+        private readonly InvertedIndexContext _context;
 
 
         public InvertedIndexTest()
         {
-            var options = new DbContextOptionsBuilder<InvertedIndexContext>()
-                 .UseInMemoryDatabase( "EfcorePhase08Project")
-                 .Options;
-            _context = new InvertedIndexContext(options);
-            _docNameMapToContent = new Dictionary<string, string>
+            _context = ContextFactory.CreateContext();
+            _invertedIndex = new InvertedIndex(_context);
+        }
+        
+        public static IEnumerable<object[]> BuildInvertedIndexTestData()
+        {
+            yield return new object[] { new HashSet<string> { "text2" }, "six" };
+            yield return new object[] { new HashSet<string> {"text1","text3"}, "one" };
+            yield return new object[] { new HashSet<string>() , "ten" };
+        }
+        
+        [Theory, MemberData(nameof(BuildInvertedIndexTestData))]
+        public void BuildInvertedIndexShouldCheckWordCorrectlyMappedToDocs(ISet<string> expectedDocContain, string searchingWord)
+        {
+            var docNameMapToContent = new Dictionary<string, string>
             {
-                {"text1", "one two"}, {"text2", "five six seven eight nine"}, {"text3", "one two three "}
+                {"text1", "one two"}, {"text2", "five six seven eight nine"}, {"text3", "one two three"}
             };
-
+            _invertedIndex.BuildInvertedIndex(docNameMapToContent);
+            var actual = _context.WordsDbContext.Find(searchingWord)?.
+                DocsCollection?.Select(w => w.DocName) ?? new HashSet<string>();
+            Assert.Equal(expectedDocContain, actual);
         }
-
-        [Fact]
-        public void TestBuildInvertedIndex_WordExistInADoc() {
-            var invertedIndex = new InvertedIndex(_context);
-            invertedIndex.BuildInvertedIndex(_docNameMapToContent);
-            
-            Assert.Equal(new HashSet<string>(){"text2"}, 
-                _context.WordsDbContext.Find("six")?.DocsCollection.Select(w => w.DocName));
-        }
-
         
-        
-        
-        
-        
-        
-        // [Fact]
-        // public void TestBuildInvertedIndex_WordExistInTwoDoc() {
-        //     _invertedIndex.BuildInvertedIndex(_docNameMapToContent);
-        //     Assert.Equal(new HashSet<string>(){"text3", "text1"},
-        //         _invertedIndex.GetInvertedIndexValue("one"));
-        //
-        // }
-        //
-        // [Fact]
-        // public void TestBuildInvertedIndex_WordNotExistInDoc() {
-        //     _invertedIndex.BuildInvertedIndex(_docNameMapToContent);
-        //     Assert.Equal(new HashSet<string>(),
-        //         _invertedIndex.GetInvertedIndexValue("ten"));
-        //
-        // }
     }
 }
