@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using SQLHandler;
 
 namespace Phase08
@@ -17,14 +16,10 @@ namespace Phase08
         public ISet<string> Filter(ISet<string> signQueries)
         {
             var firstQuery = signQueries.First();
-            ISet<string> conjunctionFiltered = new HashSet<string>(
-                _invertedIndexContext.WordsDbContext.Include(x => x.DocsCollection).
-                    FirstOrDefault( w => w.Content == firstQuery).DocsCollection.Select(doc => doc.DocName) ?? new HashSet<string>());
+            ISet<string> conjunctionFiltered = new HashSet<string>(_invertedIndexContext.GetDocumentsContainQuery(firstQuery));
 
             return signQueries.Aggregate(conjunctionFiltered, (current, query) =>
-                current.Intersect(_invertedIndexContext.WordsDbContext.Include(x => x.DocsCollection).
-                    FirstOrDefault( w => w.Content == firstQuery).DocsCollection.Select(doc => doc.DocName) 
-                 ?? new HashSet<string>()).
+                current.Intersect(_invertedIndexContext.GetDocumentsContainQuery(query)).
                     ToHashSet());
         }
     }

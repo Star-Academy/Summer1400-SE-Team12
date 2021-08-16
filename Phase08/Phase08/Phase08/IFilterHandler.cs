@@ -4,6 +4,6 @@ namespace Phase08
 {
     public interface IFilterHandler
     {
-        ISet<string> Filter(IQueryKeeper queryKeeper);
+        ISet<string> Filter(QueryKeeper queryKeeper);
     }
 }

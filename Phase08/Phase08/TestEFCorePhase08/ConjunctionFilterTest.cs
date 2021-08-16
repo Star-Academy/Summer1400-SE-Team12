@@ -19,13 +19,12 @@ namespace TestEFCorePhase08
 
 
         [Fact]
-        public void FilterTest_shouldReturnDocumentsThatContainSingleQuery()
+        public void FilterShouldReturnDocumentsThatContainSingleQuery()
         {
             var expected = new HashSet<string>() {"doc3"};
-            var withoutSignFilterQuery = new HashSet<string>() {"hello", "bye"};
-            var actual = _conjunctionFilter.Filter(withoutSignFilterQuery);
+            var withoutSignQuery = new HashSet<string>() {"hello", "bye"};
+            var actual = _conjunctionFilter.Filter(withoutSignQuery);
             Assert.Equal(expected, actual);
-            
         }
         
 

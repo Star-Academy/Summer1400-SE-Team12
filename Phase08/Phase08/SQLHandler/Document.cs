@@ -6,7 +6,6 @@ namespace SQLHandler
     public class Document
     {
         [Key]
-        public int  DocumentId { get; set; }
         public string DocName { get; set; }
         public string DocContents { get; set; }
 

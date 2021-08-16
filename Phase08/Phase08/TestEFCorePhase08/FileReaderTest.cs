@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Phase08;
 using Xunit;
 
@@ -14,26 +15,25 @@ namespace TestEFCorePhase08
         }
 
         [Fact]
-        public void ReadFileTest_shouldReturnDictionaryThatContainOneTxtFile()
+        public void ReadFileShouldReturnDictionaryThatContainOneTxtFile()
         {
-            string path = "TestFiles";
-            
-            var fileNameExpected = "one.txt";
-            var contentExpected = "A woman finds a pot of treasure";
-            Dictionary<string,string> documents = _fileReader.ReadFile(path);
+            const string path = "TestFiles";
+            const string fileNameExpected = "one.txt";
+            const string contentExpected = "A woman finds a pot of treasure";
+            var documents = _fileReader.ReadFile(path);
             
             Assert.True(documents.ContainsKey(fileNameExpected));
             Assert.Equal(contentExpected, documents.GetValueOrDefault(fileNameExpected));
         }
         
         [Fact]
-        public void ReadFileTest_shouldReturnDictionaryThatContainTwoTxtFile()
+        public void ReadFileShouldReturnDictionaryThatContainTwoTxtFile()
         {
-            string path = "TestFiles";
+            const string path = "TestFiles";
             
-            var fileNameExpected = "two.txt";
-            var contentExpected = "Earth has been destroyed by war and no one lives on it anymore.";
-            Dictionary<string,string> documents = _fileReader.ReadFile(path);
+            const string fileNameExpected = "two.txt";
+            const string  contentExpected = "Earth has been destroyed by war and no one lives on it anymore.";
+            var documents = _fileReader.ReadFile(path);
             
             Assert.True(documents.ContainsKey(fileNameExpected));
             Assert.Equal(contentExpected, documents.GetValueOrDefault(fileNameExpected));

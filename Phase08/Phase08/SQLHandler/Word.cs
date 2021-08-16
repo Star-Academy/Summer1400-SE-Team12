@@ -7,7 +7,6 @@ namespace SQLHandler
     public class Word
     {
         [Key]
-        public int WordId { get; set; }
         public string Content{ get; set; }
         public List<Document> DocsCollection { get; set; }
 
@@ -17,7 +16,7 @@ namespace SQLHandler
 
         public Word(string content, List<Document> docsCollection)
         {
-            this.Content = content;
+            Content = content;
             DocsCollection = docsCollection;
         }
     }

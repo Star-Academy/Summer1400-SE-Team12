@@ -18,7 +18,7 @@ namespace TestEFCorePhase08
 
 
         [Fact]
-        public void MinusFilterTest_shouldReturnRemovedDocumentsContainSingleQuery()
+        public void MinusFilterShouldReturnRemovedDocumentsContainSingleQuery()
         {
             var expected = new HashSet<string>() {"doc1", "doc2", "doc3", "doc4", "doc5"};
             var minusQuery = new HashSet<string>() {"hello", "bye"};

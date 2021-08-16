@@ -19,12 +19,17 @@ namespace Phase08
 
         public void InitializeDataBase(string folderPath)
         {
-            if (_invertedIndexContext.DocumentsDbContext.IsNullOrEmpty() &&
-                _invertedIndexContext.WordsDbContext.IsNullOrEmpty())
+            if (!IsDataBaseInitialized())
             {
                 var documents = _fileReader.ReadFile(folderPath);
                 _invertedIndex.BuildInvertedIndex(documents);
             }
+        }
+
+        private bool IsDataBaseInitialized()
+        {
+            return _invertedIndexContext.DocumentsDbContext.IsNullOrEmpty() &&
+                   _invertedIndexContext.WordsDbContext.IsNullOrEmpty();
         }
     }
 }

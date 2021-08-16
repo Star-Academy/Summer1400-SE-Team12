@@ -1,43 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Microsoft.EntityFrameworkCore;
 using SQLHandler;
 
 namespace Phase08
 {
     public class InvertedIndex : IInvertedIndex
     {
-        private InvertedIndexContext _invertedIndexContext;
+        private readonly InvertedIndexContext _invertedIndexContext;
 
         public InvertedIndex(InvertedIndexContext invertedIndexContext)
         {
             _invertedIndexContext = invertedIndexContext;
         }
-
-        public void BuildInvertedIndex(Dictionary<string, string> documents)
+        
+        public void BuildInvertedIndex(Dictionary<string, string> docMapToContent)
         {
-            foreach (var doc in documents)
+            foreach (var doc in docMapToContent)
             {
-                var words = Regex.Split(doc.Value, "[\\W]+");
-                var docu = new Document(doc.Key, doc.Value);
-                foreach (var wordIterator in words)
-                {
-                    var word = _invertedIndexContext.WordsDbContext.FirstOrDefault(w => w.Content == wordIterator);
-                    
-                    if (word == null)
-                    {
-                        _invertedIndexContext.WordsDbContext.Add(new Word(wordIterator, new List<Document>() {docu}));
-                        _invertedIndexContext.SaveChanges();
-                    }
-                    else
-                    {
-                        word.DocsCollection.Add(docu);
-                    }
-                }
+                var words = SplitDocumentsWords(doc.Value);
+                var document = new Document(doc.Key, doc.Value);
+                AddDocumentWords(document, words);
             }
-            
+        }
+
+        private string[] SplitDocumentsWords(string docContent)
+        {
+            return Regex.Split(docContent, "[\\W]+");
+        }
+
+        private void AddDocumentWords(Document document, string[] docWords)
+        {
+            foreach (var wordIterator in docWords)
+            {
+                var word = _invertedIndexContext.WordsDbContext.FirstOrDefault(w => w.Content == wordIterator);
+                if (word == null)
+                {
+                    _invertedIndexContext.WordsDbContext.Add(new Word(wordIterator, new List<Document>() {document}));
+                    _invertedIndexContext.SaveChanges();
+                }
+                else
+                    word.DocsCollection.Add(document);
+            }
         }
         
     }

@@ -4,7 +4,7 @@ namespace Phase08
 {
     class Program
     {
-        const string path = @"D:\programming\codestar_internship\Phase08\Phase08\Phase08\EnglishData";
+        const string path = @"EnglishData";
         static void Main(string[] args)
         {
             var invertedIndexContext = new InvertedIndexFactory().CreateDbContext(args);
