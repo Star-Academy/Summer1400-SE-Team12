@@ -14,7 +14,7 @@ namespace TestEFCorePhase08
         public ConjunctionFilterTest()
         {
             _context = ContextFactory.CreateContext();
-            _conjunctionFilter = new ConjunctionFilter(_context.WordsDbContext);
+            _conjunctionFilter = new ConjunctionFilter(_context);
         }
 
 

@@ -24,11 +24,11 @@ namespace Phase08
                 var docu = new Document(doc.Key, doc.Value);
                 foreach (var wordIterator in words)
                 {
-                    var word = _invertedIndexContext.WordsDbContext.Find(wordIterator);
+                    var word = _invertedIndexContext.WordsDbContext.FirstOrDefault(w => w.Content == wordIterator);
                     
                     if (word == null)
                     {
-                        _invertedIndexContext.WordsDbContext.Add(new Word(wordIterator, new HashSet<Document>() {docu}));
+                        _invertedIndexContext.WordsDbContext.Add(new Word(wordIterator, new List<Document>() {docu}));
                         _invertedIndexContext.SaveChanges();
                     }
                     else

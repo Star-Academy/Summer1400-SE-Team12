@@ -13,7 +13,7 @@ namespace TestEFCorePhase08
         public DisjunctionFilterTest()
         {
             _context = ContextFactory.CreateContext();
-            _disjunctionFilter = new DisjunctionFilter(_context.WordsDbContext);
+            _disjunctionFilter = new DisjunctionFilter(_context);
         }
 
 

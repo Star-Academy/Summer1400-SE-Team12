@@ -12,8 +12,8 @@ namespace Phase08
             var ioHandler = new IOHandler();
             var queryCategorizer = new QueryCategorizer();
             var invertedIndex = new InvertedIndex(invertedIndexContext);
-            var conjunctionFilter = new ConjunctionFilter(invertedIndexContext.WordsDbContext);
-            var disjunctionFilter = new DisjunctionFilter(invertedIndexContext.WordsDbContext);
+            var conjunctionFilter = new ConjunctionFilter(invertedIndexContext);
+            var disjunctionFilter = new DisjunctionFilter(invertedIndexContext);
             var filterHandler = new FilterHandler(conjunctionFilter, disjunctionFilter);
             
             var searchEngine = new SearchEngine(ioHandler,queryCategorizer, filterHandler);

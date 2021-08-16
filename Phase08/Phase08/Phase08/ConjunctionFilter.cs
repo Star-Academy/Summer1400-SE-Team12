@@ -7,25 +7,24 @@ namespace Phase08
 {
     public class ConjunctionFilter : IFilter
     {
-        private readonly DbSet<Word> _wordDbSet;
+        private readonly InvertedIndexContext _invertedIndexContext;
 
-        public ConjunctionFilter(DbSet<Word> wordDbSet)
+        public ConjunctionFilter(InvertedIndexContext invertedIndexContext)
         {
-            _wordDbSet = wordDbSet;
+            _invertedIndexContext = invertedIndexContext;
         }
 
         public ISet<string> Filter(ISet<string> signQueries)
         {
             var firstQuery = signQueries.First();
             ISet<string> conjunctionFiltered = new HashSet<string>(
-                _wordDbSet.Find(firstQuery)?.
-                    DocsCollection?.
-                    Select(doc => doc.DocName) ?? new HashSet<string>());
+                _invertedIndexContext.WordsDbContext.Include(x => x.DocsCollection).
+                    FirstOrDefault( w => w.Content == firstQuery).DocsCollection.Select(doc => doc.DocName) ?? new HashSet<string>());
 
             return signQueries.Aggregate(conjunctionFiltered, (current, query) =>
-                current.Intersect(_wordDbSet.Find(query)?.
-                                      DocsCollection?.
-                                      Select(doc => doc.DocName) ?? new HashSet<string>()).
+                current.Intersect(_invertedIndexContext.WordsDbContext.Include(x => x.DocsCollection).
+                    FirstOrDefault( w => w.Content == firstQuery).DocsCollection.Select(doc => doc.DocName) 
+                 ?? new HashSet<string>()).
                     ToHashSet());
         }
     }

@@ -8,30 +8,29 @@ namespace Phase08
 {
     public class DisjunctionFilter : IFilter
     {
-        private readonly DbSet<Word> _wordDBSet;
+        private readonly InvertedIndexContext _invertedIndexContext;
 
-        public DisjunctionFilter(DbSet<Word> wordDbSet)
+        public DisjunctionFilter(InvertedIndexContext invertedIndexContext)
         {
-            _wordDBSet = wordDbSet;
+            _invertedIndexContext = invertedIndexContext;
         }
 
         public ISet<string> Filter(ISet<string> signQueries)
         {
-            var illness = _wordDBSet.Find("illness");
-            foreach (var w in _wordDBSet)
-            {
-                Console.WriteLine(w.DocsCollection.Count);
-            }
+            var disjunctionFiltered = new HashSet<string>();
             
-            // return a.DocsCollection.Select(w => w.DocName).ToHashSet();
-            // var disjunctionFiltered = new HashSet<string>();
-            //
-            // return signQueries.Aggregate(disjunctionFiltered, (current, query) =>
-            //     current.Union(_wordDBSet.Find(query)?.
-            //                       DocsCollection.
-            //                       Select(doc => doc.DocName) ?? new HashSet<string>()).
-            //         ToHashSet());
-                    return null;
+            return signQueries.Aggregate(disjunctionFiltered, (current, query) =>
+                current.Union(GetValue(query)).
+                    ToHashSet());
+        }
+
+        public IEnumerable<string> GetValue(string query)
+        {
+            var word = _invertedIndexContext.WordsDbContext.Include(x => x.DocsCollection)
+                .FirstOrDefault(w => w.Content == query);
+            if (word == null)
+                return new List<string>();
+            return word.DocsCollection.Select(doc => doc.DocName) ;
         }
     }
 }

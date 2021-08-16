@@ -7,16 +7,17 @@ namespace SQLHandler
     public class Word
     {
         [Key]
-        public string eachWord{ get; set; }
-        public ISet<Document> DocsCollection { get; set; }
+        public int WordId { get; set; }
+        public string Content{ get; set; }
+        public List<Document> DocsCollection { get; set; }
 
         public Word()
         {
         }
 
-        public Word(string eachWord, ISet<Document> docsCollection)
+        public Word(string content, List<Document> docsCollection)
         {
-            this.eachWord = eachWord;
+            this.Content = content;
             DocsCollection = docsCollection;
         }
     }
