@@ -19,12 +19,12 @@ namespace Phase08
             var firstQuery = signQueries.First();
             ISet<string> conjunctionFiltered = new HashSet<string>(
                 _wordDbSet.Find(firstQuery)?.
-                    DocsCollection.
+                    DocsCollection?.
                     Select(doc => doc.DocName) ?? new HashSet<string>());
 
             return signQueries.Aggregate(conjunctionFiltered, (current, query) =>
                 current.Intersect(_wordDbSet.Find(query)?.
-                                      DocsCollection.
+                                      DocsCollection?.
                                       Select(doc => doc.DocName) ?? new HashSet<string>()).
                     ToHashSet());
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SQLHandler;
@@ -16,13 +17,21 @@ namespace Phase08
 
         public ISet<string> Filter(ISet<string> signQueries)
         {
-            var disjunctionFiltered = new HashSet<string>();
+            var illness = _wordDBSet.Find("illness");
+            foreach (var w in _wordDBSet)
+            {
+                Console.WriteLine(w.DocsCollection.Count);
+            }
             
-            return signQueries.Aggregate(disjunctionFiltered, (current, query) =>
-                current.Union(_wordDBSet.Find(query)?.
-                                  DocsCollection.
-                                  Select(doc => doc.DocName) ?? new HashSet<string>()).
-                    ToHashSet());
+            // return a.DocsCollection.Select(w => w.DocName).ToHashSet();
+            // var disjunctionFiltered = new HashSet<string>();
+            //
+            // return signQueries.Aggregate(disjunctionFiltered, (current, query) =>
+            //     current.Union(_wordDBSet.Find(query)?.
+            //                       DocsCollection.
+            //                       Select(doc => doc.DocName) ?? new HashSet<string>()).
+            //         ToHashSet());
+                    return null;
         }
     }
 }
