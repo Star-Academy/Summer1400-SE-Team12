@@ -17,8 +17,7 @@ namespace Phase08
             if (answers.Count == 0)
                 Console.WriteLine("We didn't find");
             else
-                foreach (var answer in answers)
-                    Console.Write(answer + "  ");
+                Console.WriteLine(string.Join(" ", answers));
             
         }
     }
