@@ -38,14 +38,10 @@ namespace SQLHandler
             {
                 var word = WordsDbContext.FirstOrDefault(w => w.Content == wordIterator);
                 if (word == null)
-                    AddNewWord(wordIterator);
+                    WordsDbContext.Add(new Word(wordIterator, new List<Document>()));
                 word.DocsCollection.Add(document);
             }
         }
-
-        public void AddNewWord(string wordContent)
-        {
-            WordsDbContext.Add(new Word(wordContent, new List<Document>()));
-        }
+        
     }
 }

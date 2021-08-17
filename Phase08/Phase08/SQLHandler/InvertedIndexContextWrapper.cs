@@ -25,11 +25,6 @@ namespace SQLHandler
         {
             _invertedIndexContext.AddDocumentWords(document,docWords);
         }
-
-        public void AddNewWord(string wordContent)
-        {
-            _invertedIndexContext.AddNewWord(wordContent);
-            _invertedIndexContext.SaveChanges();
-        }
+        
     }
 }
