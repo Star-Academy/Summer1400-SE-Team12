@@ -7,8 +7,10 @@ namespace SQLHandler
     {
         public InvertedIndexContext CreateDbContext(string[] args)
         {
+            const string connectionString =
+                "Server=. ; Database=EfcorePhase08Project ; Trusted_Connection=true; MultipleActiveResultSets=true;";
             var builder = new DbContextOptionsBuilder<InvertedIndexContext>();
-            builder.UseSqlServer("Server=. ; Database=EfcorePhase08Project ; Trusted_Connection=true; MultipleActiveResultSets=true;");
+            builder.UseSqlServer(connectionString);
             return new InvertedIndexContext(builder.Options);
         }
         

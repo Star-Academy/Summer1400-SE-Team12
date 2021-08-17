@@ -19,11 +19,10 @@ namespace Phase08
 
         public void InitializeDataBase(string folderPath)
         {
-            if (!IsDataBaseInitialized())
-            {
-                var documents = _fileReader.ReadFile(folderPath);
-                _invertedIndex.BuildInvertedIndex(documents);
-            }
+            if (IsDataBaseInitialized()) return;
+            
+            var documents = _fileReader.ReadFile(folderPath);
+            _invertedIndex.BuildInvertedIndex(documents);
         }
 
         private bool IsDataBaseInitialized()

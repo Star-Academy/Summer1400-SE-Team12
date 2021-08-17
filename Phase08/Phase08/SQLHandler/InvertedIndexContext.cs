@@ -23,9 +23,7 @@ namespace SQLHandler
         {
             var word = WordsDbContext.Include(x => x.DocsCollection).
                 FirstOrDefault(x => x.Content == query);
-            if (word == null)
-                return new List<string>();
-            return word.DocsCollection.Select(doc => doc.DocName) ;
+            return word == null ? new List<string>() : word.DocsCollection.Select(doc => doc.DocName);
         }
     }
 }

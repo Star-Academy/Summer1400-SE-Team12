@@ -5,7 +5,7 @@ namespace Phase08
 {
     public class QueryCategorizer : IQueryCategorizer
     {
-        public QueryKeeper CategorizeQueries(string[] queries)
+        public QueryKeeper CategorizeQueries(IEnumerable<string> queries)
         {
             var plusContained = new HashSet<string>();
             var minusContained = new HashSet<string>();
@@ -17,10 +17,10 @@ namespace Phase08
                 switch (queryType)
                 {
                     case '+':
-                        plusContained.Add(query.Substring(1));
+                        plusContained.Add(query[1..]);
                         break;
                     case '-':
-                        minusContained.Add(query.Substring(1));
+                        minusContained.Add(query[1..]);
                         break;
                     default:
                         withoutSignContained.Add(query);
