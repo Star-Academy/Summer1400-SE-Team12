@@ -14,7 +14,7 @@ namespace Phase08
             {
                 documents = Directory.GetFiles(path).ToDictionary(Path.GetFileName, File.ReadAllText);
             }
-            catch (FileNotFoundException filException)
+            catch (Exception filException)
             {
                 Console.WriteLine(filException);
                 Environment.Exit(1);
