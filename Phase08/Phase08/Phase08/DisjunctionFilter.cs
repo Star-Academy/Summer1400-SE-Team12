@@ -6,11 +6,11 @@ namespace Phase08
 {
     public class DisjunctionFilter : IFilter
     {
-        private readonly IInvertedIndexWrapper _invertedIndexWrapper;
+        private readonly IInvertedIndexContextWrapper _invertedIndexContextWrapper;
 
-        public DisjunctionFilter(IInvertedIndexWrapper invertedIndexWrapper)
+        public DisjunctionFilter(IInvertedIndexContextWrapper invertedIndexContextWrapper)
         {
-            _invertedIndexWrapper = invertedIndexWrapper;
+            _invertedIndexContextWrapper = invertedIndexContextWrapper;
         }
 
         public ISet<string> Filter(ISet<string> signQueries)
@@ -18,7 +18,7 @@ namespace Phase08
             var disjunctionFiltered = new HashSet<string>();
             
             return signQueries.Aggregate(disjunctionFiltered, (current, query) =>
-                current.Union(_invertedIndexWrapper.GetDocumentsContainQuery(query)).
+                current.Union(_invertedIndexContextWrapper.GetDocumentsContainQuery(query)).
                     ToHashSet());
         }
 

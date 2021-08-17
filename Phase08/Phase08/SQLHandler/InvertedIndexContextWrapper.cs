@@ -2,11 +2,11 @@
 
 namespace SQLHandler
 {
-    public class InvertedIndexWrapper : IInvertedIndexWrapper
+    public class InvertedIndexContextWrapper : IInvertedIndexContextWrapper
     {
         private InvertedIndexContext _invertedIndexContext;
 
-        public InvertedIndexWrapper(InvertedIndexContext invertedIndexContext)
+        public InvertedIndexContextWrapper(InvertedIndexContext invertedIndexContext)
         {
             _invertedIndexContext = invertedIndexContext;
         }

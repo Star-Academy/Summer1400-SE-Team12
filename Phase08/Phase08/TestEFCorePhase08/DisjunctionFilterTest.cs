@@ -8,12 +8,12 @@ namespace TestEFCorePhase08
     public class DisjunctionFilterTest
     {
         private readonly DisjunctionFilter _disjunctionFilter;
-        private readonly IInvertedIndexWrapper _contextWrapper;
+        private readonly IInvertedIndexContextWrapper _contextContextWrapper;
 
         public DisjunctionFilterTest()
         {
-            _contextWrapper = new InvertedIndexWrapper(ContextFactory.CreateContext());
-            _disjunctionFilter = new DisjunctionFilter(_contextWrapper);
+            _contextContextWrapper = new InvertedIndexContextWrapper(ContextFactory.CreateContext());
+            _disjunctionFilter = new DisjunctionFilter(_contextContextWrapper);
         }
 
 

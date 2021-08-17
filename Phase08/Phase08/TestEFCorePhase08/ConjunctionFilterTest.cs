@@ -9,12 +9,12 @@ namespace TestEFCorePhase08
     public class ConjunctionFilterTest
     {
         private readonly ConjunctionFilter _conjunctionFilter;
-        private readonly IInvertedIndexWrapper _contextWrapper;
+        private readonly IInvertedIndexContextWrapper _contextContextWrapper;
 
         public ConjunctionFilterTest()
         {
-            _contextWrapper = new InvertedIndexWrapper(ContextFactory.CreateContext());
-            _conjunctionFilter = new ConjunctionFilter(_contextWrapper);
+            _contextContextWrapper = new InvertedIndexContextWrapper(ContextFactory.CreateContext());
+            _conjunctionFilter = new ConjunctionFilter(_contextContextWrapper);
         }
 
 

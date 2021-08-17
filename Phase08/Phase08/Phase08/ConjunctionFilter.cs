@@ -6,20 +6,20 @@ namespace Phase08
 {
     public class ConjunctionFilter : IFilter
     {
-        private readonly IInvertedIndexWrapper _invertedIndexWrapper;
+        private readonly IInvertedIndexContextWrapper _invertedIndexContextWrapper;
 
-        public ConjunctionFilter(IInvertedIndexWrapper invertedIndexWrapper)
+        public ConjunctionFilter(IInvertedIndexContextWrapper invertedIndexContextWrapper)
         {
-            _invertedIndexWrapper = invertedIndexWrapper;
+            _invertedIndexContextWrapper = invertedIndexContextWrapper;
         }
 
         public ISet<string> Filter(ISet<string> signQueries)
         {
             var firstQuery = signQueries.First();
-            ISet<string> conjunctionFiltered = new HashSet<string>(_invertedIndexWrapper.GetDocumentsContainQuery(firstQuery));
+            ISet<string> conjunctionFiltered = new HashSet<string>(_invertedIndexContextWrapper.GetDocumentsContainQuery(firstQuery));
 
             return signQueries.Aggregate(conjunctionFiltered, (current, query) =>
-                current.Intersect(_invertedIndexWrapper.GetDocumentsContainQuery(query)).
+                current.Intersect(_invertedIndexContextWrapper.GetDocumentsContainQuery(query)).
                     ToHashSet());
         }
     }

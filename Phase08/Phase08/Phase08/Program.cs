@@ -7,7 +7,7 @@ namespace Phase08
         const string path = @"EnglishData";
         static void Main(string[] args)
         {
-            var invertedIndexWrapper = new InvertedIndexWrapper(new InvertedIndexFactory().CreateDbContext(args));
+            var invertedIndexWrapper = new InvertedIndexContextWrapper(new InvertedIndexFactory().CreateDbContext(args));
             var fileReader = new FileReader();
             var ioHandler = new IOHandler();
             var queryCategorizer = new QueryCategorizer();

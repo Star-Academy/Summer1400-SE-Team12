@@ -9,13 +9,13 @@ namespace TestEFCorePhase08
     {
         private readonly Dictionary<string, string> _docNameMapToContent;
         private readonly InvertedIndex _invertedIndex;
-        private readonly IInvertedIndexWrapper _contextWrapper;
+        private readonly IInvertedIndexContextWrapper _contextContextWrapper;
 
 
         public InvertedIndexTest()
         {
-            _contextWrapper = new InvertedIndexWrapper(ContextFactory.CreateContext());
-            _invertedIndex = new InvertedIndex(_contextWrapper);
+            _contextContextWrapper = new InvertedIndexContextWrapper(ContextFactory.CreateContext());
+            _invertedIndex = new InvertedIndex(_contextContextWrapper);
         }
         
         public static IEnumerable<object[]> BuildInvertedIndexTestData()
@@ -33,7 +33,7 @@ namespace TestEFCorePhase08
                 {"text1", "one two"}, {"text2", "five six seven eight nine"}, {"text3", "one two three"}
             };
             _invertedIndex.BuildInvertedIndex(docNameMapToContent);
-            var actual = _contextWrapper.GetDocumentsContainQuery(searchingWord);
+            var actual = _contextContextWrapper.GetDocumentsContainQuery(searchingWord);
             Assert.Equal(expectedDocContain, actual);
         }
         

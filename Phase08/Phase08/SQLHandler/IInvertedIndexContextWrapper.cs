@@ -2,7 +2,7 @@
 
 namespace SQLHandler
 {
-    public interface IInvertedIndexWrapper
+    public interface IInvertedIndexContextWrapper
     {
         IEnumerable<string> GetDocumentsContainQuery(string query);
         bool IsDataBaseInitialized();
