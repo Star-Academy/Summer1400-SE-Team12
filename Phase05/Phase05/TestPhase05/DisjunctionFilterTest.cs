@@ -16,6 +16,7 @@ namespace TestPhase05
             _disjunctionFilter = new DisjunctionFilter(_invertedIndex);
         }
 
+        
         [Fact]
         public void MinusFilterShouldReturnRemovedDocumentsContainSingleQuery()
         {
