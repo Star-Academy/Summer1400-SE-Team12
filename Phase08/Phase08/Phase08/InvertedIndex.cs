@@ -7,11 +7,11 @@ namespace Phase08
 {
     public class InvertedIndex : IInvertedIndex
     {
-        private readonly InvertedIndexContext _invertedIndexContext;
+        private readonly IInvertedIndexWrapper _invertedIndexWrapper;
 
-        public InvertedIndex(InvertedIndexContext invertedIndexContext)
+        public InvertedIndex(IInvertedIndexWrapper invertedIndexWrapper)
         {
-            _invertedIndexContext = invertedIndexContext;
+            _invertedIndexWrapper = invertedIndexWrapper;
         }
 
         public void BuildInvertedIndex(Dictionary<string, string> docMapToContent)
@@ -20,7 +20,7 @@ namespace Phase08
             {
                 var words = SplitDocumentsWords(docContent);
                 var document = new Document(docName, docContent);
-                AddDocumentWords(document, words);
+                _invertedIndexWrapper.AddDocumentWords(document, words);
             }
         }
 
@@ -29,21 +29,6 @@ namespace Phase08
             return Regex.Split(docContent, "[\\W]+");
         }
 
-        private void AddDocumentWords(Document document, IEnumerable<string> docWords)
-        {
-            foreach (var wordIterator in docWords)
-            {
-                var word = _invertedIndexContext.WordsDbContext.FirstOrDefault(w => w.Content == wordIterator);
-                if (word == null)
-                    AddNewWord(wordIterator);
-                word.DocsCollection.Add(document);
-            }
-        }
-
-        private void AddNewWord(string wordContent)
-        {
-            _invertedIndexContext.WordsDbContext.Add(new Word(wordContent, new List<Document>()));
-            _invertedIndexContext.SaveChanges();
-        }
+        
     }
 }

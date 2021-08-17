@@ -4,22 +4,22 @@ namespace Phase08
 {
     public class SearchEngine : ISearchEngine
     {
-        private readonly IIOHandler _ioHandler;
         private readonly IQueryCategorizer _queryCategorizer;
         private readonly IFilterHandler _filterHandler;
+        private readonly IDataHandler _dataHandler;
         
 
-        public SearchEngine(IIOHandler ioHandler, IQueryCategorizer queryCategorizer,
-             IFilterHandler filterHandler)
+        public SearchEngine( IQueryCategorizer queryCategorizer,
+             IFilterHandler filterHandler, IDataHandler dataHandler)
         {
-            _ioHandler = ioHandler;
             _queryCategorizer = queryCategorizer;
             _filterHandler = filterHandler;
+            _dataHandler = dataHandler;
         }
 
-        public ISet<string> Search()
+        public ISet<string> Search(string[] queries,string folderPath)
         {
-            var queries = _ioHandler.ReadQueries();
+            _dataHandler.InitializeDataBase(folderPath);
             var queryKeeper = _queryCategorizer.CategorizeQueries(queries);
             var answers = _filterHandler.Filter(queryKeeper);
             return answers;

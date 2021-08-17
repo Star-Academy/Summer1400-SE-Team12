@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SQLHandler
 {
-    public class InvertedIndexContext:DbContext
+    public class InvertedIndexContext : DbContext
     {
         public DbSet<Word> WordsDbContext { get; set; }
         public DbSet<Document> DocumentsDbContext { get; set; }
@@ -24,6 +24,28 @@ namespace SQLHandler
             var word = WordsDbContext.Include(x => x.DocsCollection).
                 FirstOrDefault(x => x.Content == query);
             return word == null ? new List<string>() : word.DocsCollection.Select(doc => doc.DocName);
+        }
+        
+        public bool IsDataBaseInitialized()
+        {
+            return !DocumentsDbContext.Any() &&
+                   !WordsDbContext.Any();
+        }
+        
+        public void AddDocumentWords(Document document, IEnumerable<string> docWords)
+        {
+            foreach (var wordIterator in docWords)
+            {
+                var word = WordsDbContext.FirstOrDefault(w => w.Content == wordIterator);
+                if (word == null)
+                    AddNewWord(wordIterator);
+                word.DocsCollection.Add(document);
+            }
+        }
+
+        public void AddNewWord(string wordContent)
+        {
+            WordsDbContext.Add(new Word(wordContent, new List<Document>()));
         }
     }
 }

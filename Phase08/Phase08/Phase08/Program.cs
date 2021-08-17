@@ -7,19 +7,20 @@ namespace Phase08
         const string path = @"EnglishData";
         static void Main(string[] args)
         {
-            var invertedIndexContext = new InvertedIndexFactory().CreateDbContext(args);
+            var invertedIndexWrapper = new InvertedIndexWrapper(new InvertedIndexFactory().CreateDbContext(args));
             var fileReader = new FileReader();
             var ioHandler = new IOHandler();
             var queryCategorizer = new QueryCategorizer();
-            var invertedIndex = new InvertedIndex(invertedIndexContext);
-            var conjunctionFilter = new ConjunctionFilter(invertedIndexContext);
-            var disjunctionFilter = new DisjunctionFilter(invertedIndexContext);
+            var invertedIndex = new InvertedIndex(invertedIndexWrapper);
+            var conjunctionFilter = new ConjunctionFilter(invertedIndexWrapper);
+            var disjunctionFilter = new DisjunctionFilter(invertedIndexWrapper);
             var filterHandler = new FilterHandler(conjunctionFilter, disjunctionFilter);
             
-            var searchEngine = new SearchEngine(ioHandler,queryCategorizer, filterHandler);
-            var dataHandler = new DataHandler(fileReader, invertedIndex, invertedIndexContext);
-            var connectorDataAndSearchEngine = new ConnectorDataAndSearchEngine(searchEngine, dataHandler);
-            var answers = connectorDataAndSearchEngine.Connect(path);
+            var dataHandler = new DataHandler(fileReader, invertedIndex, invertedIndexWrapper);
+            var searchEngine = new SearchEngine(queryCategorizer, filterHandler, dataHandler);
+
+            var queries = ioHandler.ReadQueries();
+            var answers = searchEngine.Search(queries,path);
             ioHandler.PrintResultDocuments(answers);
             
         }

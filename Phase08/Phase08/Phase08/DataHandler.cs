@@ -7,28 +7,23 @@ namespace Phase08
     {
         private readonly IFileReader _fileReader;
         private readonly IInvertedIndex _invertedIndex;
-        private readonly InvertedIndexContext _invertedIndexContext;
+        private readonly IInvertedIndexWrapper _invertedIndexWrapper;
 
         public DataHandler(IFileReader fileReader, IInvertedIndex invertedIndex,
-            InvertedIndexContext invertedIndexContext)
+            IInvertedIndexWrapper invertedIndexWrapper)
         {
             _fileReader = fileReader;
             _invertedIndex = invertedIndex;
-            _invertedIndexContext = invertedIndexContext;
+            _invertedIndexWrapper = invertedIndexWrapper;
         }
 
         public void InitializeDataBase(string folderPath)
         {
-            if (IsDataBaseInitialized()) return;
+            if (_invertedIndexWrapper.IsDataBaseInitialized()) return;
             
             var documents = _fileReader.ReadFile(folderPath);
             _invertedIndex.BuildInvertedIndex(documents);
         }
-
-        private bool IsDataBaseInitialized()
-        {
-            return _invertedIndexContext.DocumentsDbContext.IsNullOrEmpty() &&
-                   _invertedIndexContext.WordsDbContext.IsNullOrEmpty();
-        }
+        
     }
 }

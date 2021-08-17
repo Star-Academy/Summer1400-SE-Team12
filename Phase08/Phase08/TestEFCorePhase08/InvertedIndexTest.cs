@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Phase08;
 using SQLHandler;
 using Xunit;
@@ -10,13 +9,13 @@ namespace TestEFCorePhase08
     {
         private readonly Dictionary<string, string> _docNameMapToContent;
         private readonly InvertedIndex _invertedIndex;
-        private readonly InvertedIndexContext _context;
+        private readonly IInvertedIndexWrapper _contextWrapper;
 
 
         public InvertedIndexTest()
         {
-            _context = ContextFactory.CreateContext();
-            _invertedIndex = new InvertedIndex(_context);
+            _contextWrapper = new InvertedIndexWrapper(ContextFactory.CreateContext());
+            _invertedIndex = new InvertedIndex(_contextWrapper);
         }
         
         public static IEnumerable<object[]> BuildInvertedIndexTestData()
@@ -34,8 +33,7 @@ namespace TestEFCorePhase08
                 {"text1", "one two"}, {"text2", "five six seven eight nine"}, {"text3", "one two three"}
             };
             _invertedIndex.BuildInvertedIndex(docNameMapToContent);
-            var actual = _context.WordsDbContext.Find(searchingWord)?.
-                DocsCollection?.Select(w => w.DocName) ?? new HashSet<string>();
+            var actual = _contextWrapper.GetDocumentsContainQuery(searchingWord);
             Assert.Equal(expectedDocContain, actual);
         }
         
