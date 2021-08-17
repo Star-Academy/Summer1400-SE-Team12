@@ -4,9 +4,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class QueryKeeper {
-    private final Set<String> plusContain = new HashSet<>();
-    private final Set<String> minusContain = new HashSet<>();
-    private final Set<String> withOutSign = new HashSet<>();
+    private final Set<String> plusContain;
+    private final Set<String> minusContain;
+    private final Set<String> withOutSign;
+
+    public QueryKeeper(Set<String> plusContain, Set<String> minusContain, Set<String> withOutSign) {
+        this.plusContain = plusContain;
+        this.minusContain = minusContain;
+        this.withOutSign = withOutSign;
+    }
 
     public Set<String> getPlusContain() {
         return plusContain;
@@ -20,9 +26,5 @@ public class QueryKeeper {
         return withOutSign;
     }
 
-    public void addAllSets(Set<String> plusContain, Set<String> minusContain, Set<String>withOutSignContain){
-        this.plusContain.addAll(plusContain);
-        this.minusContain.addAll(minusContain);
-        this.withOutSign.addAll(withOutSignContain);
-    }
+
 }

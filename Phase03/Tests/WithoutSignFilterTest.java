@@ -14,7 +14,7 @@ public class WithoutSignFilterTest {
 
     @Before
     public void setup(){
-        this.withoutSignFilter = new WithoutSignFilter();
+        withoutSignFilter = new WithoutSignFilter();
     }
 
     @Test
@@ -22,8 +22,8 @@ public class WithoutSignFilterTest {
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc4","doc5","doc6"));
         Set<String> documentsContainWithoutSignQuery = new HashSet<>(Arrays.asList("doc2","doc4","doc6"));
 
-        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc2","doc4","doc6"));
-        this.withoutSignFilter.filter(documentsContainWithoutSignQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc2","doc4","doc6"));
+        withoutSignFilter.filter(documentsContainWithoutSignQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
         Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
@@ -34,11 +34,11 @@ public class WithoutSignFilterTest {
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc4","doc5","doc6"));
         Set<String> documentsContainWithoutSignQuery = new HashSet<>(Arrays.asList("doc2","doc4","doc7","doc8"));
 
-        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc2","doc4"));
-        this.withoutSignFilter.filter(documentsContainWithoutSignQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc2","doc4"));
+        withoutSignFilter.filter(documentsContainWithoutSignQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 
     @Test
@@ -46,11 +46,11 @@ public class WithoutSignFilterTest {
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc4"));
         Set<String> documentsContainWithoutSignQuery = new HashSet<>(Arrays.asList("doc7","doc8","doc9"));
 
-        Set<String> expectedFiltered = new HashSet<>();
-        this.withoutSignFilter.filter(documentsContainWithoutSignQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>();
+        withoutSignFilter.filter(documentsContainWithoutSignQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 
     @Test
@@ -58,10 +58,10 @@ public class WithoutSignFilterTest {
         Set<String> preFiltered = new HashSet<>();
         Set<String> documentsContainWithoutSignQuery = new HashSet<>(Arrays.asList("doc2","doc4"));
 
-        Set<String> expectedFiltered = new HashSet<>();
-        this.withoutSignFilter.filter(documentsContainWithoutSignQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>();
+        withoutSignFilter.filter(documentsContainWithoutSignQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 }

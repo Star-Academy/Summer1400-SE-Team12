@@ -10,7 +10,7 @@ public class MinusFilterTest {
 
     @Before
     public void setup(){
-        this.minusFilter = new MinusFilter();
+        minusFilter = new MinusFilter();
     }
 
     @Test
@@ -18,11 +18,11 @@ public class MinusFilterTest {
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5","doc7","doc4","doc9"));
         Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc4","doc7","doc10","doc9"));
 
-        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5"));
-        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5"));
+        minusFilter.filter(documentsContainMinusQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 
     @Test
@@ -30,11 +30,11 @@ public class MinusFilterTest {
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5","doc7","doc4"));
         Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc6"));
 
-        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5","doc7","doc4"));
-        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc5","doc7","doc4"));
+        minusFilter.filter(documentsContainMinusQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 
     @Test
@@ -42,11 +42,11 @@ public class MinusFilterTest {
         Set<String> preFiltered = new HashSet<>();
         Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc8"));
 
-        Set<String> expectedFiltered = new HashSet<>();
-        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>();
+        minusFilter.filter(documentsContainMinusQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 
     @Test
@@ -54,10 +54,10 @@ public class MinusFilterTest {
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc5","doc4"));
         Set<String> documentsContainMinusQuery = new HashSet<>();
 
-        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc5","doc4"));
-        this.minusFilter.filter(documentsContainMinusQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc5","doc4"));
+        minusFilter.filter(documentsContainMinusQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 }

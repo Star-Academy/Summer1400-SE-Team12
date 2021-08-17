@@ -1,22 +1,31 @@
-﻿namespace Phase4
+﻿using System;
+using System.Collections.Generic;
+
+namespace Phase4
 {
     class Program
     {
-        private static string _pathStudents = @"JsonFiles\Students.json";
-        private static string _pathScores = @"JsonFiles\Scores.json";
-        
+        private const string PathStudents = @"JsonFiles\Students.json";
+        private const string PathScores = @"JsonFiles\Scores.json";
+
         static void Main(string[] args)
         {
             var reader = new Reader();
-            var information = new AverageEngine();
+            var averageEngine = new AverageEngine();
+            var topStudentsIntroducer = new TopStudentsIntroducer(reader, averageEngine);
+            var studentAverages = topStudentsIntroducer.
+                GetTopStudents(3,PathStudents, PathScores);
+            PrintTopStudents(studentAverages);
             
-            var students = reader.ReadJson<Student>(_pathStudents);
-            var studentsScores = reader.ReadJson<StudentScore>(_pathScores);
-            var studentsAverage = information.calculateAvg(students, studentsScores);
-            information.PrintTopStudents(3,studentsAverage);
-
         }
-        
+
+        private static void PrintTopStudents(IEnumerable<StudentAverage> topStudents)
+        {
+            foreach (var topStudent in topStudents)
+            {
+                Console.WriteLine(topStudent.ToString());
+            }
+        }
     }
 
 }
