@@ -9,7 +9,6 @@ namespace Phase11_ASP.Implementations
         private readonly IFilterHandler _filterHandler;
         private readonly IDataHandler _dataHandler;
         
-
         public SearchEngine( IQueryCategorizer queryCategorizer,
              IFilterHandler filterHandler, IDataHandler dataHandler)
         {

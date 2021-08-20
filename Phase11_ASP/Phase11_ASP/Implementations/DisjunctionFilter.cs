@@ -8,10 +8,11 @@ namespace Phase11_ASP.Implementations
     public class DisjunctionFilter : IFilter
     {
         private readonly IInvertedIndexContextWrapper _invertedIndexContextWrapper;
-
+        
         public DisjunctionFilter(IInvertedIndexContextWrapper invertedIndexContextWrapper)
         {
             _invertedIndexContextWrapper = invertedIndexContextWrapper;
+            
         }
 
         public ISet<string> Filter(ISet<string> signQueries)

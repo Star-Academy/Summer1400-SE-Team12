@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Phase11_ASP.Implementations;
+using Phase11_ASP.Interfaces;
+
 
 namespace Phase11_ASP
 {
@@ -31,6 +34,18 @@ namespace Phase11_ASP
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Phase11_ASP", Version = "v1"});
             });
+            
+            services.AddSingleton<ISearchEngine, SearchEngine>();
+            services.AddSingleton<IDataHandler, DataHandler>();
+            services.AddSingleton<IFileReader, FileReader>();
+            services.AddSingleton<IFilterHandler, FilterHandler>();
+            services.AddSingleton<IInvertedIndex, InvertedIndex>();
+            services.AddSingleton<IQueryCategorizer, QueryCategorizer>();
+            services.AddTransient<IFilter, ConjunctionFilter>();
+            services.AddTransient<IFilter, DisjunctionFilter>();
+            var service = serviceProvider.GetServices<IFilter>();
+            var serviceB = service.First(o => o.GetType() == typeof(ConjunctionFilter));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
