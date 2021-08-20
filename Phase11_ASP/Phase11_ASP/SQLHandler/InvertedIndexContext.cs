@@ -5,7 +5,7 @@ using Phase11_ASP.Models;
 
 namespace Phase11_ASP.SQLHandler
 {
-    public class InvertedIndexContext : DbContext
+    public class InvertedIndexContext : DbContext, IInvertedIndexContext
         {
             public DbSet<Word> WordsDbContext { get; set; }
             public DbSet<Document> DocumentsDbContext { get; set; }

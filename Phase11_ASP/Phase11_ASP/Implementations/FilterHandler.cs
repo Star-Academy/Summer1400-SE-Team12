@@ -8,10 +8,10 @@ namespace Phase11_ASP.Implementations
     {
         private readonly IFilter _conjunctionFilter;
         private readonly IFilter _disjunctionFilter;
-        public FilterHandler(IFilter conjunctionFilter, IFilter disjunctionFilter)
+        public FilterHandler(IFilter.ServiceResolver serviceAccessor)
         {
-            _conjunctionFilter = conjunctionFilter;
-            _disjunctionFilter = disjunctionFilter;
+            _conjunctionFilter = serviceAccessor("conjunction");
+            _disjunctionFilter = serviceAccessor("disjunction");
         }
 
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Phase11_ASP.Implementations;
 using Phase11_ASP.Interfaces;
+using Phase11_ASP.SQLHandler;
 
 
 namespace Phase11_ASP
@@ -35,17 +37,31 @@ namespace Phase11_ASP
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Phase11_ASP", Version = "v1"});
             });
             
+            services.AddDbContext<InvertedIndexContext>(options => 
+                options.UseSqlServer("Server=.;Database=InvertedIndexPhase11;Trusted_Connection=True; MultipleActiveResultSets=true;"));
+            
             services.AddSingleton<ISearchEngine, SearchEngine>();
             services.AddSingleton<IDataHandler, DataHandler>();
             services.AddSingleton<IFileReader, FileReader>();
             services.AddSingleton<IFilterHandler, FilterHandler>();
             services.AddSingleton<IInvertedIndex, InvertedIndex>();
             services.AddSingleton<IQueryCategorizer, QueryCategorizer>();
+            services.AddSingleton<IInvertedIndexContext, InvertedIndexContext>();
+            services.AddSingleton<IInvertedIndexContextWrapper, InvertedIndexContextWrapper>();
             services.AddTransient<IFilter, ConjunctionFilter>();
-            services.AddTransient<IFilter, DisjunctionFilter>();
-            var service = serviceProvider.GetServices<IFilter>();
-            var serviceB = service.First(o => o.GetType() == typeof(ConjunctionFilter));
-
+            // services.AddTransient<IFilter, DisjunctionFilter>();
+            // services.AddTransient<IFilter.ServiceResolver>(serviceProvider => key =>
+            // {
+            //     switch (key)
+            //     {
+            //         case "conjunction":
+            //             return serviceProvider.GetService<ConjunctionFilter>();
+            //         case "disjunction":
+            //             return serviceProvider.GetService<DisjunctionFilter>();
+            //         default:
+            //             throw new KeyNotFoundException(); // or maybe return null, up to you
+            //     }
+            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

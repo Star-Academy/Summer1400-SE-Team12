@@ -9,7 +9,7 @@ namespace Phase11_ASP.SQLHandler
         public InvertedIndexContext CreateDbContext(string[] args)
         {
             const string connectionString =
-                "Server=. ; Database=EfcorePhase08Project ; Trusted_Connection=true; MultipleActiveResultSets=true;";
+                "Server=. ; Database=InvertedIndexPhase11 ; Trusted_Connection=true; MultipleActiveResultSets=true;";
             var builder = new DbContextOptionsBuilder<InvertedIndexContext>();
             builder.UseSqlServer(connectionString);
             return new InvertedIndexContext(builder.Options);
