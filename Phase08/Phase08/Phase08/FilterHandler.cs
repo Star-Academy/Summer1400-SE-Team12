@@ -19,11 +19,11 @@ namespace Phase08
             var plusFiltered = _disjunctionFilter.Filter(queryKeeper.PlusContain);
             var minusFiltered = _disjunctionFilter.Filter(queryKeeper.MinusContain);
             var withoutSignFiltered = _conjunctionFilter.Filter(queryKeeper.WithoutSignContain);
-            var finalFiltered = ExecuteFilterRelatedToSign(plusFiltered, minusFiltered, withoutSignFiltered);
+            var finalFiltered = FinalizeFilterWithSign(plusFiltered, minusFiltered, withoutSignFiltered);
             return finalFiltered;
         }
 
-        private ISet<string> ExecuteFilterRelatedToSign(IEnumerable<string> plusFiltered, IEnumerable<string> minusFiltered,
+        private ISet<string> FinalizeFilterWithSign(IEnumerable<string> plusFiltered, IEnumerable<string> minusFiltered,
             IEnumerable<string> withoutSignFiltered)
         {
             var finalFiltered = new HashSet<string>(withoutSignFiltered);

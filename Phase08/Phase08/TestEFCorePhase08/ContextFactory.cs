@@ -22,15 +22,15 @@ namespace TestEFCorePhase08
 
         private static void FillContextWithExamples()
         {
-            var doc1 = new Document("doc1", "hello im zahra");
+            var doc1 = new Document(){DocName = "doc1", DocContents = "hello im zahra"};
             doc1.wordsCollection.Add(new Word() {Content = "zahra"});
-            var doc2 = new Document("doc2", "hello im neda");
+            var doc2 = new Document(){DocName = "doc2", DocContents = "hello im neda"};
             doc2.wordsCollection.Add(new Word() {Content = "neda"});
-            var doc3 = new Document("doc3", "hello im ali , bye !");
+            var doc3 = new Document(){DocName = "doc3", DocContents = "hello im ali , bye !"};
             doc3.wordsCollection.Add(new Word() {Content = "ali"});
-            var doc4 = new Document("doc4", "bye everyone");
+            var doc4 = new Document(){DocName = "doc4", DocContents = "bye everyone"};
             doc4.wordsCollection.Add(new Word() {Content = "everyone"});
-            var doc5 = new Document("doc5", "bye bye");
+            var doc5 = new Document(){DocName = "doc5", DocContents = "bye bye"};
             var word1 = new Word() {Content = "hello", DocsCollection = new List<Document>() {doc1, doc2, doc3}};
             var word2 = new Word() {Content = "bye", DocsCollection = new List<Document>() {doc3, doc4, doc5}};
             

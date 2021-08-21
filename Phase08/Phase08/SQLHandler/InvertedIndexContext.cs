@@ -38,7 +38,7 @@ namespace SQLHandler
             {
                 var word = WordsDbContext.FirstOrDefault(w => w.Content == wordIterator);
                 if (word == null)
-                    WordsDbContext.Add(new Word(wordIterator, new List<Document>()));
+                    WordsDbContext.Add(new Word(){Content = wordIterator, DocsCollection = new List<Document>()});
                 word.DocsCollection.Add(document);
             }
         }

@@ -4,7 +4,7 @@ namespace Phase08
 {
     class Program
     {
-        const string path = @"EnglishData";
+        const string path = "EnglishData";
         static void Main(string[] args)
         {
             var invertedIndexWrapper = new InvertedIndexContextWrapper(new InvertedIndexFactory().CreateDbContext(args));
