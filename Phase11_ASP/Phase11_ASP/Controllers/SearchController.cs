@@ -21,7 +21,7 @@ namespace Phase11_ASP.Controllers
         {
             var queries = query.ToLower().Split(" ");
             var answers = _searchEngine.Search(queries, FolderPath);
-            return Ok(string.Join(" ",answers));
+            return Ok(answers);
         }
     }
 }
