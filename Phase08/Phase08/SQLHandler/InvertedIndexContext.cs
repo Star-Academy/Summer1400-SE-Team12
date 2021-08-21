@@ -28,8 +28,9 @@ namespace SQLHandler
         
         public bool IsDataBaseInitialized()
         {
-            return !DocumentsDbContext.Any() &&
-                   !WordsDbContext.Any();
+            var isAnyDoc = DocumentsDbContext.Any();
+            var isAnyWord = WordsDbContext.Any();
+            return isAnyDoc && isAnyWord;
         }
         
         public void AddDocumentWords(Document document, IEnumerable<string> docWords)
@@ -38,8 +39,14 @@ namespace SQLHandler
             {
                 var word = WordsDbContext.FirstOrDefault(w => w.Content == wordIterator);
                 if (word == null)
-                    WordsDbContext.Add(new Word(wordIterator, new List<Document>()));
-                word.DocsCollection.Add(document);
+                {
+                    WordsDbContext.Add(new Word(wordIterator, new List<Document>(){document}));
+                    SaveChanges();
+                }
+                else
+                {
+                    word.DocsCollection.Add(document);
+                }
             }
         }
         

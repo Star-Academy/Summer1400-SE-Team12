@@ -6,7 +6,7 @@ namespace Phase11_ASP.Implementations
 {
     public class QueryCategorizer : IQueryCategorizer
     {
-        public QueryKeeper CategorizeQueries(IEnumerable<string> queries)
+        public QueryKeeper CategorizeQueries(string[] queries)
         {
             var plusContained = new HashSet<string>();
             var minusContained = new HashSet<string>();

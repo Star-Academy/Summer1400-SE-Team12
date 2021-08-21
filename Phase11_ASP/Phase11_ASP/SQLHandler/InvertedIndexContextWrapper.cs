@@ -5,9 +5,9 @@ namespace Phase11_ASP.SQLHandler
 {
     public class InvertedIndexContextWrapper : IInvertedIndexContextWrapper
     {
-        private IInvertedIndexContext _invertedIndexContext;
+        private InvertedIndexContext _invertedIndexContext;
 
-        public InvertedIndexContextWrapper(IInvertedIndexContext invertedIndexContext)
+        public InvertedIndexContextWrapper(InvertedIndexContext invertedIndexContext)
         {
             _invertedIndexContext = invertedIndexContext;
         }

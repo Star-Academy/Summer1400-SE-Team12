@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Phase11_ASP.Interfaces;
 
 namespace Phase11_ASP.Controllers
@@ -7,9 +8,9 @@ namespace Phase11_ASP.Controllers
     [Route("[controller]/[action]")]
     public class SearchController : Controller
     {
-        private const string FolderPath = @"D:\programming\codestar_internship\Phase11_ASP\Phase11_ASP\EnglishData";
+        private const string FolderPath = @"D:\programming\Summer1400-SE-Team12\Phase11_ASP\Phase11_ASP\EnglishData";
         private readonly ISearchEngine _searchEngine;
-
+        
         public SearchController(ISearchEngine searchEngine)
         {
             _searchEngine = searchEngine;
@@ -20,7 +21,7 @@ namespace Phase11_ASP.Controllers
         {
             var queries = query.ToLower().Split(" ");
             var answers = _searchEngine.Search(queries, FolderPath);
-            return Ok(answers);
+            return Ok(string.Join(" ",answers));
         }
     }
 }

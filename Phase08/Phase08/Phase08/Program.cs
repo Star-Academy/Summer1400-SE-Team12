@@ -1,13 +1,15 @@
-﻿using SQLHandler;
+﻿using System;
+using SQLHandler;
 
 namespace Phase08
 {
     class Program
     {
-        const string path = @"EnglishData";
+        const string path = @"D:\programming\Summer1400-SE-Team12\Phase08\Phase08\Phase08\EnglishData";
         static void Main(string[] args)
         {
-            var invertedIndexWrapper = new InvertedIndexContextWrapper(new InvertedIndexFactory().CreateDbContext(args));
+            var invertedIndexContext = new InvertedIndexFactory().CreateDbContext(args);
+            var invertedIndexWrapper = new InvertedIndexContextWrapper(invertedIndexContext);
             var fileReader = new FileReader();
             var ioHandler = new IOHandler();
             var queryCategorizer = new QueryCategorizer();
@@ -18,7 +20,7 @@ namespace Phase08
             
             var dataHandler = new DataHandler(fileReader, invertedIndex, invertedIndexWrapper);
             var searchEngine = new SearchEngine(queryCategorizer, filterHandler, dataHandler);
-
+            
             var queries = ioHandler.ReadQueries();
             var answers = searchEngine.Search(queries,path);
             ioHandler.PrintResultDocuments(answers);

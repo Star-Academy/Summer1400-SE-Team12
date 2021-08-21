@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Phase11_ASP.Interfaces;
 
@@ -8,10 +10,10 @@ namespace Phase11_ASP.Implementations
     {
         private readonly IFilter _conjunctionFilter;
         private readonly IFilter _disjunctionFilter;
-        public FilterHandler(IFilter.ServiceResolver serviceAccessor)
+        public FilterHandler(Func<string, IFilter> filterResolver)
         {
-            _conjunctionFilter = serviceAccessor("conjunction");
-            _disjunctionFilter = serviceAccessor("disjunction");
+            _conjunctionFilter = filterResolver("conjunction");
+            _disjunctionFilter = filterResolver("disjunction");
         }
 
 

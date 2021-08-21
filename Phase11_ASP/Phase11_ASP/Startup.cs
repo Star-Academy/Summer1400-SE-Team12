@@ -40,28 +40,27 @@ namespace Phase11_ASP
             services.AddDbContext<InvertedIndexContext>(options => 
                 options.UseSqlServer("Server=.;Database=InvertedIndexPhase11;Trusted_Connection=True; MultipleActiveResultSets=true;"));
             
-            services.AddSingleton<ISearchEngine, SearchEngine>();
-            services.AddSingleton<IDataHandler, DataHandler>();
-            services.AddSingleton<IFileReader, FileReader>();
-            services.AddSingleton<IFilterHandler, FilterHandler>();
-            services.AddSingleton<IInvertedIndex, InvertedIndex>();
-            services.AddSingleton<IQueryCategorizer, QueryCategorizer>();
-            services.AddSingleton<IInvertedIndexContext, InvertedIndexContext>();
-            services.AddSingleton<IInvertedIndexContextWrapper, InvertedIndexContextWrapper>();
-            services.AddTransient<IFilter, ConjunctionFilter>();
-            // services.AddTransient<IFilter, DisjunctionFilter>();
-            // services.AddTransient<IFilter.ServiceResolver>(serviceProvider => key =>
-            // {
-            //     switch (key)
-            //     {
-            //         case "conjunction":
-            //             return serviceProvider.GetService<ConjunctionFilter>();
-            //         case "disjunction":
-            //             return serviceProvider.GetService<DisjunctionFilter>();
-            //         default:
-            //             throw new KeyNotFoundException(); // or maybe return null, up to you
-            //     }
-            // });
+            services.AddTransient<ISearchEngine, SearchEngine>();
+            services.AddTransient<IDataHandler, DataHandler>();
+            services.AddTransient<IFileReader, FileReader>();
+            services.AddTransient<IFilterHandler, FilterHandler>();
+            services.AddTransient<IInvertedIndex, InvertedIndex>();
+            services.AddTransient<IQueryCategorizer, QueryCategorizer>();
+            // services.AddTransient<IInvertedIndexContext, InvertedIndexContext>();
+            services.AddTransient<IInvertedIndexContextWrapper, InvertedIndexContextWrapper>();
+            services.AddTransient<ConjunctionFilter>();
+            services.AddTransient<DisjunctionFilter>();
+            services.AddTransient<Func<string, IFilter>>(serviceProvider => key =>  
+            {  
+                switch (key)  
+                {  
+                    case "disjunction":
+                        return serviceProvider.GetService<DisjunctionFilter>();  
+                    case "conjunction":  
+                        return serviceProvider.GetService<ConjunctionFilter>();
+                    default: throw new KeyNotFoundException();
+                }  
+            });  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
