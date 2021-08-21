@@ -5,7 +5,7 @@ using Phase11_ASP.Models;
 
 namespace Phase11_ASP.SQLHandler
 {
-    public class InvertedIndexContext : DbContext//, IInvertedIndexContext
+    public class InvertedIndexContext : DbContext
     {
         public DbSet<Word> WordsDbContext { get; set; }
         public DbSet<Document> DocumentsDbContext { get; set; }
@@ -41,13 +41,10 @@ namespace Phase11_ASP.SQLHandler
                 var word = WordsDbContext.FirstOrDefault(w => w.Content == wordIterator);
                 if (word == null)
                 {
-                    WordsDbContext.Add(new Word(wordIterator, new List<Document>(){document}));
+                    WordsDbContext.Add(new Word() {Content = wordIterator, DocsCollection = new List<Document>()});
                     SaveChanges();
                 }
-                else
-                {
-                    word.DocsCollection.Add(document);
-                }
+                word.DocsCollection.Add(document);
             }
         }
         

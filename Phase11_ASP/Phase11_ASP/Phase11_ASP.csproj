@@ -22,4 +22,19 @@
       <Folder Include="Interfaces" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="EnglishData\57110">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="EnglishData\58043">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="EnglishData\58044">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="EnglishData\58045">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

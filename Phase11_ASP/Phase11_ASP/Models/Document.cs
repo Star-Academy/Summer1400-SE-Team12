@@ -12,12 +12,6 @@ namespace Phase11_ASP.Models
 
         public List<Word> wordsCollection { get; set; } = new List<Word>();
         
-
-        public Document(string docName, string docContents)
-        {
-            DocName = docName;
-            DocContents = docContents;
-        }
     }
     
 }

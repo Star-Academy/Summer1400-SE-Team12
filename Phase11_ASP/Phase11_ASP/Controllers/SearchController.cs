@@ -8,7 +8,7 @@ namespace Phase11_ASP.Controllers
     [Route("[controller]/[action]")]
     public class SearchController : Controller
     {
-        private const string FolderPath = @"D:\programming\Summer1400-SE-Team12\Phase11_ASP\Phase11_ASP\EnglishData";
+        private const string FolderPath = "EnglishData";
         private readonly ISearchEngine _searchEngine;
         
         public SearchController(ISearchEngine searchEngine)

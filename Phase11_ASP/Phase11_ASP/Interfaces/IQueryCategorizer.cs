@@ -5,7 +5,7 @@ namespace Phase11_ASP.Interfaces
 {
     public interface IQueryCategorizer
     {
-        QueryKeeper CategorizeQueries(string[] queries);
+        QueryKeeper CategorizeQueries(IEnumerable<string> queries);
     }
     
 }

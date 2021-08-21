@@ -17,7 +17,8 @@ namespace Phase11_ASP.Implementations
         public ISet<string> Filter(ISet<string> signQueries)
         {
             var firstQuery = signQueries.First();
-            ISet<string> conjunctionFiltered = new HashSet<string>(_invertedIndexContextWrapper.GetDocumentsContainQuery(firstQuery));
+            ISet<string> conjunctionFiltered = new HashSet<string>(_invertedIndexContextWrapper.
+                GetDocumentsContainQuery(firstQuery));
 
             return signQueries.Aggregate(conjunctionFiltered, (current, query) =>
                 current.Intersect(_invertedIndexContextWrapper.GetDocumentsContainQuery(query)).
