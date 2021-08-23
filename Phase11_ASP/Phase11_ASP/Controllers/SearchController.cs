@@ -17,7 +17,7 @@ namespace Phase11_ASP.Controllers
             _searchEngine = searchEngine;
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult GetDocuments([FromBody]string query)
         {
             var queries = query.ToLower().Split(" ");
