@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-image: url('bb.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-position: right;
+}
+
+.nav-menu {
+    float: right;
+    /* shomare gozari nmikone */
+    list-style: none;
+    margin-top: 25px;
+}
+
+.nav-menu li {
+    display: inline-block;
+    /* kenare ham avord */
+}
+
+.nav-menu li a {
+    color: rgb(236, 101, 207);
+    text-decoration: beige;
+    padding: 5px 20px;
+    font-size: 20px;
+}
+
+.dokme-bargasht {
+    margin-top: 1px;
+    margin-left: 43px;
+}
+
+.bttn {
+    border: 1px solid white;
+    padding: 5px 10px;
+    color: rgb(219, 49, 143);
+    font-size: 29px;
+}
