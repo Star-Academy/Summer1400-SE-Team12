@@ -15,7 +15,6 @@ namespace Phase08
             var conjunctionFilter = new ConjunctionFilter(invertedIndexWrapper);
             var disjunctionFilter = new DisjunctionFilter(invertedIndexWrapper);
             var filterHandler = new FilterHandler(conjunctionFilter, disjunctionFilter);
-            
             var dataHandler = new DataHandler(fileReader, invertedIndex, invertedIndexWrapper);
             var searchEngine = new SearchEngine(queryCategorizer, filterHandler, dataHandler);
 
