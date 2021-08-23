@@ -23,7 +23,7 @@ namespace Phase11_ASP.Controllers
             var queries = query.ToLower().Split(" ");
             var answers = _searchEngine.Search(queries, FolderPath);
             if (!answers.Any())
-                return NotFound();
+                return Ok("No document!");
             return Ok(answers);
         }
     }
