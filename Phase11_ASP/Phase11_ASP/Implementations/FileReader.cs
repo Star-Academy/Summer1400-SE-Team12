@@ -8,7 +8,7 @@ namespace Phase11_ASP.Implementations
 {
     public class FileReader : IFileReader
     {
-        public Dictionary<string, string> ReadFile(string path)
+        public IDictionary<string, string> ReadFile(string path)
         {
             var documents = new Dictionary<string, string>();
             try

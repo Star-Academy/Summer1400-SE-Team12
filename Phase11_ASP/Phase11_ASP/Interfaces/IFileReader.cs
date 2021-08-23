@@ -4,6 +4,6 @@ namespace Phase11_ASP.Interfaces
 {
     public interface IFileReader
     {
-        Dictionary<string,string> ReadFile(string path);
+        IDictionary<string,string> ReadFile(string path);
     }
 }

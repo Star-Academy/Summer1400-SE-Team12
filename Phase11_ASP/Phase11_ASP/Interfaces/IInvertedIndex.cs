@@ -4,6 +4,6 @@ namespace Phase11_ASP.Interfaces
 {
     public interface IInvertedIndex
     {
-        void BuildInvertedIndex(Dictionary<string, string> documents);
+        void BuildInvertedIndex(IDictionary<string, string> documents);
     }
 }

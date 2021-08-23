@@ -15,7 +15,7 @@ namespace Phase11_ASP.Implementations
             _invertedIndexContextWrapper = invertedIndexContextWrapper;
         }
 
-        public void BuildInvertedIndex(Dictionary<string, string> docMapToContent)
+        public void BuildInvertedIndex(IDictionary<string, string> docMapToContent)
         {
             foreach (var (docName, docContent) in docMapToContent)
             {
