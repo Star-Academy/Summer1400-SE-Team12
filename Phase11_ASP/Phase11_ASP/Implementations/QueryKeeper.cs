@@ -4,10 +4,10 @@ namespace Phase11_ASP.Implementations
 {
     public class QueryKeeper
     {
-        public HashSet<string> PlusContain { get;}
-        public HashSet<string> MinusContain { get;}
-        public HashSet<string> WithoutSignContain { get;}
-        public QueryKeeper(HashSet<string> plusContain, HashSet<string> minusContain, HashSet<string> withoutSignContain)
+        public ISet<string> PlusContain { get;}
+        public ISet<string> MinusContain { get;}
+        public ISet<string> WithoutSignContain { get;}
+        public QueryKeeper(ISet<string> plusContain, ISet<string> minusContain, ISet<string> withoutSignContain)
         {
             PlusContain = plusContain;
             MinusContain = minusContain;
