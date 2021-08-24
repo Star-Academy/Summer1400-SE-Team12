@@ -21,7 +21,7 @@ namespace Phase11_ASP.Implementations
         {
             if (_invertedIndexContextWrapper.IsDataBaseInitialized()) return;
             
-            var documents = _fileReader.ReadFile(folderPath);
+            var documents = _fileReader.ReadFiles(folderPath);
             _invertedIndex.BuildInvertedIndex(documents);
         }
         
