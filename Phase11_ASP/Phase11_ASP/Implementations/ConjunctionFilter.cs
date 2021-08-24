@@ -20,10 +20,10 @@ namespace Phase11_ASP.Implementations
             ISet<string> conjunctionFiltered = new HashSet<string>(_invertedIndexContextWrapper.
                 GetDocumentsContainQuery(firstQuery));
 
-            var unionDocs = signQueries.Aggregate(conjunctionFiltered, (current, query) =>
+            var filteredDocs = signQueries.Aggregate(conjunctionFiltered, (current, query) =>
                 current.Intersect(_invertedIndexContextWrapper.GetDocumentsContainQuery(query)).
                     ToHashSet());
-            return unionDocs;
+            return filteredDocs;
         }
     }
 }

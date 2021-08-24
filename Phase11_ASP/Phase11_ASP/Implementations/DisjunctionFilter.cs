@@ -19,10 +19,10 @@ namespace Phase11_ASP.Implementations
         {
             var disjunctionFiltered = new HashSet<string>();
             
-            var intersectedDocs =  signQueries.Aggregate(disjunctionFiltered, (current, query) =>
+            var filteredDocs =  signQueries.Aggregate(disjunctionFiltered, (current, query) =>
                 current.Union(_invertedIndexContextWrapper.GetDocumentsContainQuery(query)).
                     ToHashSet());
-            return intersectedDocs;
+            return filteredDocs;
         }
 
         
