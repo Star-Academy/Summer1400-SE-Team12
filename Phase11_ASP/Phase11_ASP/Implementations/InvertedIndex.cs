@@ -6,7 +6,7 @@ using Phase11_ASP.SQLHandler;
 
 namespace Phase11_ASP.Implementations
 {
-    public class InvertedIndex : IInvertedIndex
+    internal class InvertedIndex : IInvertedIndex
     {
         private readonly IInvertedIndexContextWrapper _invertedIndexContextWrapper;
 

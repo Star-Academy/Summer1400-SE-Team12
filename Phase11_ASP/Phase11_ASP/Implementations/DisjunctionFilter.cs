@@ -5,7 +5,7 @@ using Phase11_ASP.SQLHandler;
 
 namespace Phase11_ASP.Implementations
 {
-    public class DisjunctionFilter : IFilter
+    internal class DisjunctionFilter : IFilter
     {
         private readonly IInvertedIndexContextWrapper _invertedIndexContextWrapper;
         

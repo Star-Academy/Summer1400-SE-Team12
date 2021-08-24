@@ -4,7 +4,7 @@ using Phase11_ASP.Interfaces;
 
 namespace Phase11_ASP.Implementations
 {
-    public class QueryCategorizer : IQueryCategorizer
+    internal class QueryCategorizer : IQueryCategorizer
     {
         public QueryKeeper CategorizeQueries(IEnumerable<string> queries)
         {

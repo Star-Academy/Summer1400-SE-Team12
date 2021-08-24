@@ -3,7 +3,7 @@ using Phase11_ASP.Interfaces;
 
 namespace Phase11_ASP.Implementations
 {
-    public class SearchEngine : ISearchEngine
+    internal class SearchEngine : ISearchEngine
     {
         private readonly IQueryCategorizer _queryCategorizer;
         private readonly IFilterHandler _filterHandler;

@@ -3,7 +3,7 @@ using Phase11_ASP.SQLHandler;
 
 namespace Phase11_ASP.Implementations
 {
-    public class DataHandler : IDataHandler
+    internal class DataHandler : IDataHandler
     {
         private readonly IFileReader _fileReader;
         private readonly IInvertedIndex _invertedIndex;

@@ -1,6 +1,6 @@
 ﻿namespace Phase11_ASP.Interfaces
 {
-    public interface IDataHandler
+    internal interface IDataHandler
     {
         void InitializeDataBase(string folderPath);
     }

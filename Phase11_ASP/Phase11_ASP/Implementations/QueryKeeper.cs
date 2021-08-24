@@ -2,7 +2,7 @@
 
 namespace Phase11_ASP.Implementations
 {
-    public class QueryKeeper
+    internal class QueryKeeper
     {
         public ISet<string> PlusContain { get;}
         public ISet<string> MinusContain { get;}

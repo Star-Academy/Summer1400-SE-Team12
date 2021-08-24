@@ -3,7 +3,7 @@ using Phase11_ASP.Implementations;
 
 namespace Phase11_ASP.Interfaces
 {
-    public interface IFilterHandler
+    internal interface IFilterHandler
     {
         ISet<string> Filter(QueryKeeper queryKeeper);
     }

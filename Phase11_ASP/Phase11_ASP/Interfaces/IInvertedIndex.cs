@@ -2,7 +2,7 @@
 
 namespace Phase11_ASP.Interfaces
 {
-    public interface IInvertedIndex
+    internal interface IInvertedIndex
     {
         void BuildInvertedIndex(IDictionary<string, string> documents);
     }

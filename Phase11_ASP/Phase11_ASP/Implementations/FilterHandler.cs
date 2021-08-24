@@ -6,7 +6,7 @@ using Phase11_ASP.Interfaces;
 
 namespace Phase11_ASP.Implementations
 {
-    public class FilterHandler : IFilterHandler
+    internal class FilterHandler : IFilterHandler
     {
         private readonly IFilter _conjunctionFilter;
         private readonly IFilter _disjunctionFilter;

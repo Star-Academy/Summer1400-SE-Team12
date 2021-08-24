@@ -2,7 +2,7 @@
 
 namespace Phase11_ASP.Interfaces
 {
-    public interface IFilter
+    internal interface IFilter
     {
         ISet<string> Filter(ISet<string> signQueries);
     }

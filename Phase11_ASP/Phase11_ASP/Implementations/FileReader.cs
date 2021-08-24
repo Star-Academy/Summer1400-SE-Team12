@@ -6,7 +6,7 @@ using Phase11_ASP.Interfaces;
 
 namespace Phase11_ASP.Implementations
 {
-    public class FileReader : IFileReader
+    internal class FileReader : IFileReader
     {
         public IDictionary<string, string> ReadFile(string path)
         {
