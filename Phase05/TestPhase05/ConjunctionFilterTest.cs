@@ -18,7 +18,7 @@ namespace TestPhase05
 
 
         [Fact]
-        public void FilterTest_shouldReturnDocumentsThatContainSingleQuery()
+        public void FilterShouldReturnDocumentsThatContainSingleQuery()
         {
             var expected = new HashSet<string>() {"s3"};
             var withoutSignFilterQuery = new HashSet<string>() {"hello", "bye"};
@@ -30,8 +30,8 @@ namespace TestPhase05
         
         private void SetupInvertedIndexGetMethod()
         {
-            _invertedIndex.GetInvertedIndexValue("hello").Returns(new HashSet<string>() {"s1", "s2", "s3"});
-            _invertedIndex.GetInvertedIndexValue("bye").Returns(new HashSet<string>() {"s3", "s4", "s5"});
+            _invertedIndex.GetValueOfInvertedIndexKey("hello").Returns(new HashSet<string>() {"s1", "s2", "s3"});
+            _invertedIndex.GetValueOfInvertedIndexKey("bye").Returns(new HashSet<string>() {"s3", "s4", "s5"});
         }
 
 

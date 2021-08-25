@@ -4,7 +4,7 @@ namespace Phase05
 {
     public interface IInvertedIndex
     {
-        HashSet<string> GetInvertedIndexValue(string key);
+        HashSet<string> GetValueOfInvertedIndexKey(string key);
         void BuildInvertedIndex(Dictionary<string, string> docMapToContent);
     }
 }

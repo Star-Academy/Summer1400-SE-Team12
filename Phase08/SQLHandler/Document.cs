@@ -12,12 +12,7 @@ namespace SQLHandler
 
         public List<Word> wordsCollection { get; set; } = new List<Word>();
         
-
-        public Document(string docName, string docContents)
-        {
-            DocName = docName;
-            DocContents = docContents;
-        }
+        
     }
     
 }

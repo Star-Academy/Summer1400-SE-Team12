@@ -18,8 +18,8 @@ public class Main {
 
         Map<String,String> docNameMapToContent = fileReader.readDocuments(PATH_OF_THE_FILE);
         invertedIndex.buildInvertedIndex(docNameMapToContent);
-        queryCategorizer.categorizeQuery();
-        Set<String> answers = filterizer.filterDocuments(queryCategorizer.getQueryKeeper()
+        QueryKeeper queryKeeper = queryCategorizer.categorizeQuery();
+        Set<String> answers = filterizer.filterDocuments(queryKeeper
                 ,docNameMapToContent.keySet());
         printFilteredAnswers(answers);
     }

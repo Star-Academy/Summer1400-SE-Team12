@@ -23,17 +23,17 @@ namespace Phase05
 
         private void AddDocumentWords(string docName, string[] docWords)
         {
-            foreach (string word in docWords)
+            foreach (var word in docWords)
             {
                 if (_invertedIndexMap.ContainsKey(word))
-                    _invertedIndexMap.GetValueOrDefault(word,new HashSet<string>()).Add(docName);
+                    _invertedIndexMap[word].Add(docName);
                 else
                     _invertedIndexMap.Add(word, new HashSet<string> {docName});
             }
         }
 
 
-        public HashSet<string> GetInvertedIndexValue(string key)
+        public HashSet<string> GetValueOfInvertedIndexKey(string key)
         {
             return _invertedIndexMap.GetValueOrDefault(key, new HashSet<string>());
         }

@@ -5,18 +5,6 @@ namespace Phase05
 {
     public class IOHandler : IIOHandler
     {
-        private readonly FileReader _fileReader;
-
-        public IOHandler(FileReader fileReader)
-        {
-            _fileReader = fileReader;
-        }
-
-        public Dictionary<string, string> ReadDocuments(string path)
-        {
-            return _fileReader.ReadFile(path);
-        }
-        
         public string[] ReadQueries()
         {
             Console.WriteLine("Please enter a query");
@@ -31,7 +19,6 @@ namespace Phase05
             else
                 foreach (var answer in answers)
                     Console.Write(answer + "  ");
-            
         }
     }
 }

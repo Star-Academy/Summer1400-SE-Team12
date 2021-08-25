@@ -17,7 +17,7 @@ namespace Phase05
             var disjunctionFiltered = new HashSet<string>();
 
             return signQueries.Aggregate(disjunctionFiltered, (current, query) =>
-                current.Union(_invertedIndex.GetInvertedIndexValue(query)).ToHashSet());
+                current.Union(_invertedIndex.GetValueOfInvertedIndexKey(query)).ToHashSet());
         }
         
     }

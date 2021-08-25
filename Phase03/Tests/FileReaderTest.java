@@ -13,13 +13,13 @@ public class FileReaderTest {
 
         FileReader fileReader = new FileReader();
 
-        String textFileExpected = "JUnit provides a tool for execution of your test cases";
-        String fileNameExpected = "text1.txt";
-        final String PATH_OF_FILE = "src\\TesterFile";
-        Map<String, String> actualValue = fileReader.readDocuments(PATH_OF_FILE);
+        final String textFileExpected = "JUnit provides a tool for execution of your test cases";
+        final String fileNameExpected = "text1.txt";
+        final String pathOfFile = "src\\TesterFile";
+        Map<String, String> actualValue = fileReader.readDocuments(pathOfFile);
 
         Assert.assertTrue(actualValue.containsKey(fileNameExpected));
-        Assert.assertTrue(actualValue.containsValue(textFileExpected.toLowerCase()));
+        Assert.assertEquals(textFileExpected.toLowerCase(),actualValue.get(fileNameExpected));
 
     }
 }

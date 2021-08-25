@@ -16,8 +16,9 @@ namespace TestPhase05
             _disjunctionFilter = new DisjunctionFilter(_invertedIndex);
         }
 
+        
         [Fact]
-        public void MinusFilterTest_shouldReturnRemovedDocumentsContainSingleQuery()
+        public void MinusFilterShouldReturnRemovedDocumentsContainSingleQuery()
         {
             var expected = new HashSet<string>() {"doc1", "doc2", "doc3", "doc4", "doc5"};
             var minusQuery = new HashSet<string>() {"hello", "bye"};
@@ -28,8 +29,8 @@ namespace TestPhase05
 
         private void SetupInvertedIndexGetMethod()
         {
-            _invertedIndex.GetInvertedIndexValue("hello").Returns(new HashSet<string>() {"doc1", "doc2", "doc3"});
-            _invertedIndex.GetInvertedIndexValue("bye").Returns(new HashSet<string>() {"doc3", "doc4", "doc5"});
+            _invertedIndex.GetValueOfInvertedIndexKey("hello").Returns(new HashSet<string>() {"doc1", "doc2", "doc3"});
+            _invertedIndex.GetValueOfInvertedIndexKey("bye").Returns(new HashSet<string>() {"doc3", "doc4", "doc5"});
         }
     }
 }

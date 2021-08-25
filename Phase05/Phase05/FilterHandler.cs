@@ -14,16 +14,17 @@ namespace Phase05
         }
 
 
-        public ISet<string> Filter(IQueryKeeper queryKeeper)
+        public ISet<string> Filter(QueryKeeper queryKeeper)
         {
-            var plusFiltered = _disjunctionFilter.Filter(queryKeeper.GetPlusContain());
-            var minusFiltered = _disjunctionFilter.Filter(queryKeeper.GetMinusContain());
-            var withoutSignFiltered = _conjunctionFilter.Filter(queryKeeper.GetWithoutSignContain());
-            return GeneralizeSignFiltered(plusFiltered, minusFiltered, withoutSignFiltered);
+            var plusFiltered = _disjunctionFilter.Filter(queryKeeper._plusContain);
+            var minusFiltered = _disjunctionFilter.Filter(queryKeeper._minusContain);
+            var withoutSignFiltered = _conjunctionFilter.Filter(queryKeeper._withoutSignContain);
+            var finalFiltered = ExecuteFilterRelatedToSign(plusFiltered, minusFiltered, withoutSignFiltered);
+            return finalFiltered;
         }
 
-        private ISet<string> GeneralizeSignFiltered(ISet<string> plusFiltered, ISet<string> minusFiltered,
-            ISet<string> withoutSignFiltered)
+        private ISet<string> ExecuteFilterRelatedToSign(IEnumerable<string> plusFiltered, IEnumerable<string> minusFiltered,
+            IEnumerable<string> withoutSignFiltered)
         {
             var finalFiltered = new HashSet<string>(withoutSignFiltered);
             return finalFiltered.Except(minusFiltered).Intersect(plusFiltered).ToHashSet();

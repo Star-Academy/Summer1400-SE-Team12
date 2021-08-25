@@ -17,7 +17,7 @@ namespace Phase08
             _dataHandler = dataHandler;
         }
 
-        public ISet<string> Search(string[] queries,string folderPath)
+        public ISet<string> Search(IEnumerable<string> queries,string folderPath)
         {
             _dataHandler.InitializeDataBase(folderPath);
             var queryKeeper = _queryCategorizer.CategorizeQueries(queries);

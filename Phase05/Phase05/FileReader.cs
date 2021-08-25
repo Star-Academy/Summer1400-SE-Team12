@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Phase05
 {
@@ -8,19 +9,18 @@ namespace Phase05
     {
         public Dictionary<string, string> ReadFile(string path)
         {
+            var documents = new Dictionary<string, string>();
             try
             {
-                var documents = new Dictionary<string, string>();
-                foreach (string filePath in Directory.GetFiles(path))
-                    documents.Add(Path.GetFileName(filePath), File.ReadAllText(filePath));
-                            return documents;
+                Directory.GetFiles(path).ToDictionary(Path.GetFileName, File.ReadAllText);
             }
             catch (FileNotFoundException filException)
             {
                 Console.WriteLine(filException);
-                throw;
+                Environment.Exit(1);
             }
-           
+
+            return documents;
         }
     }
 }

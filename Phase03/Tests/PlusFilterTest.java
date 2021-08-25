@@ -14,7 +14,7 @@ public class PlusFilterTest {
 
     @Before
     public void setup(){
-        this.plusFilter = new PlusFilter();
+        plusFilter = new PlusFilter();
     }
 
     @Test
@@ -22,11 +22,11 @@ public class PlusFilterTest {
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc6"));
         Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc4","doc5"));
 
-        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc4","doc5","doc6"));
-        this.plusFilter.filter(documentsContainMinusQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc4","doc5","doc6"));
+        plusFilter.filter(documentsContainMinusQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 
     @Test
@@ -34,11 +34,11 @@ public class PlusFilterTest {
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc6"));
         Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc6"));
 
-        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc6"));
-        this.plusFilter.filter(documentsContainMinusQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc6"));
+        plusFilter.filter(documentsContainMinusQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 
     @Test
@@ -46,11 +46,11 @@ public class PlusFilterTest {
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc4"));
         Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc6","doc7","doc8"));
 
-        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc4", "doc6","doc7","doc8"));
-        this.plusFilter.filter(documentsContainMinusQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc1","doc2","doc3","doc4", "doc6","doc7","doc8"));
+        plusFilter.filter(documentsContainMinusQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 
     @Test
@@ -58,11 +58,11 @@ public class PlusFilterTest {
         Set<String> preFiltered = new HashSet<>();
         Set<String> documentsContainMinusQuery = new HashSet<>(Arrays.asList("doc3","doc4","doc5","doc6"));
 
-        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc3","doc4","doc5","doc6"));
-        this.plusFilter.filter(documentsContainMinusQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc3","doc4","doc5","doc6"));
+        plusFilter.filter(documentsContainMinusQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 
     @Test
@@ -70,10 +70,10 @@ public class PlusFilterTest {
         Set<String> preFiltered = new HashSet<>(Arrays.asList("doc3","doc5","doc4","doc6"));
         Set<String> documentsContainMinusQuery = new HashSet<>();
 
-        Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc3","doc4","doc6","doc5"));
-        this.plusFilter.filter(documentsContainMinusQuery,preFiltered);
+        final Set<String> expectedFiltered = new HashSet<>(Arrays.asList("doc3","doc4","doc6","doc5"));
+        plusFilter.filter(documentsContainMinusQuery,preFiltered);
         Set<String> actualFiltered = preFiltered;
 
-        Assert.assertArrayEquals(expectedFiltered.toArray(), actualFiltered.toArray());
+        Assert.assertEquals(expectedFiltered, actualFiltered);
     }
 }

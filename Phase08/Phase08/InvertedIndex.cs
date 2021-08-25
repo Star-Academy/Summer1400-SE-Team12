@@ -19,7 +19,7 @@ namespace Phase08
             foreach (var (docName, docContent) in docMapToContent)
             {
                 var words = SplitDocumentsWords(docContent);
-                var document = new Document(docName, docContent);
+                var document = new Document(){DocName = docName,DocContents = docContent};
                 _invertedIndexContextWrapper.AddDocumentWords(document, words);
             }
         }
