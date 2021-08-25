@@ -19,7 +19,8 @@ namespace Phase11_ASP.Implementations
 
         public void InitializeDataBase(string folderPath)
         {
-            if (_invertedIndexContextWrapper.IsDataBaseInitialized()) return;
+            if (_invertedIndexContextWrapper.IsDataBaseInitialized()) 
+                return;
             
             var documents = _fileReader.ReadFiles(folderPath);
             _invertedIndex.BuildInvertedIndex(documents);

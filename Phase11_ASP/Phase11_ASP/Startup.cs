@@ -74,7 +74,8 @@ namespace Phase11_ASP
                         return serviceProvider.GetService<DisjunctionFilter>();  
                     case "conjunction":  
                         return serviceProvider.GetService<ConjunctionFilter>();
-                    default: throw new KeyNotFoundException();
+                    default: 
+                        throw new KeyNotFoundException();
                 }  
             });
         }
